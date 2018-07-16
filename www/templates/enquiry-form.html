@@ -1,0 +1,15 @@
+<div class="list" ng-form="myForm">
+  <label ng-show="false" class="item item-input item-stacked-label" style="padding-left:0;">
+    <span class="input-label">Title</span>
+    <p class="form-error-msg" ng-if="myForm.title.$error.required"><i class="icon ion-information-circled assertive"></i>Title is required.</p>
+    <input type="text" name="title" ng-model="data.title" max="255" required>
+  </label>
+  <label class="item item-input item-stacked-label" style="padding-left:0; border-width:0;">
+    <span class="input-label">Message</span>
+    <p class="form-error-msg" ng-if="myForm.msg.$error.required"><i class="icon ion-information-circled assertive"></i>message is required.</p>
+    <textarea rows="8" name="msg" ng-model="data.msg" required></textarea>
+  </label>
+</div>
+
+<!-- {{myForm.$invalid}} -->
+<!-- {{data |json}} -->

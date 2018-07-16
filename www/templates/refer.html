@@ -1,0 +1,48 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">Refer a Friend</h2>
+  </div>
+  <ion-content class="main-content has-subheader" style="padding:15px;">
+    <div class="contact-info">
+      <p class="text-center">{{referMsg}}</p>
+    </div>
+
+      <div class="booth-search-form cust-form-1" ng-form="myForm" style="margin-top:10px;">
+          <label class="item item-input item-stacked-label">
+              <span class="input-label">Full Name</span>
+              <input type="text" name="name" ng-model="refer.name" required="true">
+              <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+          </label>
+
+          <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+              <input type="email" name="email" ng-model="refer.email">
+              <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+          </label>
+
+          <!-- <label class="item item-input">
+              <span style="color: #888 !important; font-size: 20px;" class="input-label">OR</span>
+          </label>
+
+          <label class="item item-input">
+              <span class="input-label">Mobile</span>
+              <input type="tel" name="mobile" ng-model="refer.mobile" ng-pattern="/^0?4\d{8}$/">
+          </label> -->
+
+
+      </div>
+
+      <!-- <div class="padding text-center">
+          <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="referFriend(refer)">
+              refer friend
+          </button>
+      </div> -->
+
+      <div class="booth-btn">
+        <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="referFriend(refer)">
+          refer friend
+        </button>
+      </div>
+
+  </ion-content>
+</ion-view>

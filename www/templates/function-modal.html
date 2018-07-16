@@ -1,0 +1,49 @@
+<ion-modal-view style="background-color: #1D1D1D;">
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title title-center header-item"></h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="modal.hide()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">function enquiry</h2>
+    </div>
+
+
+    <ion-content class="main-content has-subheader">
+      <div class="booth-search" style="padding-left:20px; padding-right:20px;">
+        <!-- <h2 style="font-size:14px; color:#fff; text-transform:uppercase;">search booths</h2> -->
+
+        <div style="margin-top:15px;" class="booth-search-form cust-form-1" ng-form="myForm">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">DATE</span>
+            <input type="date" name="date" ng-model="enquiry.reservation_date">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">NUMBER OF GUESTS</span>
+            <input type="number" name="ppl" ng-model="enquiry.number_of_people" min="1">
+          </label>
+          <label class="item item-input item-select item-stacked-label">
+            <span class="input-label">VENUE LEVEL</span>
+            <select ng-options="loc.id as loc.heading for loc in locations" ng-model="enquiry.listing_id"></select>
+          </label>
+          <!-- <label class="item item-input item-stacked-label">
+            <span class="input-label">BUDGET</span>
+            <input type="text" name="budget" ng-model="enquiry.budget" ng-input-currency>
+          </label> -->
+          <label class="item item-stacked-label">
+              <span class="input-label">Comments</span>
+              <textarea style="padding-left:10px;" placeholder="write your message here" name="msg" ng-model="enquiry.comment" rows="8" cols="80"></textarea>
+          </label>
+        </div>
+
+        <div class="booth-btn">
+          <button class="button button-full button-color-dark" ng-click="sendFunEnquiry(enquiry)">
+            ok
+          </button>
+        </div>
+
+      </div>
+      <!-- {{enquiry | json}} -->
+    </ion-content>
+</ion-modal-view>

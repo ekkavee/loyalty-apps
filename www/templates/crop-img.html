@@ -1,0 +1,55 @@
+<ion-view view-title="">
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button style="color:#eee;" class="button button-icon button-clear ion-ios-arrow-back" ng-click="back()">
+
+            </button>
+        </ion-nav-buttons>
+        <!-- <ion-nav-back-button class="nav-button">
+        </ion-nav-back-button> -->
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">My Profile Image</h2>
+    </div>
+
+    <ion-content class="padding text-center main-content has-subheader">
+        <div ng-if="!img.URL">
+
+            <img class="img-circle async-load" ng-src="{{member.member.profile_img}}" alt="" style="max-width: 165px; height: auto; margin-top: 10px;">
+
+            <button class="button button-full button-color-dark" ng-click="getPicture(1)">
+                Take a new photo
+            </button>
+
+            <button class="button button-full button-color-grey" ng-click="getPicture(2)">
+                Select  from library
+            </button>
+            <!--<button class="button button-block button-magenta" ng-click="upload('http://ionicframework.com/img/ionic-logo-blog.png')">Confirm</button>-->
+        </div>
+        <!--confirm and upload img to s3-->
+        <div ng-if="img.URL">
+
+            <img class="img-circle async-load" ng-src="{{removeProtocol(img.URL)}}" alt="" style="max-width: 165px; height: auto; margin-top: 10px;">
+
+            <button class="button button-full button-color-dark" ng-click="upload(img.URL)">Confirm</button>
+            <button class="button button-full button-color-grey" ng-click="cancel()">Cancel</button>
+
+        <p ng-show="errorMsg" class="assertive">Please try again!</p>
+
+        </div>
+        <!--<h4>Upload on file select</h4>-->
+        <!--<button type="file" ngf-select="uploadFiles($file, $invalidFiles)"-->
+                <!--accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">-->
+            <!--Select File</button>-->
+        <!--<br><br>-->
+        <!--File:-->
+        <!--<div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}-->
+      <!--<span class="progress" ng-show="f.progress >= 0">-->
+          <!--<div style="width:{{f.progress}}%"-->
+               <!--ng-bind="f.progress + '%'"></div>-->
+      <!--</span>-->
+        <!--</div>-->
+        <!--{{errorMsg}}-->
+
+    </ion-content>
+</ion-view>

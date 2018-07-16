@@ -1,0 +1,85 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">Contact</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader" style="padding:15px;">
+    <!-- <h1>Your Request Details</h1> -->
+    <div class="contact-info">
+      <h3 class="text-center" style="font-weight:400; text-transform:capitalize;">contact the emerson</h3>
+      <p class="text-center">Need to get in touch with us?</p>
+      <h3 class="text-center" style="font-weight:400; text-transform:capitalize;">call now <a href="tel:0398250900">03 9825 0900</a></h3>
+      <p class="text-center">Or complete the form below for one of our staff to contact you</p>
+    </div>
+    <div class="booth-search-form cust-form-1" ng-form="myForm" style="margin-top:0;">
+
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Preferred Time</span>
+            <input style="padding-right:40px;" type="time" name="time" ng-model="contact.time" required="true">
+            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </label>
+
+        <label class="item item-input item-select item-stacked-label">
+          <span class="input-label">Preferred Method of Contact</span>
+          <select class="cont-med" ng-model="contact.choice" required="true" ng-init="contact.choice = 'phone'">
+            <option ng-value="Phone">Phone</option>
+            <option ng-value="Email">Email</option>
+          </select>
+        </label>
+
+        <!-- <label class="item">
+            <span class="input-label">preferred method of contact</span>
+            <ion-list class="radio-list" ng-init="contact.choice = 'phone'">
+              <ion-radio ng-model="contact.choice" ng-value="'phone'">phone</ion-radio>
+              <ion-radio ng-model="contact.choice" ng-value="'email'">email</ion-radio>
+            </ion-list>
+        </label> -->
+
+        <label class="item item-stacked-label">
+            <span class="input-label">Message</span>
+            <textarea style="padding-left:10px;" placeholder="write your message here" name="msg" ng-model="contact.msg" rows="8" cols="80" required="true"></textarea>
+        </label>
+    </div>
+
+    <div class="booth-btn">
+      <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="sendContact(contact)">
+        submit
+      </button>
+    </div>
+
+    <!-- <div class="padding text-center">
+        <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="sendContact(contact)">
+            submit
+        </button>
+    </div> -->
+
+    <!-- {{contact | json}} -->
+
+    <!-- <div class="list" style="margin-top:10px;">
+        <a class="item item-icon-left" ng-href="mailto:info@theemerson.com.au">
+          <i class="icon ion-email"></i>
+          info@theemerson.com.au
+        </a>
+
+        <a class="item item-icon-left" href="tel:0398250900">
+          <i class="icon ion-chatbubble-working"></i>
+          (03) 9825 0900
+        </a>
+
+        <a class="item item-icon-left" style="white-space:normal;">
+          <i class="icon ion-location"></i>
+          141-145 COMMERCIAL ROAD, SOUTH YARRA, MELBOURNE VIC 3141
+        </a>
+
+        <a class="item item-icon-left" ng-click="GotoLink('https://www.theemerson.com.au/')">
+          <i class="icon ion-monitor"></i>
+          www.theemerson.com.au
+        </a>
+
+      </div> -->
+
+
+
+  </ion-content>
+</ion-view>

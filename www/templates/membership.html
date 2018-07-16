@@ -1,0 +1,122 @@
+<ion-view view-title="Membership Application">
+  <ion-nav-bar class="bar-color-1" align-title="center">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-white ion-ios-arrow-back" ng-click="cancel()">
+        </button>
+    </ion-nav-buttons>
+    <!-- <h1 class="title h1-heading">Membership Application</h1> -->
+  </ion-nav-bar>
+  <div class="top-coners-div"><div class="corner-body"></div></div>
+  <ion-content class="main-content">
+    <h3 style="color: #641937; font-size: 20px; margin-bottom: 0; font-weight:400;"class="padding text-center">please select a tier</h3>
+    <div class="row text-center">
+      <div class="col" ng-repeat="tier in tiers"><button style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedTier.name != tier.name?'button-outline':''" ng-click="chooseTier(tier)" ng-disabled="$root.member.member.member_tier.tier.name == tier.name">{{tier.heading}}</button></div>
+      <!-- <div class="col"><button style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedTier != 2?'button-outline':''" ng-click="chooseTier(2)">Tier2</button></div>
+      <div class="col"><button style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedTier != 3?'button-outline':''" ng-click="chooseTier(3)">Tier3</button></div> -->
+    </div>
+    <div class="member-benifit" ng-if="selectedTier != null && selectedTier.benefits">
+        <div class="list" style="margin-top:0px; margin-bottom:0;">
+          <a class="item" ng-repeat="(key, val) in selectedTier.benefits.perks">
+            {{key}}
+            <span class="item-note" tier-benefit="val">
+
+            </span>
+          </a>
+        </div>
+
+        <div class="list" style="margin-top:0px; margin-bottom:0;" ng-repeat="(key, vals) in selectedTier.benefits.Extras">
+          <div class="item item-divider">
+            {{key}}
+          </div>
+          <a class="item" style="white-space:normal; font-size:14px; color:#555;" ng-repeat="val in vals">
+            {{val}}
+          </a>
+      </div>
+
+
+    </div>
+    <div class="list padding profile-form cust-form-1" style="box-shadow:none; top:initial; padding-top:1px; margin-bottom:0px;" ng-form="myForm">
+
+        <label class="item item-input item-icon-right">
+            <input placeholder="home address" name="home_address" type="text" google-autocomplete-suggestion location="home_address" country-code="{{countryCode}}" on-selection="onAddressSelection(location, 'home')" ng-model="home_address.formatted_address" readonly required>
+            <i class="icon ion-search"></i>
+        </label>
+
+        <label ng-if="home_address" class="item">
+          <div class="row profile-details">
+            <div class="col">Street</div>
+            <div ng-if="home_address.address_components.length == 7" class="col">{{home_address.address_components[0].short_name}} {{home_address.address_components[1].short_name}}</div>
+            <div ng-if="home_address.address_components.length == 8" class="col">{{home_address.address_components[0].short_name}} {{home_address.address_components[1].short_name}} {{home_address.address_components[2].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">suburb</div>
+            <div ng-if="home_address.address_components.length == 7" class="col">{{home_address.address_components[2].short_name}}</div>
+            <div ng-if="home_address.address_components.length == 8" class="col">{{home_address.address_components[3].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">state</div>
+            <div ng-if="home_address.address_components.length == 7" class="col">{{home_address.address_components[4].short_name}}</div>
+            <div ng-if="home_address.address_components.length == 8" class="col">{{home_address.address_components[5].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">postcode</div>
+            <div ng-if="home_address.address_components.length == 7" class="col">{{home_address.address_components[6].short_name}}</div>
+            <div ng-if="home_address.address_components.length == 8" class="col">{{home_address.address_components[7].short_name}}</div>
+          </div>
+        </label>
+
+
+        <div class="padding text-center">
+            <button class="button button-color-1 button-outline button-round button-margin-10" ng-click="isBillingAddress()">
+                {{billAddressText}}
+            </button>
+        </div>
+
+        <div ng-if="hasBillingAddress">
+          <label class="item item-input item-icon-right">
+              <!-- <span class="input-label">home address</span> -->
+              <input placeholder="billing address" name="bill_address" type="text" google-autocomplete-suggestion location="bill_address" country-code="{{countryCode}}" on-selection="onAddressSelection(location, 'bill')" ng-model="bill_address.formatted_address" readonly required>
+              <!-- <input type="text" name="home_address" ng-model="home_address"> -->
+              <i class="icon ion-search"></i>
+          </label>
+
+          <label ng-if="bill_address" class="item">
+            <div class="row profile-details">
+              <div class="col">Street</div>
+              <div ng-if="bill_address.address_components.length == 7" class="col">{{bill_address.address_components[0].short_name}} {{bill_address.address_components[1].short_name}}</div>
+              <div ng-if="bill_address.address_components.length == 8" class="col">{{bill_address.address_components[0].short_name}} {{bill_address.address_components[1].short_name}} {{bill_address.address_components[2].short_name}}</div>
+            </div>
+            <div class="row profile-details">
+              <div class="col">suburb</div>
+              <div ng-if="bill_address.address_components.length == 7" class="col">{{bill_address.address_components[2].short_name}}</div>
+              <div ng-if="bill_address.address_components.length == 8" class="col">{{bill_address.address_components[3].short_name}}</div>
+            </div>
+            <div class="row profile-details">
+              <div class="col">state</div>
+              <div ng-if="bill_address.address_components.length == 7" class="col">{{bill_address.address_components[4].short_name}}</div>
+              <div ng-if="bill_address.address_components.length == 8" class="col">{{bill_address.address_components[5].short_name}}</div>
+            </div>
+            <div class="row profile-details">
+              <div class="col">postcode</div>
+              <div ng-if="bill_address.address_components.length == 7" class="col">{{bill_address.address_components[6].short_name}}</div>
+              <div ng-if="bill_address.address_components.length == 8" class="col">{{bill_address.address_components[7].short_name}}</div>
+            </div>
+          </label>
+        </div>
+
+
+        <div class="text-center" style="margin-top:10px;">
+          <a href="#/menu/crop-img?dirty={{myForm.$dirty}}"><img class="profile-img async-load" ng-src="{{$root.member.member.profile_img}}" style="width: 150px; height: 150px; border: 2px solid #dce1e6;"></a>
+          <p style="color:#999; margin-bottom:0;">Tap to change your image</p>
+        </div>
+
+        <div class="padding text-center">
+            <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid || selectedTier == null" ng-click="submit()">
+                Submit
+            </button>
+        </div>
+    </div>
+    <!-- {{bill_address | json}} -->
+
+  </ion-content>
+</ion-view>

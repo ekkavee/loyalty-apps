@@ -1,0 +1,42 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">membership levels</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div class="member-tier">
+      <h4 class="name">{{member.member.first_name}} {{member.member.last_name}}</h4>
+      <h4 class="tier">{{$root.member.member.member_tier.tier.name}} member love</h4>
+    </div>
+    <div class="">
+      <div class="member-logo text-center" style="margin:15px 0;">
+        <img style="display:block; margin:0 auto; max-width:220px;" ng-src="img/member-logo.svg" >
+      </div>
+      <div class="list card no-h-margin" ng-repeat="listing in memberships" style="margin-bottom:20px;">
+        <div class="item item-head">
+          <h4 style="text-transform:uppercase;">{{listing.heading}}</h4>
+        </div>
+
+
+        <div class="item item-body">
+
+          <div class="listing-info">
+            <div class="listing-img" ng-click="openItem(listing.id)">
+              <img class="async-load listing-banner-img" ng-src="{{listing.image_banner}}">
+            </div>
+            <div class="listing-desc" style="padding-bottom:5px;" ng-click="openItem(listing.id)">
+              <!-- <h2>{{listing.heading}}</h2> -->
+              <p class="long-desc" ng-bind-html="$root.highlightFirstWord(listing.desc_long)"></p>
+              <i class="icon ion-chevron-right icon-right" style="position:absolute; bottom:5px; right:13px; color: #fff;"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    </div>
+
+  </ion-content>
+</ion-view>

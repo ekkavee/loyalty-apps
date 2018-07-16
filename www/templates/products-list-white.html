@@ -1,0 +1,28 @@
+<div ng-repeat="product in products">
+  <div class="ticket-container white animated fadeIn"  ng-init="product.qty = 0">
+        <div class="row" style="align-items: center;">
+          <div class="col col-50">
+            <span style="" class="stock-name text-left">{{product.product.name}}<span class="out-of-stock" ng-if="product.product.status =='sold_out'">SOLD OUT</span></span>
+            <span ng-if="order.show != 'point'" style="" class="text-left stock-price">@{{product.product.unit_price | currency:'$':0}}</span>
+            <span ng-if="order.show == 'point'" style="" class="text-left stock-price">@{{product.product.point_price | number}}P</span>
+          </div>
+          <div class="col col-50">
+            <div class="row">
+              <div class="col col-50">
+                <div class="text-right" style="white-space:nowrap;">
+                  <button ng-disabled="product.product.status != 'active'" class="button button-small icon ion-minus-round qty-minus btn-qty" ng-click="product.qty = (product.qty -1)>=0?product.qty -1:0; itemSelected(product);"></button>
+                  <input class="stock-qty-input" onPaste="return false" ng-focus="itemSelected(product);" ng-class="{'item-focus': selectInput === product}" type="number" pattern="[0-9]*" name="qty" id="qty" min=0 ng-model="product.qty" style="max-width: 25px; max-height: 27px; display: inline-block; text-align: center!important; border: 1px solid #95989A; border-radius:0; background-color: transparent; color: #222;" ng-init="product.qty = 0">
+                  <button ng-disabled="product.product.status != 'active'" class="button button-small icon ion-plus-round qty-plus btn-qty" ng-click="product.qty = product.qty +1; itemSelected(product);"></button>
+                </div>
+              </div>
+
+              <div class="col col-50">
+                <div ng-if="order.show != 'point'" class="text-right stock-price">{{product.qty*product.product.unit_price | currency:'$':0}}</div>
+                <div ng-if="order.show == 'point'" style="padding-right:3px;" class="text-right stock-price">{{product.qty*product.product.point_price | number}}P</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<ion-view view-title="" can-swipe-back="false">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">Car Pick Up</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader" style="padding:15px;">
+    <div ng-if="$root.member.member.member_tier.tier.name !=='Ultra'" class="msg-contatiner">
+      <div class="card" ng-repeat="msg in errorMsgs | orderBy:'-id' track by msg.id" style="margin:0 0 10px 0;">
+        <div class="item item-text-wrap item-icon-left btn-right">
+          <i class="icon" ng-click="open(msg)" ng-class="{'ion-checkmark-circled balanced':msg.notification.type == 'success', 'ion-information-circled assertive':msg.notification.type=='error', 'ion-help-circled energized':msg.notification.type=='alert'}"></i>
+            <p ng-click="open(msg)" style="font-size:15px; font-weight:bold;">{{msg.notification.title}}</p>
+          <!-- <a class="button button-icon icon ion-close" ng-click="remove(msg.id)"></a> -->
+        </div>
+      </div>
+    </div>
+    <!-- <h1>Your Request Details</h1> -->
+    <div class="booth-search-form cust-form-1" ng-form="myForm" style="margin-top:0;">
+        <h2 style="font-size:14px; color:#fff; text-transform:uppercase;" ng-if="!searchRes.data">Your Request Details</h2>
+        <!-- <h3 class="text-center" style="font-weight:400;">Your Request Details</h3> -->
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Date</span>
+            <input type="date" name="date" ng-model="pick.date" required="true" ng-class="$root.member.member.member_tier.tier.name !=='Ultra'?'disabled':''" ng-disabled="$root.member.member.member_tier.tier.name !=='Ultra'">
+            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </label>
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Time</span>
+            <input type="time" name="time" ng-model="pick.time" required="true" ng-class="$root.member.member.member_tier.tier.name !=='Ultra'?'disabled':''" ng-disabled="$root.member.member.member_tier.tier.name !=='Ultra'">
+            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </label>
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Number of People</span>
+            <input type="number" name="ppl" ng-model="pick.ppl" min="1" required="true" ng-change="maxppl()" ng-class="$root.member.member.member_tier.tier.name !=='Ultra'?'disabled':''" ng-disabled="$root.member.member.member_tier.tier.name !=='Ultra'">
+        </label>
+
+        <!-- <span style="padding-left:15px; color: #641937 !important; font-size: 22px;">pick up from</span>
+        <div class="row text-center">
+          <div class="col"><button style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedAdd != positions.emerson?'button-outline':''" ng-click="chooseAdd(positions.emerson)">Emerson</button></div>
+          <div class="col"><button style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedAdd != ''?'button-outline':''" ng-click="chooseAdd('')">Other</button></div>
+        </div> -->
+
+        <label class="item item-input item-stacked-label item-icon-right" style="padding:0;">
+            <input style="background-color:#fff !important" placeholder="{{inputAddType}}" name="google_maps_json" type="text" google-autocomplete-suggestion location="pick.google_maps_json" country-code="AU" on-selection="onAddressSelection(location)" ng-model="pick.google_maps_json.formatted_address" readonly required>
+            <i class="icon ion-search" style="background-color:#fff; right:0; top:4px; padding:0; height: 32px;"></i>
+        </label>
+
+        <!-- <label class="item item-input item-icon-right">
+            <input placeholder="{{inputAddType}}" name="google_maps_json" type="text" google-autocomplete-suggestion location="pick.google_maps_json" country-code="AU" on-selection="onAddressSelection(location)" ng-model="pick.google_maps_json.formatted_address" readonly required>
+            <i class="icon ion-search"></i>
+        </label> -->
+
+        <label ng-if="pick.google_maps_json" class="item" style="margin:0;">
+          <div class="row profile-details">
+            <div class="col">Street</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 7" class="col">{{pick.google_maps_json.address_components[0].short_name}} {{pick.google_maps_json.address_components[1].short_name}}</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 8" class="col">{{pick.google_maps_json.address_components[0].short_name}} {{pick.google_maps_json.address_components[1].short_name}} {{pick.google_maps_json.address_components[2].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">suburb</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 7" class="col">{{pick.google_maps_json.address_components[2].short_name}}</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 8" class="col">{{pick.google_maps_json.address_components[3].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">state</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 7" class="col">{{pick.google_maps_json.address_components[4].short_name}}</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 8" class="col">{{pick.google_maps_json.address_components[5].short_name}}</div>
+          </div>
+          <div class="row profile-details">
+            <div class="col">postcode</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 7" class="col">{{pick.google_maps_json.address_components[6].short_name}}</div>
+            <div ng-if="pick.google_maps_json.address_components.length == 8" class="col">{{pick.google_maps_json.address_components[7].short_name}}</div>
+          </div>
+        </label>
+    </div>
+    <!-- <div class="row text-center">
+      <div class="col"><button ng-disabled="!positions.emerson" style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedAdd != 3?'button-outline':''" ng-click="chooseAdd(positions.emerson, 1)">Emerson</button></div>
+      <div class="col"><button ng-disabled="!positions.work" style="min-width:90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedAdd != 2?'button-outline':''" ng-click="chooseAdd(positions.work, 2)">Other</button></div>
+    </div> -->
+    <div class="async-load" style="width:100%; height:200px; z-index:999 !important; border: 4px solid #fff; background-color: #fff;" id="map-canvas" data-tap-disabled="true">
+
+    </div>
+
+    <!-- <div class="padding text-center">
+        <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="requestPickup(pick)">
+            submit
+        </button>
+    </div> -->
+    <div class="booth-btn">
+      <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="requestPickup(pick)">
+        submit
+      </button>
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

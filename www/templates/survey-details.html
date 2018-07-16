@@ -1,0 +1,49 @@
+<ion-view view-title="" can-swipe-back="false" ng-form="mySurvey">
+
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+  <div class="bar bar-subheader">
+    <h2 class="title">{{survey.title}}</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+    <div class="survey-qust">
+      <div class="list list-inset" ng-repeat="q in survey.questions">
+
+            <div ng-if="!q.multiple_choice">
+              <div style="white-space:normal;" class="item">
+                {{q.question}}
+              </div>
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Answer:
+                </div>
+                <select name="answer_id{{$index}}" ng-options="answer.id as answer.answer for answer in q.answers track by answer.id" ng-model="q.answer_id" ng-required="true"></select>
+              </label>
+            </div>
+
+            <div ng-if="q.multiple_choice">
+              <div style="white-space:normal;" class="item">
+                {{q.question}}
+              </div>
+              <ion-list>
+                <ion-checkbox name="q{{q.id}}a{{answer.id}}" ng-repeat="answer in q.answers track by answer.id" ng-model="q.answer_arr[answer.id]" ng-change="checkBoxClick(answer, q)" ng-required="checkBoxRequired(q.answer_arr)">{{answer.answer}}</ion-checkbox>
+              </ion-list>
+            </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer footer-btn-bar">
+
+        <!-- <button ng-disabled="mySurvey.$invalid" class="button button-block button-magenta" ng-click="submit(mySurvey)">SUBMIT</button> -->
+        <button ng-disabled="mySurvey.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="submit(mySurvey)">
+            SUBMIT
+        </button>
+
+    </div>
+</ion-view>

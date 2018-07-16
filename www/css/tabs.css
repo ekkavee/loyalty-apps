@@ -1,0 +1,48 @@
+.tabs-striped.bottom-tab >.tabs, .tabs-striped.bottom-tab.tabs{
+  /* theme setting */
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  -webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.6);
+  box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.6);
+  /* theme setting */
+
+}
+
+.tabs-striped.bottom-tab .tab-item .tab-title{
+  /*font-family: 'Helvetica', Arial, sans-serif;*/
+}
+
+.tabs-striped.bottom-tab .tab-item{
+  /* theme setting */
+  color: #222;
+  /* theme setting */
+}
+
+.tabs-striped.tabs-color-lightblue .tab-item.tab-item-active, .tabs-striped.tabs-color-lightblue .tab-item.active, .tabs-striped.tabs-color-lightblue .tab-item.activated {
+    margin-top: -2px;
+    /* theme setting */
+    /* color: #fff; */
+    border: 0 solid #fff;
+    /* background: -webkit-linear-gradient(#72C6C7, #72C6C7); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* theme setting */
+    /* border-color: #0D2956; */
+    border-top-width: 2px;
+}
+
+.tab-item .icon.ems-love-icon{
+  font-size: 45px !important;
+}
+
+/* .tabs-icon-only > .tabs i.fa, .tabs-icon-only.tabs i.fa {
+    line-height: inherit;
+}
+
+.tab-item i.fa {
+    display: block;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 32px;
+} */

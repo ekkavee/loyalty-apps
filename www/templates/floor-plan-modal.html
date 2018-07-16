@@ -1,0 +1,31 @@
+<ion-modal-view style="background-color: #1D1D1D;">
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title title-center header-item"></h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="floorPlanModal.hide()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">{{listing.heading}} floor plan</h2>
+    </div>
+
+
+    <ion-content class="main-content has-subheader" style="display: flex; align-items: center;">
+      <ion-scroll zooming="true" min-zoom="1" direction="xy"
+              delegate-handle="zoom-pane"
+              class="zoom-pane"
+              scrollbar-x="false"
+              scrollbar-y="false"
+              overflow-scroll="false" style="min-height:170px;">
+        <img class="scoll-img async-load" ng-src="{{floor_plan[0].filename}}" alt="" style="display:block; width:100%; min-height:170px;">
+      </ion-scroll>
+    </ion-content>
+    <!-- <ion-scroll zooming="true" min-zoom="1" direction="xy"
+            delegate-handle="zoom-pane"
+            class="zoom-pane"
+            scrollbar-x="false"
+            scrollbar-y="false"
+            overflow-scroll="false">
+      <img class="scoll-img async-load" ng-src="{{floor_plan[0].filename}}" alt="" style="display:block; width:100%;">
+    </ion-scroll> -->
+</ion-modal-view>

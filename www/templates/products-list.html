@@ -1,0 +1,31 @@
+<div class="">
+  <h3 ng-if="heading" class="text-center" style="color:#000; font-size:14px; font-weight:bold; text-transform:uppercase; background-color:#fff; padding:5px 3px;">{{heading}}</h3>
+  <div ng-repeat="product in products">
+    <div class="ticket-container animated fadeIn" ng-repeat="stock in product.product.stocks">
+          <div class="row" style="align-items: center;">
+            <div class="col col-50">
+              <span style="" class="stock-name text-left">{{product.product.name}} {{stock.name}}<span class="out-of-stock" ng-if="stock.units_in_stock <=0">SOLD OUT</span></span>
+              <span ng-if="order.show != 'point'" style="" class="text-left stock-price">@{{product.product.unit_price | currency:'$':0}}</span>
+              <!-- <span ng-if="order.show == 'point'" style="" class="text-left stock-price">@{{product.product.point_price | number}} Pts</span> -->
+            </div>
+            <div class="col col-50">
+              <div class="row">
+                <div class="col col-50">
+                  <div class="text-right" style="white-space:nowrap;">
+                    <button ng-disabled="stock.units_in_stock <=0 || book.order_type == 'package'" class="button button-small icon ion-minus-round qty-minus btn-qty" ng-click="stock.qty = (stock.qty -1)>=0?stock.qty -1:0; itemSelected(stock);"></button>
+                    <input class="stock-qty-input" onPaste="return false" ng-disabled="stock.units_in_stock <=0 || book.order_type == 'package'" ng-focus="itemSelected(stock);" ng-class="{'item-focus': selectInput === stock}" type="number" pattern="[0-9]*" name="qty" id="qty" min=0 ng-model="stock.qty" style="max-width: 25px; max-height: 27px; display: inline-block; text-align: center!important; border: 1px solid #95989A; border-radius:0; background-color: #fff;" ng-init="stock.qty = 0">
+                    <button ng-disabled="stock.units_in_stock <=0 || book.order_type == 'package'" class="button button-small icon ion-plus-round qty-plus btn-qty" ng-click="stock.qty = stock.qty +1; itemSelected(stock);"></button>
+                  </div>
+                </div>
+
+                <div class="col col-50">
+                  <div ng-if="order.show != 'point'" class="text-right stock-price">{{stock.qty*product.product.unit_price | currency:'$':0}}</div>
+                  <!-- <div ng-if="order.show == 'point'" style="padding-right:3px;" class="text-right stock-price">{{stock.qty*product.product.point_price | number}} Pts</div> -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

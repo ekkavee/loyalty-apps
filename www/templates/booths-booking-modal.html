@@ -1,0 +1,85 @@
+<ion-modal-view style="background-color: #0F000F;">
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title" style="color:#eee; right:0 !important; left:0 !important;">Booking Details</h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="modal.hide()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+
+    <div class="top-coners-div"><div class="corner-body"></div></div>
+
+
+    <ion-content class="text-center main-content">
+      <h4 class="text-center" style="font-weight:400;">Your Booking/Enquiry</h4>
+      <div class="booth-booking-details">
+        <div class="row">
+          <div class="col col-50 title text-left">DATE</div>
+          <div class="col col-50 value text-right">{{dateFormat(book.date, 'DD/MM/YYYY')}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-50 title text-left">BOOKING TYPE</div>
+          <div class="col col-50 value text-right">{{book.type}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-50 title text-left">SPACE</div>
+          <div class="col col-50 value text-right">{{listing.heading}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-50 title text-left">NO. OF PEOPLE</div>
+          <div class="col col-50 value text-right">{{book.ppl}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-50 title text-left">BOTTLE SERVICE</div>
+          <div class="col col-50 value text-right">{{getTotal(listing.packages[0].package.products, 'cash') | currency}}</div>
+        </div>
+        <div ng-if="getTotal(listing.packages[0].package.products, 'cash') > 0" ng-repeat="product in listing.packages[0].package.products">
+          <div ng-if="stock.qty > 0" class="row" ng-repeat="stock in product.product.stocks">
+            <div class="col col-20 text-left title">{{stock.qty}}x</div>
+            <div class="col col-80 text-left value">{{product.product.name}} {{stock.name}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50 title text-left">FOOD OPTION</div>
+          <div class="col col-50 value text-right">{{getTotal(listing.packages[1].package.products, 'cash') | currency}}</div>
+        </div>
+        <div ng-if="getTotal(listing.packages[1].package.products, 'cash') > 0" ng-repeat="product in listing.packages[1].package.products">
+          <div ng-if="stock.qty > 0" class="row" ng-repeat="stock in product.product.stocks">
+            <div class="col col-20 text-left title">{{stock.qty}}x</div>
+            <div class="col col-80 text-left value">{{product.product.name}} {{stock.name}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50 title text-left">EXTRAS</div>
+          <div class="col col-50 value text-right">{{getTotal(listing.packages[2].package.products, 'cash') | currency}}</div>
+        </div>
+        <div ng-if="getTotal(listing.packages[2].package.products, 'cash') > 0" ng-repeat="product in listing.packages[2].package.products">
+          <div ng-if="stock.qty > 0" class="row" ng-repeat="stock in product.product.stocks">
+            <div class="col col-20 text-left title">{{stock.qty}}x</div>
+            <div class="col col-80 text-left value">{{product.product.name}} {{stock.name}}</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-50 title text-left">MINIMUN SPEND</div>
+          <div class="col col-50 value text-right">{{book.min_spend | currency}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-50 title text-left">SUBTOTAL</div>
+          <div class="col col-50 value text-right">{{subtotal(listing.packages) | currency}}</div>
+        </div>
+      </div>
+
+      <div class="padding text-center">
+          <button class="button button-color-1 text-button button-round button-margin-10" ng-click="makeReservation('pay')">
+              pay now
+          </button>
+          <button class="button button-color-1 text-button button-outline button-round button-margin-10" ng-click="makeReservation('book')">
+              request booking
+          </button>
+      </div>
+
+
+    </ion-content>
+</ion-modal-view>

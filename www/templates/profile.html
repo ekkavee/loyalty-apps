@@ -1,0 +1,131 @@
+<ion-view view-title="" can-swipe-back="false" ng-form="myForm">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back(myForm.$dirty)">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">my details</h2>
+    </div>
+    <ion-content class="main-content has-subheader" style="padding:15px;">
+
+        <div class="list signup-form cust-form-1">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">First Name</span>
+              <input type="text" name="first_name" placeholder="First Name" ng-model="profile.first_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/" ng-required="true">
+              <!-- <p class="form-error-msg" style="color:#fff;" ng-if="myForm.first_name.$error.required"><i class="icon ion-information-circled assertive"></i> First Name is required</p> -->
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.first_name.$error.required"><i class="icon ion-information-circled assertive"></i> First Name is required</p>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Last Name</span>
+              <input type="text" placeholder="Last Name" name="last_name" ng-model="profile.last_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/" required>
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.last_name.$error.required"><i class="icon ion-information-circled assertive"></i> Last Name is required</p>
+
+            <!-- <label class="item item-input">
+                <input type="text" name="first_name" placeholder="First Name" ng-model="profile.first_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/" required>
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.first_name.$error.required"><i class="icon ion-information-circled assertive"></i> First Name is required</p> -->
+
+            <!-- <label class="item item-input">
+                <input type="text" placeholder="Last Name" name="last_name" ng-model="profile.last_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/" required>
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.last_name.$error.required"><i class="icon ion-information-circled assertive"></i> Last Name is required</p> -->
+
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+                <input type="email" name="email" ng-model="profile.email" required disabled="true">
+            </label>
+            <!-- <label class="item item-input item-stacked-label ">
+                <span class="input-label">Phone</span>
+                <input type="tel" name="phone" ng-model="profile.phone" ng-pattern="/^^\(?(?:\+?61|0)(?:2\)?[ -]?(?:3[ -]?[38]|[46-9][ -]?[0-9]|5[ -]?[0-35-9])|3\)?(?:4[ -]?[0-57-9]|[57-9][ -]?[0-9]|6[ -]?[1-67])|7\)?[ -]?(?:[2-4][ -]?[0-9]|5[ -]?[2-7]|7[ -]?6)|8\)?[ -]?(?:5[ -]?[1-4]|6[ -]?[0-8]|[7-9][ -]?[0-9]))(?:[ -]?[0-9]){6}$/">
+                <span class="form-error-msg" ng-if="myForm.phone.$error.pattern">Please Enter a validated Phone Number</span>
+            </label> -->
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Date of Birth</span>
+                <input type="date" placeholder="Birthday" name="dob" ng-model="profile.dob">
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.dob.$error.required"><i class="icon ion-information-circled assertive"></i> please enter your date of birth</p>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Mobile</span>
+                <input type="tel" placeholder="Mobile" name="mobile" ng-model="profile.mobile" ng-pattern="/^0?4\d{8}$/">
+            </label>
+            <p class="form-error-msg" style="color:#fff;" ng-if="myForm.mobile.$error.pattern"><i class="icon ion-information-circled assertive"></i>Please Enter a validated Mobile Number</p>
+
+            <!-- <label class="item">
+              <div class="row profile-details">
+                <div class="col">Membership Status</div>
+                <div class="col">Active</div>
+              </div>
+              <div class="row profile-details">
+                <div class="col">Membership Tier</div>
+                <div class="col">{{$root.member.member.member_tier.tier.name}}</div>
+              </div>
+              <div class="row profile-details">
+                <div class="col">Renewal Date</div>
+                <div class="col">{{$root.member.member.member_tier.date_renewal?$root.member.member.member_tier.date_renewal:''}}</div>
+              </div>
+              <div class="row profile-details">
+                <div class="col">Billing</div>
+                <div class="col">{{$root.member.member.member_tier.auto_renewal?$root.member.member.member_tier.auto_renewal:''}}</div>
+              </div>
+            </label> -->
+            <!--<label class="item item-input item-stacked-label ">-->
+                <!--<span class="input-label">Wedding Day</span>-->
+                <!--<input type="date" name="wedding_day" ng-model="profile.wedding_day">-->
+            <!--</label>-->
+            <!-- <ion-item class="item item-icon-right" href="#/app/profile/addresses?dirty={{myForm.$dirty}}">
+                <span class="input-label">Address</span>
+                <span ng-if="member.member.member_addresses.length > 0" class="defaut-address">{{(member.member.member_addresses[0].unit_number?member.member.member_addresses[0].unit_number+' ':'')+member.member.member_addresses[0].street+" "+member.member.member_addresses[0].suburb+" "+member.member.member_addresses[0].state+" "+member.member.member_addresses[0].postcode}}</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item> -->
+            <!-- <ion-item class="item item-icon-right" href="#/app/profile/interests?dirty={{myForm.$dirty}}">
+                <span class="input-label">Interests</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+            <ion-item class="item item-icon-right" href="#/app/profile/orders?dirty={{myForm.$dirty}}" ng-click="clearBadge('orders')">
+                <span class="input-label">My Transactions</span>
+                <span ng-show="badges.orders" class="badge badge-positive">{{badges.orders}}</span>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item> -->
+            <!--<ion-item class="item item-icon-right" href="#/app/profile/additions" has-add-info ng-show="hasAInfo">-->
+                <!--<span class="input-label">Additional Info</span>-->
+                <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+            <!--</ion-item>-->
+            <div class="text-center">
+              <button class="button button-small button-full btn-inline btn-sm" ng-click="go('menu.address', myForm.$dirty)">
+                  address
+                  <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+              </button>
+              <button ng-if="$root.member.email_confirmation !=1" class="button button-small button-full btn-inline btn-sm" ng-click="go('menu.email', myForm.$dirty)">
+                  update email
+                  <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+              </button>
+              <button ng-disabled="myForm.$invalid" class="button button-small button-full btn-inline btn-sm" ng-click="openPasswordModal(myForm.$dirty)">
+                  change password
+                  <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+              </button>
+            </div>
+
+
+            <div class="text-center" style="margin-top:15px;">
+              <!-- <p style="color:#fff; text-align:center;"> -- </p> -->
+              <button ng-disabled="myForm.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="updateMember(profile)">
+                  Update
+              </button>
+            </div>
+            <!-- <p style="color:#fff; text-align:center;"> -- </p>
+            <div class="text-center">
+
+            </div> -->
+            <!-- <div class="padding text-center">
+                <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="updateMember(profile)">
+                    Save
+                </button>
+            </div> -->
+        </div>
+    </ion-content>
+</ion-view>

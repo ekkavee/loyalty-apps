@@ -1,0 +1,248 @@
+.bar.bar-color-1{
+  /* theme setting */
+  background: linear-gradient(to right, #72C6C7, #0D2956) !important;
+  border:0;
+  /* theme setting */
+  color: #fff;
+}
+
+.bar.bar-subheader{
+  /*background-color: #361939;*/
+  background:#fff !important;
+  color: #fff;
+  /* border: 1px solid rgba(149, 152, 154, 0.13); */
+  border: 0;
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.bar.bar-subheader .title{
+  color: #72C6C7;
+  font-weight: bold;
+  text-transform:uppercase;
+  font-size: 16px;
+}
+
+ion-view{
+  background-color: #FFFFFF !important;
+}
+
+ion-view.login-view{
+  background: url('../img/bepoz_bg.jpg') no-repeat center;
+  background-size: cover;
+}
+
+/* home page */
+ion-view.home-page{
+  /* theme setting */
+  /* background-color: #fff !important; */
+  /* theme setting */
+}
+
+ion-view.home-page .home-btn-div .col > button > i{
+  background: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* button */
+.button-bar .button.button-outline{
+  color: #fff;
+  background-color: #72C6C7;
+  border: 0;
+  font-size: 14px;
+}
+
+.button-bar > .button:first-child, .button-bar > .button:last-child{
+  border-radius: 0;
+}
+
+ion-view.home-page .home-btn-div .col > button{
+  background-color: #72C6C7;
+}
+
+button.btn-bg{
+  font-size: 20px !important;
+  color: #717171;
+}
+
+button.btn-sm{
+  font-size: 10px !important;
+  color: #666;
+}
+
+.button:hover{
+  color: #95989A;
+}
+
+.has-footer-container .footer-container .top-icon-btn button{
+  color: #717171;
+}
+
+.footer-container .sign-in-btn:hover{
+  color: #95989A;
+}
+
+/* login */
+h4.social-heading{
+  color: #292329;
+}
+
+
+/* listing */
+.listing-details.listing-desc{
+  background-color: #F6F6F6;
+}
+
+.card.no-h-margin .item-body .item-action{
+  background-color: #F6F6F6;
+}
+
+.listing-details.listing-desc h2{
+  color: #72C6C7;
+}
+
+.listing-details.listing-desc p.long-desc{
+  color: #717171;
+}
+
+.listing-details.listing-desc .listing-days .listing-day{
+  border: 2px solid #A57C57;
+  color: #A57C57;
+}
+
+.card.no-h-margin .item-body .item-action a.button{
+  color: #72C6C7;
+  min-height: 0;
+  line-height:33px;
+  padding: 0;
+}
+
+.listing-accordion{
+  background-color: #F6F6F6;
+}
+
+.booth-search-form .item-stacked-label .input-label{
+  color: #000 !important;
+}
+
+/* account page */
+.profile-info .point-bar.row > .col{
+  color: #666;
+}
+
+.profile-info .point-bar.row > .col .points{
+  color: #72C6C7;
+}
+
+.profile-barcode .voucher-barcode img{
+  background-color: #fff;
+}
+
+.profile-img-container{
+    display: flex;
+    justify-content: center;
+    min-height: 98px;
+    width: 100%;
+    background: linear-gradient(to right, #72C6C7, #0D2956);
+}
+
+/* FAQ */
+.list.card.faq{
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.list.card.faq .faq-q-item, .list.card.faq .faq-a-item{
+      background-color: #161515;
+      color: #ccc;
+      border: 0;
+      font-size: 14px;
+}
+
+/* survey page */
+
+.survey-item{
+  background-color: transparent;
+  border: 1px solid #999;
+}
+
+.survey-item > .item.item-text-wrap{
+  background-color: #000;
+}
+
+.survey-item > .item.item-text-wrap i, .survey-item > .item.item-text-wrap h3{
+  color: #eee;
+}
+
+.survey-item > .item.item-text-wrap h3{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.footer-btn-bar{
+  background-color: #000;
+}
+
+.footer-btn-bar .button{
+  margin: 0;
+}
+
+.signup-form.cust-form-1 .input-label{
+  color:#717171 !important;
+}
+
+.cc-selection > label{
+  background: linear-gradient(to right, #72C6C7, #0D2956);
+  border-radius: 20px;
+}
+
+/* tabs */
+.tabs-striped.tabs-color-lightblue .tab-item.tab-item-active, .tabs-striped.tabs-color-lightblue .tab-item.active, .tabs-striped.tabs-color-lightblue .tab-item.activated{
+  background: -webkit-linear-gradient(#72C6C7, #72C6C7);
+}
+
+
+/* side menu */
+ion-side-menu ion-header-bar.bar{
+  background-image: linear-gradient(to right, #72C6C7 90%, #72C6C7 100%) !important;
+  background-size: cover;
+  border:none;
+  height: 100px;
+}
+
+ion-side-menu ion-content{
+  background-image: linear-gradient(to right, #72C6C7 90%, #72C6C7 100%);
+}
+
+ion-side-menu ion-item.item, ion-side-menu ion-item.item-complex .item-content{
+  background-image: linear-gradient(to right, #72C6C7 90%, #72C6C7 100%);
+}
+
+/* about */
+.about-content{
+  color: #666;
+}
+
+/* modal */
+.modal{
+  background-color: #FFF !important;
+}
+
+
+/* order modal */
+.total-section div{
+  color: #72C6C7 !important; 
+}
+
+.comment-area{
+  background: linear-gradient(to right, #72C6C7, #0D2956) !important;
+}
+
+.form-date-picker{
+  background: linear-gradient(to right, #72C6C7, #0D2956); 
+}
+

@@ -1,0 +1,124 @@
+<ion-view view-title="">
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <!-- <ion-nav-back-button class="nav-button">
+    </ion-nav-back-button> -->
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+        <!-- <h1 class="title h1-heading">Membership Application</h1> -->
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title">Register</h2>
+    </div>
+    <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+    <ion-content class="main-content has-subheader padding">
+        <div style="margin-bottom:0;" class="list signup-form cust-form-1 padding" ng-form="myForm">
+            <span ng-if="venues.length > 1" class="input-label" style="padding: 4px 0 2px 0;">Venue</span>
+            <label ng-if="venues.length > 1" class="item item-input item-select item-stacked-label">
+                <select ng-model="form.tier_id" name="tier_id" ng-options="venue.id as (venue.venue.name || 'FAL Group') for venue in venues track by venue.id"
+                    required>
+                </select>
+            </label>
+            <p class="form-valid-msg" style="margin: 0; font-size: 14px;" ng-if="myForm.tier_id.$valid">
+                <i class="icon ion-checkmark-circled balanced"></i>
+            </p>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">first name</span>
+                <input type="text" name="first_name" placeholder="First Name" ng-model="form.first_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/"
+                    required>
+                <p class="form-valid-msg" ng-if="myForm.first_name.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.first_name.$invalid && myForm.first_name.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> please enter a valid First Name</p>
+                <!-- <p class="form-error-msg" ng-if="!myForm.first_name.$valid && myForm.first_name.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> First Name is required</p> -->
+            </label>
+            <!-- <p class="form-error-msg"  ng-if="myForm.first_name.$error.required && myForm.first_name.$dirty"><i class="icon ion-information-circled assertive"></i> First Name is required</p> -->
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">last name</span>
+                <input type="text" name="last_name" placeholder="Last Name" ng-model="form.last_name" ng-pattern="/^[a-zA-Z]+[a-zA-Z0-9 ]+$/"
+                    required>
+                <p class="form-valid-msg" ng-if="myForm.last_name.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <!-- <p class="form-error-msg" ng-if="myForm.last_name.$error.required && myForm.last_name.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> Last Name is required</p> -->
+                <p class="form-error-msg" ng-if="myForm.last_name.$invalid && myForm.last_name.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> please enter a valid Last Name</p>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">email</span>
+                <input type="email" name="email" placeholder="email" ng-model="form.email" ng-pattern='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+                    required email-exists>
+                <p class="form-valid-msg" ng-if="myForm.email.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.email.$error.required && myForm.email.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> please enter your email</p>
+                <p class="form-error-msg" ng-if="myForm.email.$error.pattern && myForm.email.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> please enter a valid email</p>
+                <p class="form-error-msg" ng-if="myForm.email.$error.emailExists">
+                    <i class="icon ion-information-circled energized"></i> Email already in use, please login, or setup with another email</p>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Password</span>
+                <input type="password" name="password" placeholder="Password" ng-model="form.password" ng-pattern="/^(?=.*\d)(?=.*[a-z]).{6,}$/"
+                    required>
+                <p class="form-valid-msg" ng-if="myForm.password.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.password.$error.required && myForm.password.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> Please enter your password</p>
+                <p class="form-error-msg" ng-if="myForm.password.$error.pattern">
+                    <i class="icon ion-information-circled assertive"></i> Password must be not less than 6 characters with at least 1 letter & 1 number.</p>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Confirm Password</span>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" ng-model="form.confirm_password" compare-To="form.password"
+                    required>
+                <p class="form-valid-msg" ng-if="myForm.confirm_password.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.confirm_password.$error.compareTo && myForm.confirm_password.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> Passwords do not match</p>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Date of Birth</span>
+                <!-- <input type="{{dateInputType}}" name="dob" ng-model="form.dob" placeholder="Birthday" ng-focus="dateInputType = 'date'" ng-blur="changeInputToDate()" required> -->
+                <!-- <input type="date" name="dob" ng-model="form.dob" placeholder="Birthday" class="sign-up-dob" onchange="this.className=(this.value!=''?'has-value':'')" required dob-check> -->
+                <input type="date" name="dob" ng-model="form.dob" placeholder="Birthday" required dob-check>
+                <p class="form-valid-msg" ng-if="myForm.dob.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.dob.$invalid && myForm.dob.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> please enter your date of birth and you must be over 18 years old.</p>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Mobile</span>
+                <input type="tel" name="mobile" placeholder="Mobile" ng-model="form.mobile" required ng-pattern="/^0?4\d{8}$/">
+                <p class="form-valid-msg" ng-if="myForm.mobile.$valid">
+                    <i class="icon ion-checkmark-circled balanced"></i>
+                </p>
+                <p class="form-error-msg" ng-if="myForm.mobile.$error.required && myForm.mobile.$dirty">
+                    <i class="icon ion-information-circled assertive"></i> Please enter your mobile number</p>
+                <p class="form-error-msg" ng-if="myForm.mobile.$error.pattern">
+                    <i class="icon ion-information-circled assertive"></i> Please enter a valid mobile number eg. 04 0000 0000</p>
+            </label>
+            <p class="text-just tnc">By creating an account, you agree to Fal Management Group's <span ng-click="openLegaslAlert('terms_and_conditions')" class="highlight-color">Terms &amp; Conditions</span> and <span ng-click="openLegaslAlert('privacy_policy')" class="highlight-color">Privacy Policy</span>.</p>
+
+        </div>
+        <div class="text-center">
+            <button ng-disabled="myForm.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="signup(form)">
+                Sign Up
+            </button>
+        </div>
+
+        <!-- {{form | json}} -->
+
+    </ion-content>
+</ion-view>

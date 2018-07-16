@@ -1,0 +1,157 @@
+<ion-side-menus enable-menu-with-back-views="true" drag-content="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-white ion-navicon" style="margin:0;" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-white ion-android-person" style="margin:0;" ng-click="go('menu.account')">
+        </button>
+      </ion-nav-buttons>
+      <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar>
+      <!-- <h1 class="title">Left</h1> -->
+      <div class="ion-menu-head text-center">
+        <img id="side-menu-logo" ng-src="img/logo.png">
+        <!-- <p class="helvetica-lt" style="margin:3px auto 0 auto; font-size:11px; color:#fff;">CONNECT WITH US</p> -->
+        <div ng-if="false" class="row icon-bar no-padding">
+          <div class="col">
+            <button class="button button-color-wh button-round button-small icon icon-small ion-social-facebook" ng-click="goSocialLink('https://www.facebook.com/emersonmelb/')"></button>
+          </div>
+          <div class="col">
+            <button class="button button-color-wh button-round button-small icon icon-small ion-social-instagram-outline" ng-click="goSocialLink('https://www.instagram.com/theemerson_au/')"></button>
+          </div>
+          <div class="col">
+            <button class="button button-color-wh button-round button-small icon icon-small ion-social-twitter" ng-click="goSocialLink('https://twitter.com/TheEmerson_au')"></button>
+          </div>
+          <div class="col">
+            <button class="button button-color-wh button-round button-small icon icon-small ion-social-snapchat" ng-click="goSocialLink('https://www.snapchat.com/add/waldo.emerson')"></button>
+          </div>
+
+        </div>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/tabs/home">
+          <i class="icon fa fa-home"></i>
+          Home
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/events">
+          <i class="icon ems-event-icon"></i>
+          Events
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/promotions">
+          <i class="icon ems-promo-icon"></i>
+          Promotions
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/vouchers">
+          <i class="icon ems-voucher-icon"></i>
+          Vouchers
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/tickets">
+          <i class="icon ems-ticket-icon"></i>
+          My Tickets
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/redeems">
+          <i class="icon ems-offer-icon"></i>
+          Offers/Redeem
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/about">
+          <i class="icon fal fa-star-exclamation"></i>
+          About
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/gifts">
+          <i class="icon fal fa-gift"></i>
+          Gift Cards
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/booths">
+          <i class="icon ems-functions-icon"></i>
+          Booth Booking
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/guestlist">
+          <i class="icon ems-guest-icon"></i>
+          Guest List
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/contact">
+          <i class="icon ems-contact-icon"></i>
+          Contact
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/pickup">
+          <i class="icon ems-car-icon"></i>
+          Car Pick Up
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/pickup">
+          <i class="icon ems-blog-icon"></i>
+          Blog
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/app/playlists">
+          <i class="icon ems-shop-icon"></i>
+          Shop
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/parterns">
+          <i class="icon ems-partner-icon"></i>
+          Partners
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/refer">
+          <i class="icon fa fa-handshake"></i>
+          Refer a Friend
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/team">
+          <i class="icon fa fa-users"></i>
+          Our Team
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/faq">
+          <i class="icon fa fa-question-circle"></i>
+          FAQ
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/surveys">
+          <i class="icon fa fa-chart-bar"></i>
+          Surveys
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right" href="#/menu/legals">
+          <i class="icon far fa-book"></i>
+          Legals
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+        <!-- <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right no-active" ng-click="goSocialLink($root.layout.side_menus[7].special_link)">
+          <i class="icon far fa-globe"></i>
+          View Website
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item> -->
+        <ion-item menu-close class="item-icon-left helvetica-nenue-lt-light icon-pull-right no-active" ng-click="$root.logout()">
+          <i class="icon far fa-arrow-alt-from-right"></i>
+          Sign out
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

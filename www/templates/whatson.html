@@ -1,0 +1,106 @@
+<ion-view view-title="">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">what's on</h2>
+  </div>
+  <!-- <div class="button-bar top-tabs">
+    <a class="button button-color-1 button-small" ng-click="setTab(1)" ng-class="currentTab != 1?'button-outline':''">Guest</a>
+    <a class="button button-color-1 button-small" ng-click="setTab(2)" ng-class="currentTab != 2?'button-outline':''">Member Only</a>
+  </div> -->
+  <ion-content class="main-content has-subheader has-tabs">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+
+      <div ng-if="listings.length <= 0" class="empty-msg padding">
+        <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Events found, please check again later.</h4>
+      </div>
+
+      <div ng-if="listings.length > 0" class="list card no-h-margin" ng-repeat="l in listings | PinToTop">
+        <div class="item item-head">
+          <h4 ng-if="l.listing.listing.time_start" get-listing-date="l.listing" date-format="'DD.MM.YY'" time-format="false"></h4>
+          <!-- <div ng-if="l.listing.type.repetitive == 1" class="repeat-day row text-center">
+            <div ng-if="l.listing.occurrence.sunday" class="col col-10 calm-bg">Sun</div>
+            <div ng-if="l.listing.occurrence.monday" class="col col-10 positive-bg">Mon</div>
+            <div ng-if="l.listing.occurrence.tuesday" class="col col-10 balanced-bg">Tue</div>
+            <div ng-if="l.listing.occurrence.wednesday" class="col col-10 energized-bg">Wed</div>
+            <div ng-if="l.listing.occurrence.thursday" class="col col-10 dark-bg">Thu</div>
+            <div ng-if="l.listing.occurrence.friday" class="col col-10 royal-bg">Fri</div>
+            <div ng-if="l.listing.occurrence.saturday" class="col col-10 assertive-bg">Sat</div>
+          </div> -->
+        </div>
+
+        <!-- <div class="item item-body item-thumbnail-left"> -->
+        <div class="item item-body">
+          <!-- <h2>Troppo</h2> -->
+          <!-- <img class="async-load" ng-src="{{l.listing.image_square}}" ng-click="openItem(l.listing.id)">
+          <h2 ng-click="openItem(l.listing.id)">{{l.listing.heading}}</h2>
+          <p class="item-body-desc" ng-click="openItem(l.listing.id)">
+            {{l.listing.desc_short}}
+          </p> -->
+
+
+          <div class="listing-info">
+            <div class="listing-img">
+              <img class="async-load listing-banner-img" ng-src="{{l.listing.image_banner}}" ng-click="openItem(l.listing.id)">
+            </div>
+            <div class="listing-desc">
+              <h2>{{l.listing.heading}}</h2>
+              <p class="long-desc" ng-bind-html="$root.highlightFirstWord(l.listing.desc_long)"></p>
+            </div>
+            <!-- <div class="col col-60">
+              <h2 class="listing-head" ng-click="openItem(l.listing.id)">{{l.listing.heading}}</h2>
+
+              <div class="row time-loc no-padding">
+                  <span ng-if="l.listing.spaces[0].space.heading" class="listing-locate"><i class="icon ion-ios-location"></i> {{l.listing.spaces[0].space.heading}}</span>
+                  <span class="listing-date" get-listing-date="l.listing" date-format="'dddd DD.MM.YY'" time-format="false"></span>
+              </div>
+
+              <i class="icon ems-favs-solid-icon" ng-class="{'color-1':l.listing.like == 1}" ng-click="$root.likelisting(l.listing)"></i>
+              <p class="item-body-desc" ng-click="openItem(l.listing.id)" ng-bind-html="l.listing.desc_long">
+              </p>
+            </div> -->
+          </div>
+
+          <div class="item-action">
+            <!-- <div class="col col-60 action-bar">
+                <button ng-if="$root.isStocks(l.listing.products) && l.listing.add_booking == 1 && l.listing.type.name != 'Redeem'" class="button button-small button button-color-1 button-round" ng-click="book(l.listing, 'cash')">
+                  book now
+                </button>
+                <button ng-if="$root.isStocks(l.listing.products) && l.listing.add_booking == 1 && l.listing.type.name === 'Redeem'" class="button button-small button icon" ng-click="book(l.listing, 'point')">
+                  redeem now
+                </button>
+                <button ng-if="l.listing.add_enquiry == 1" class="button button-small button button-outline button-color-1 button-round" ng-click="enquiry(l.listing)">
+                  enquiry
+                </button>
+            </div> -->
+
+                <a class="button button-icon icon ion-ios-book" ng-disabled="!($root.isStocks(l.listing.products) && l.listing.add_booking == 1)" ng-if="l.listing.type.name != 'Redeem'" ng-click="book(l.listing, 'cash')"></a>
+                <a class="button button-icon icon ion-ios-book" ng-disabled="!($root.isStocks(l.listing.products) && l.listing.add_booking == 1)" ng-if="l.listing.type.name === 'Redeem'" ng-click="book(l.listing, 'point')"></a>
+
+                <a ng-disabled="l.listing.add_enquiry != 1" class="button button-icon icon ion-chatbubble" ng-click="enquiry(l.listing)"></a>
+
+                <a class="button button-icon icon ion-star" ng-class="{'calm':l.listing.favorite == 1}" ng-click="$root.favorlisting(l.listing)"></a>
+
+                <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':l.listing.like == 1}" ng-click="$root.likelisting(l.listing)"></a>
+                <a class="button button-icon icon ion-shuffle" ng-click="$root.share(l.listing)"></a>
+
+
+              <!-- <button class="button button-small icon ion-android-share-alt" ng-click="$root.share(l.listing)"></button>
+              <button ng-class="l.listing.favorite != 1?'button-outline':''" class="button button-color-1 button-round button-small icon ion-plus" ng-click="$root.favorlisting(l.listing)"></button> -->
+
+          </div>
+
+        </div>
+    </div><!-- home-main-container -->
+
+  </ion-content>
+  <bottom-tabs-bar></bottom-tabs-bar>
+</ion-view>

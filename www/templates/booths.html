@@ -1,0 +1,222 @@
+<ion-view view-title="" class="booth-page" can-swipe-back="false">
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title"><span ng-if="!searchRes.data && booths.length > 0">browse booth</span><span ng-if="searchRes.data">booth booking</span></h2>
+  </div>
+
+  <ion-content class="main-content has-subheader has-tabs" delegate-handle="mainScroll">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+
+    <div class="booth-slider has-time-session">
+
+      <h3 ng-if="searchRes.data != null && searchRes.data.length > 0" class="text-center" style="color:#fff; font-size:14px; font-weight:200; text-transform:uppercase; margin-top:10px;">search results: {{searchRes.data.length}} booth<span ng-if="searchRes.data.length >1">s</span> found</h3>
+      <h3 ng-if="searchRes.data != null && searchRes.data.length == 0" style="color:#fff; font-size:14px; font-weight:bold; text-transform:uppercase; margin-top:10px; padding-left:20px; padding-right:20px;">search results: no results</h3>
+      <h3 ng-if="searchRes.data != null && searchRes.data.length > 0" class="text-center" style="color:#fff; font-size:14px; font-weight:bold; text-transform:uppercase; margin-top:10px;">{{search.location.heading}} {{dateFormat(search.date, 'DD/MM/YYYY')}} {{search.ppl}} guests</h3>
+
+      <ion-slide-box ng-if="!searchRes.data && booths.length > 0" on-slide-changed="slideHasChanged($index)" show-pager="false" auto-play="true" delegate-handle="booth-slide">
+        <ion-slide ng-repeat="booth in booths">
+          <div class="item-box">
+            <div style="position:relative;" class="img-box">
+              <!-- <img class="responsive" lazy-img="{{booth.listing.image_square}}" alt=""> -->
+              <img class="responsive" ng-src="{{booth.listing.image_square}}" alt="">
+              <!-- <button class="round-overlay-button bottom-right white button button-icon icon ion-images light small"></button> -->
+            </div>
+            <div class="booth-info-bar">
+              <span class="light-text">{{booth.listing.spaces[0].space.heading}}</span><span class="bold-text">{{booth.listing.heading}}</span><span class="light-text"></span><span class="bold-text">{{getMiniSpend(booth) | currency:'$':0}}+</span><span class="light-text"><i class="icon ion-android-people"></i></span><span class="bold-text">{{getMiniPpl(booth)}}+</span>
+            </div>
+            <div class="booth-btn">
+              <button class="button button-full button-color-dark" ng-click="bookBooth(search, booth)">
+                book {{booth.listing.heading}} now
+              </button>
+            </div>
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+
+      <ion-slide-box ng-if="searchRes.data.length > 0" on-slide-changed="slideHasChanged($index)" delegate-handle="search-slide">
+
+          <ion-slide ng-repeat="booth in searchRes.data">
+            <div class="booth-search-form cust-form-1 slider-form" ng-form="myForm">
+              <div class="item-box">
+                <div style="position:relative;" class="img-box">
+                  <img class="async-load responsive" ng-src="{{booth.listing.image_square}}" alt="">
+                  <!-- <button class="round-overlay-button bottom-right white button button-icon icon ion-images light small"></button> -->
+                </div>
+                <div class="booth-info-bar">
+                  <span class="light-text">{{booth.listing.spaces[0].space.heading}}</span><span class="bold-text">{{booth.listing.heading}}</span>
+                  <span class="light-text"></span><span ng-if="booth.reservation_id" class="bold-text">{{getSessionById(booth.listing.reservations, booth.reservation_id).min_spend | currency:'$':0}}+</span>
+                  <span ng-if="booth.reservation_id" class="light-text"><i class="icon ion-android-people"></i></span><span ng-if="booth.reservation_id" class="bold-text">{{getSessionById(booth.listing.reservations, booth.reservation_id).min_people}}+</span>
+                </div>
+
+                <label class="item item-input item-select item-stacked-label">
+                  <select name="booth_session_{{$index}}" ng-model="booth.reservation_id" required="true" style="height:39px">
+                    <option value="" disabled selected>Select a Time</option>
+                    <option ng-repeat="session in booth.listing.reservations" value="{{session.id}}">{{$root.timeParser(session.time_start)}} - {{$root.timeParser(session.time_end)}}</option>
+                  </select>
+                </label>
+
+                <div class="booth-btn">
+                  <button class="button button-full button-color-dark" ng-disabled="myForm.booth_session_{{$index}}.$invalid" ng-click="bookBooth(search, booth)">
+                    secure {{booth.listing.heading}} now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ion-slide>
+
+      </ion-slide-box>
+    </div>
+
+    <div style="color:#fff; font-size:14px; font-weight:300; margin:10px 0 15px;" class="text-center" ng-if="(!searchRes.data && booths.length > 0) || searchRes.data.length > 0">
+      -- or --
+    </div>
+
+    <div class="booth-search">
+      <h2 style="font-size:14px; color:#fff; text-transform:uppercase;" ng-if="!searchRes.data">search booths</h2>
+      <h2 style="font-size:14px; color:#fff; text-transform:uppercase;" ng-if="searchRes.data">search again</h2>
+      <p style="font-size:14px; color:#fff; text-transform:capitalize;" ng-if="!searchRes.data">tell us what you're thinking?</p>
+
+      <div style="margin-top:15px;" class="booth-search-form cust-form-1" ng-form="myForm">
+        <label class="item item-input item-stacked-label" ion-datetime-picker date only-valid="{'after': 'today', 'inclusive': true}" name="date" ng-model="search.date">
+          <span class="input-label">DATE</span>
+          <!-- <input type="date" name="date" ng-model="search.date" required="true"> -->
+          <!-- <input type="text" ion-datetime-picker date name="date" ng-model="search.date" required="true"> -->
+          <div class="form-date-picker">
+            <span ng-if="!search.date">DD/MM/YYYY</span>
+            <span ng-if="search.date" >{{search.date | date: 'dd/MM/yyyy'}}</span>
+
+          </div>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">NUMBER OF GUESTS</span>
+          <input type="number" name="ppl" ng-model="search.ppl" min="1" required="true">
+        </label>
+        <label class="item item-input item-select item-stacked-label">
+          <span class="input-label">VENUE LEVEL</span>
+          <select ng-options="loc.heading for loc in locations track by loc.id" ng-model="search.location" required="true"></select>
+          <!-- <select required="true" ng-model="search.location">
+            <option ng-repeat="loc in locations" value="{{$index}}">{{loc.heading}}</option>
+          </select> -->
+        </label>
+      </div>
+
+      <div class="booth-btn">
+        <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid || !search.date" ng-click="searchBooth(search)">
+          find my booth
+        </button>
+      </div>
+
+      <div style="color:#fff; font-size:14px; font-weight:300; margin:15px 0;" class="text-center" ng-if="searchRes.data">
+        -- or --
+      </div>
+
+      <div class="booth-btn" ng-if="searchRes.data">
+        <a class="button button-full button-energized" href="tel:0398250900">
+          call booth team now
+        </a>
+      </div>
+
+    </div>
+
+    <!-- {{search | json}} -->
+
+    <!-- <h1>Your Request Details</h1> -->
+    <!-- <div class="">
+      <h3 class="text-center" style="font-weight:400; color:#641937; font-size:20px;">Functions & Booths at The Emerson</h3>
+      <h4 class="text-center" style="font-weight:400;">ABOUT</h4>
+      <p class="text-justify" ng-bind-html="contents[0].desc_long"></p>
+    </div>
+    <div style="box-shadow:none; top:initial; padding-top:1px; margin-bottom:0px;" class="list profile-form cust-form-1" ng-form="myForm">
+        <label class="item item-input item-select">
+            <span class="input-label">function type</span>
+            <select style="color: #641937; font-size: 18px; background-color:transparent;" required="true" ng-model="search.type" ng-init="search.type = 'booth'">
+              <option>booth</option>
+            </select>
+        </label>
+
+    </div> -->
+
+    <!-- <div class="">
+      <h4 class="text-center" style="font-weight:400;">CORPORATE EVENTS</h4>
+      <p class="text-justify" ng-bind-html="contents[1].desc_long"></p>
+    </div> -->
+
+    <!-- <div class="">
+      <h4 class="text-center" style="font-weight:400;">FLOOR PLANS</h4>
+
+    </div> -->
+    <!-- <div class="row text-center">
+      <div ng-repeat="loc in locations" class="col"><button style="min-width:90px;white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 90px;" class="button button-color-1 button-small text-button button-round" ng-class="selectedLoc != loc?'button-outline':''" ng-click="chooseLoc(loc, $index)">{{loc.heading}}</button></div>
+    </div> -->
+
+    <!-- <ion-slide-box on-slide-changed="slideHasChanged($index)" delegate-handle="location-slide">
+
+      <ion-slide ng-repeat="loc in locations">
+        <div ng-if="getimgs(loc, 'location_floorplan').length == 0" class="slide-img">
+          <img class="async-load" ng-src="{{loc.image_banner}}" >
+        </div>
+        <div ng-if="getimgs(loc, 'location_floorplan').length > 0" class="slide-img">
+          <img ng-repeat="image in getimgs(loc, 'location_floorplan')" class="async-load" ng-src="https://s3-ap-southeast-2.amazonaws.com/emerson-app/{{image}}" >
+        </div>
+      </ion-slide>
+    </ion-slide-box> -->
+
+    <!-- <h4 class="text-center" style="font-weight:400;">GALLERY</h4> -->
+
+    <!-- <ion-slide-box delegate-handle="space-slide">
+      <ion-slide ng-if="selectedLoc.spaces.length >0" ng-repeat="space in selectedLoc.spaces">
+        <div class="slide-img">
+          <img class="async-load" style="min-height:100px; min-width:300px;" ng-src="{{space.space.image_banner}}" >
+        </div>
+      </ion-slide>
+    </ion-slide-box> -->
+
+    <!-- <h4 class="text-center" style="font-weight:400;">Make a Booking</h4> -->
+    <!-- <div style="box-shadow:none; top:initial; padding-top:1px; margin-bottom:0px;" class="list profile-form cust-form-1" ng-form="myForm">
+        <label class="item item-input item-icon-right">
+            <span class="input-label">date</span>
+            <input type="date" name="date" ng-model="search.date" required="true">
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </label>
+        <label class="item item-input item-select">
+            <span class="input-label">select level</span>
+            <select style="color: #641937; font-size: 18px; background-color:transparent;" required="true" ng-model="search.location" ng-change="search.booth_listing_id = null">
+              <option ng-repeat="loc in locations" value="{{$index}}">{{loc.heading}}</option>
+            </select>
+        </label>
+        <label class="item item-input item-select">
+            <span class="input-label">select space</span>
+            <select style="color: #641937; font-size: 18px; background-color:transparent;" required="true" ng-model="search.booth_listing_id">
+              <option ng-repeat="space in locations[search.location].spaces" value="{{space.space.id}}">{{space.space.heading}}</option>
+            </select>
+        </label>
+
+        <label class="item item-input item-icon-right">
+            <span class="input-label">NO. of people</span>
+            <input style="padding-right:70px;" type="number" name="ppl" ng-model="search.ppl" min="1" required="true">
+        </label>
+
+        <label class="item item-input item-icon-right">
+            <span class="input-label">occasion</span>
+            <input style="padding-right:40px;" type="text" name="occassion" ng-model="search.occassion" min="1" required="true">
+        </label>
+    </div> -->
+    <!-- <div class="padding text-center">
+        <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="searchBooth(search)">
+            next
+        </button>
+    </div> -->
+
+    <!-- {{search | json}} -->
+
+  </ion-content>
+  <bottom-tabs-bar></bottom-tabs-bar>
+</ion-view>

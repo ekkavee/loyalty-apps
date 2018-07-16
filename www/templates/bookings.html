@@ -1,0 +1,45 @@
+<ion-view cache-view="false">
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">bookings</h2>
+    </div>
+
+    <ion-content class="listing-detail has-subheader main-content has-tabs">
+      <div class="top-banner">
+        <img class="async-load responsive" ng-src="img/demo_imgs/top-slider-img02.png" >
+      </div>
+
+      <div class="padding">
+        <button class="button button-full button-color-dark" ng-click="navTo('menu.booths')">
+          <i class="icon ems-sofa-icon icon-left"></i>
+          booths
+          <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+        </button>
+        <button class="button button-full button-color-dark" ng-click="navTo('menu.function')">
+          <i class="icon ion-android-bar icon-left"></i>
+          functions
+          <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+        </button>
+        <button class="button button-full button-color-dark" ng-click="navTo('menu.pickup')">
+          <i class="icon ems-pickup-icon icon-left"></i>
+          car
+          <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+        </button>
+        <button class="button button-full button-color-dark" ng-click="navTo('menu.booking-history')">
+          <i style="left:13px;" class="icon ion-clipboard icon-left"></i>
+          my bookings
+          <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+        </button>
+      </div>
+
+    </ion-content>
+    <bottom-tabs-bar></bottom-tabs-bar>
+
+    </div>
+</ion-view>

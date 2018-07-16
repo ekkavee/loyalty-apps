@@ -1,0 +1,55 @@
+<ion-view view-title="" can-swipe-back="false">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">my favourites</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+    <!-- <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher> -->
+
+    <div ng-if="listings.length <= 0" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>You do not have any favourites.</h4>
+    </div>
+
+    <div class="var-carousel-container dj-div" ng-if="listings.length>0" style="background-color:transparent;" ng-repeat="cat in cats">
+      <h4 class="carousel-heading">{{cat}}</h4>
+      <slick settings="slickConfig">
+        <div class="dj-item" ng-repeat="listing in listings" ng-if="listing.listing.type.key.name == cat" ng-click="openItem(listing.listing.id)">
+          <img ng-src="{{listing.listing.image_square}}" class="dj-img async-load" >
+          <h3>{{listing.listing.heading}}</h3>
+          <span class="dj-carousel-desc" ng-bind-html="listing.listing.desc_short"></span>
+          <!-- <div class="dj-profile">
+            <h3>{{dj.entertainment.heading}}</h3>
+            <span class="dj-carousel-desc" ng-bind-html="dj.entertainment.desc_short"></span>
+            <div class="row icon-bar" ng-if="dj.entertainment.social_links">
+            </div>
+          </div> -->
+        </div>
+      </slick>
+    </div>
+
+    <ion-list ng-if="false">
+      <ion-item class="dining-item item-thumbnail-left" ng-repeat="listing in listings" href="#/menu/listing/{{listing.listing.id}}">
+
+          <!-- dinner-->
+          <img class="banner-img async-load" ng-src="{{listing.listing.image_square}}">
+          <h3 class="dining-title" style="color: #333;">{{listing.listing.heading}}</h3>
+          <div class="item-desc">{{listing.listing.desc_short}}</div>
+
+          <ion-option-button class="button button-assertive"
+                     ng-click="remove(listing)">
+                     Remove
+          </ion-option-button>
+
+      </ion-item>
+  </ion-list>
+  </ion-content>
+</ion-view>

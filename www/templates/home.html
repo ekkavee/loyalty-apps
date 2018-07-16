@@ -1,0 +1,90 @@
+<ion-view view-title="" class="home-page">
+  <div class="bar bar-subheader">
+    <h2 class="title">WELCOME</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader" lazy-img-container>
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="refresh()">
+    </ion-refresher>
+
+    <div class="home-top-slider">
+      <!-- <ion-slide-box ng-if="homeTiles.length > 0" delegate-handle="main-slide" show-pager="false" auto-play="true" slide-interval="1500" does-continue="true">
+        <ion-slide ng-repeat="tile in homeTiles">
+          <div class="img-box">
+            <img class="async-load" style="min-height:320px;" ng-src="{{tile.image_square}}" alt="{{tile.heading}}" ng-click="openItem(tile.id)">
+          </div>
+        </ion-slide>
+      </ion-slide-box> -->
+      <ion-slide-box ng-if="homeTiles.length > 0" delegate-handle="main-slide" show-pager="false" auto-play="true" slide-interval="2000" does-continue="true">
+        <!-- <ion-slide ng-repeat="tile in homeTiles" ng-if="[0,1,2].includes($index)"> -->
+        <ion-slide ng-repeat="tile in homeTiles">
+          <div class="img-box">
+            <!-- <img lazy-img='{{tile.filename}}' alt="{{tile.heading}}"> -->
+            <img ng-src='{{tile.url}}' alt="{{tile.heading}}">
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+      <!-- <ion-slides  options="mainSlideOptions" slider="data" style="min-height:320px;">
+        <ion-slide-page ng-repeat="tile in homeTiles">
+          <div class="img-box">
+            <img class="async-load" style="min-height:320px;" ng-src="{{tile.image_square}}" alt="{{tile.heading}}" ng-click="openItem(tile.id)">
+          </div>
+        </ion-slide-page>
+      </ion-slides> -->
+    </div>
+
+    <msg-notify messages='$root.messages'></msg-notify>
+
+    <div class="home-btn-div padding">
+      <div class="row" ng-repeat="r in [] | range:btnRows(3)">
+        <div class="col col-33 animated zoomIn">
+          <button class="button home-btn" ng-click="navTo($root.getViewUrl(homeBtns[r*3]))">
+              <!-- <div class="overlay" style="background: url('{{homeBtns[r*3].bgImg}}') no-repeat center center; background-size:cover;)"></div> -->
+              <!-- <div class="overlay" lazy-img='{{homeBtns[r*3].bgImg}}' style="background-repeat:no-repeat; background-position: center center; background-size:cover;)"></div> -->
+              <i class="fa {{homeBtns[r*3].icon}}"></i>
+              <span>{{homeBtns[r*3].page_name}}</span>
+
+          </button>
+        </div>
+        <div class="col col-33 animated zoomIn">
+          <button class="button home-btn" ng-click="navTo($root.getViewUrl(homeBtns[r*3+1]))">
+              <!-- <div class="overlay" style="background: url('{{homeBtns[r*3+1].bgImg}}') no-repeat center center; background-size:cover;)"></div> -->
+              <!-- <div class="overlay" lazy-img='{{homeBtns[r*3+1].bgImg}}' style="background-repeat:no-repeat; background-position: center center; background-size:cover;)"></div> -->
+              <i class="fa {{homeBtns[r*3+1].icon}}"></i>
+              <span>{{homeBtns[r*3+1].page_name}}</span>
+
+          </button>
+        </div>
+        <div class="col col-33 animated zoomIn">
+          <button class="button home-btn" ng-click="navTo($root.getViewUrl(homeBtns[r*3+2]))">
+              <!-- <div class="overlay" lazy-img='{{homeBtns[r*3+2].bgImg}}' style="background-repeat:no-repeat; background-position: center center; background-size:cover;)"></div> -->
+              <!-- <div class="overlay" style="background: url('{{homeBtns[r*3+2].bgImg}}') no-repeat center center; background-size:cover;)"></div> -->
+              <i class="fa {{homeBtns[r*3+2].icon}}"></i>
+              <span>{{homeBtns[r*3+2].page_name}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div ng-if="$root.screen.width <= 320" class="home-btn-div">
+      <div class="row" ng-repeat="r in [] | range:btnRows(2)">
+        <div ng-if="homeBtns[r*2] && homeBtns[r*2].link !='menu.time-location'" class="col col-50 animated zoomIn">
+          <button class="button home-btn" ng-click="navTo(homeBtns[r*2].link)">
+              <div class="overlay" lazy-img='{{homeBtns[r*2].bgImg}}' style="background-repeat:no-repeat; background-position: center center; background-size:cover;)"></div>
+              {{homeBtns[r*2].name}}
+          </button>
+        </div>
+        <div ng-if="homeBtns[r*2+1] && homeBtns[r*2+1].link !='menu.time-location'" class="col col-50 animated zoomIn">
+          <button class="button home-btn" ng-click="navTo(homeBtns[r*2+1].link)">
+              <div class="overlay" lazy-img='{{homeBtns[r*2+1].bgImg}}' style="background-repeat:no-repeat; background-position: center center; background-size:cover;)"></div>
+              {{homeBtns[r*2+1].name}}
+          </button>
+        </div>
+
+      </div>
+    </div> -->
+
+  </ion-content>
+</ion-view>

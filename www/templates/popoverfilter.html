@@ -1,0 +1,7 @@
+<ion-popover-view>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in filterItems" ng-click="selectFilter(item.id)"><i class="far fa-check" ng-if="selectedFilter == item.id"></i>{{item.name}}</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>

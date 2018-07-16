@@ -1,0 +1,179 @@
+<ion-modal-view ng-controller="OrderModalCtrl">
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title title-center header-item"></h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="OrderModal.closeModal()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">Buy Now</h2>
+    </div>
+
+
+    <ion-content class="main-content has-subheader">
+        <!-- <h3 style="margin-top: 10px; font-size: 20px; color:#eee;">{{listing.heading}}</h3> -->
+
+        <!-- <div class="button-bar">
+          <a class="button button-color-dark" ng-click="changeOrder('cash')" ng-class="order.show =='cash'?'':'button-outline'">buy</a>
+          <a class="button button-color-dark" ng-click="changeOrder('point')" ng-class="order.show =='point'?'':'button-outline'">redeem</a>
+        </div> -->
+
+        <!-- <div ng-if="listing" class="list card no-h-margin">
+          <div class="item item-body">
+
+
+            <div class="row listing-info">
+              <div class="col col-40">
+                <img class="async-load listing-square-img" ng-src="{{listing.image_square}}" ng-click="openItem(listing.id)">
+              </div>
+              <div class="col col-60">
+                <h2 class="listing-head" style="text-align:left;">{{listing.heading}}</h2>
+
+                <div class="row time-loc no-padding">
+                    <span ng-if="listing.spaces[0].space.heading" class="listing-locate"><i class="icon ion-ios-location"></i> {{listing.spaces[0].space.heading}}</span>
+                    <span class="listing-date" get-listing-date="listing" date-format="'DD MMM YYYY'" time-format="false"></span>
+                </div>
+
+                <i class="icon ems-favs-solid-icon" ng-class="{'color-1':listing.like == 1}"></i>
+                <p class="item-body-desc" ng-bind-html="listing.desc_long">
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div> -->
+
+        <!-- <div ng-if="listing" class="list card no-h-margin">
+          <div class="item item-head">
+            <h4 get-listing-date="listing" date-format="'DD.MM.YY'" time-format="false"></h4>
+          </div>
+
+          <div class="item item-body">
+            <div class="listing-info">
+              <div class="listing-img">
+                <img class="async-load listing-banner-img" ng-src="{{listing.image_banner}}">
+              </div>
+              <div class="listing-desc">
+                <h2>{{listing.heading}}</h2>
+                <p class="long-desc" ng-bind-html="$root.highlightFirstWord(listing.desc_long)"></p>
+              </div>
+            </div>
+
+          </div>
+      </div> -->
+
+      <div ng-show="listing.products && orderType !=1 " class="item-section" style="padding:0;">
+        <!-- <h3 ng-if="!isPackage" class="text-center title">select your own drinks</h3>
+        <h3 ng-if="isPackage" class="text-center title">suggested drink package</h3> -->
+        <products-list-white products="listing.products" order-type="order"></products-list-white>
+        <!-- <h3 class="title" style="margin-bottom:0; padding:5px 20px;">total</h3> -->
+        <div class="total-section">
+          <div class="row">
+            <div class="col col-67 text-left" style="font-size:12px; font-weight:bold;">total</div>
+            <div ng-if="order.show == 'cash'" class="col col-33 text-right">{{subTotal = getTotal(listing.products, order.show) | currency:'$':0}}</div>
+            <div ng-if="order.show == 'point'" class="col col-33 text-right">{{subTotal = getTotal(listing.products, order.show) | number}}P</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div ng-if="orderType == 1" class="booth-search-form cust-form-1 padding" ng-form="myForm" style="margin-top:10px;">
+          <div class="text-center" style="color:#ccc; text-transform: lowercase;">
+            Please enter the details of the person who will receive this {{listing.name}}
+          </div>
+          <label class="item item-input item-stacked-label">
+              <span class="input-label">Full Name</span>
+              <input type="text" name="name" ng-model="refer.name" ng-required="true">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+              <input type="email" name="email" ng-model="refer.email" ng-required="true">
+          </label>
+
+          <label class="item item-stacked-label">
+            <span class="input-label">message</span>
+              <textarea class="comment-area" style="padding-left:10px; width:100%; color: #fff; border-radius: 10px;" name="messege" ng-model="refer.messege" rows="8"></textarea>
+          </label>
+          <div class="booth-btn">
+            <button ng-if="orderType == 1" ng-disabled="myForm.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="confirmOrder(listing.products, comment)">
+              proceed
+            </button>
+          </div>
+      </div>
+
+
+
+
+
+      <!-- <div style="margin-top:-10px;" class="booth-search-form cust-form-1 padding" ng-form="myForm">
+        <label class="item item-stacked-label">
+            <span class="input-label">COMMENTS</span>
+            <textarea style="padding-left:10px;" placeholder="write your message here" name="msg" ng-model="comment" rows="8" cols="80"></textarea>
+        </label>
+      </div> -->
+        <!-- <div class="button-bar bar-stable padding" ng-if="!redeemOnly">
+            <a class="button button-tab" ng-click="changeOrder('cash')" ng-class="{'active': order.show == 'cash'}">BUY</a>
+            <a class="button button-tab" ng-click="changeOrder('point')" ng-class="{'active': order.show == 'point'}">REDEEM</a>
+        </div> -->
+
+            <!-- <div ng-if="order.show == 'cash'" class="row">
+                <div class="col text-right order-point">
+
+                        <label class="toggle" style="vertical-align: middle;">
+                            <input type="checkbox" ng-model="order.mix" ng-click="$root.initPointRatio(order.mix)">
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                        Use My Points
+                </div>
+
+            </div> -->
+            <!-- <div class="row" ng-if="order.mix && order.show == 'cash'" ng-init="">
+                <div class="col text-right">
+                    <input  onPaste="return false" id="pointUse" type="number" pattern="[0-9]*" name="qty" placeholder="0" ng-min='0' ng-model="order.pointUse" ng-change="isEnoughPts()" style="max-width: 150px; max-height: 30px; display: inline-block; text-align: center; border-radius: 5px; border: 1px solid #666; background-color: transparent;">
+                </div>
+            </div> -->
+
+            <!-- <div class="row">
+                <div ng-if="order.show == 'cash'" class="col text-right order-subtotal">Subtotal {{getTotal(listing.products, order.show) | currency}}</div>
+                <div ng-if="order.show == 'point'" class="col text-right order-subtotal">Subtotal {{getTotal(listing.products, order.show) | number}} Pts</div>
+            </div> -->
+        <!-- </div> -->
+        <!-- <div ng-if="order.show == 'point'" class="price-list padding">
+            <div ng-repeat="product in listing.products">
+                <div class="ticket-container animated fadeIn" ng-repeat="stock in product.product.stocks" ng-init="stock.qty = 0">
+
+                    <div class="row">
+                        <div style="padding-top: 13px" class="col col-67 text-left">{{product.product.name}} {{stock.name}}<span class="out-of-stock" ng-if="stock.units_in_stock <=0">SOLD OUT</span></div>
+                        <div style="padding-top: 13px" class="col col-33 text-right">{{product.product.point_price | number}} Pts</div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col col-50 text-center">Qty <button ng-disabled="stock.units_in_stock <=0" class="button icon ion-minus-round qty-minus" ng-click="stock.qty = (stock.qty -1)>=0?stock.qty -1:0; itemSelected(stock);"></button><input ng-disabled="stock.units_in_stock <=0" ng-focus="itemSelected(stock);" ng-class="{'item-focus': selectInput === stock}" type="number" pattern="[0-9]*" name="qty" id="qty" min=0 ng-model="stock.qty" style="color:#fff; max-width: 30px; max-height: 30px; display: inline-block; text-align: center; border-radius: 5px; border: 1px solid #666; background-color: transparent;"><button ng-disabled="stock.units_in_stock <=0" class="button icon ion-plus-round qty-plus" ng-click="stock.qty = stock.qty +1; itemSelected(stock);"></button></div>
+                        <div class="col col-50 text-right">Total {{stock.qty*product.product.point_price | number}} Pts</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">Subtotal {{getTotal(listing.products, order.show) | number}} Pts</div>
+            </div>
+
+        </div> -->
+        <!-- <div class="padding">
+            <button style="margin-top: 5px;" class="button button-color-1 text-button button-round button-margin-10" ng-click="confirmOrder(listing.products)">
+                Place Order
+            </button>
+        </div> -->
+        <div ng-if="orderType != 1" class="booth-btn" style="margin-left:20px; margin-right:20px;">
+          <button class="button button-small button-full btn-inline btn-bg" ng-click="confirmOrder(listing.products, comment)">
+            proceed
+          </button>
+        </div>
+
+        <!--<p>{{order | json}}</p>-->
+        <!-- <p>{{listing.products | json}}</p> -->
+
+    </ion-content>
+</ion-modal-view>

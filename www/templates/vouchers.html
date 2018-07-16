@@ -1,0 +1,93 @@
+<ion-view view-title="">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">my vouchers</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader has-tabs">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="vouchers.length <= 0" class="empty-msg padding">
+      <h4 class="text-center">
+        <i class="icon ion-paper-airplane"></i>
+        <br>No Vouchers found, please check again later.</h4>
+    </div>
+    
+    <div class="ticket-grid">
+      <div class="row" ng-repeat="r in [] | range:btnRows(2)">
+        <div ng-if="vouchers[r*2]" class="col col-50 animated fadeInLeft">
+          <img class="item-img" ng-src="{{vouchers[r*2].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+            alt="">
+          <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2].id)">
+            <h4>{{vouchers[r*2].order_detail.voucher_setup.name}}</h4>
+            <div class="ticket-status">
+              <div class="">{{vouchers[r*2].order_detail.status == 'successful'?'Confirmed':(vouchers[r*2].order_detail.status == 'in_progress'?'In
+                Progress':vouchers[r*2].order_detail.status)}}</div>
+              <span ng-if="!vouchers[r*2].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
+            </div>
+            <div class="ticket-footer">
+              <span ng-show="vouchers[r*2].expire_date" class="voucher-exp">{{expTime(vouchers[r*2].expire_date)}}</span>
+              <!-- <span class="voucher-qty">x2</span> -->
+            </div>
+          </div>
+          <!-- tickets[r*2] -->
+        </div>
+        <div ng-if="vouchers[r*2+1]" class="col col-50 animated fadeInRight">
+          <img class="item-img" ng-src="{{vouchers[r*2+1].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+            alt="">
+          <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2+1].id)">
+            <h4>{{vouchers[r*2+1].order_detail.voucher_setup.name}}</h4>
+            <div class="ticket-status">
+              <div class="">{{vouchers[r*2+1].order_detail.status == 'successful'?'Confirmed':(vouchers[r*2+1].order_detail.status == 'in_progress'?'In
+                Progress':vouchers[r*2+1].order_detail.status)}}</div>
+              <span ng-if="!vouchers[r*2+1].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
+            </div>
+            <div class="ticket-footer">
+              <span ng-show="vouchers[r*2+1].expire_date" class="voucher-exp">{{expTime(vouchers[r*2+1].expire_date)}}</span>
+              <!-- <span class="voucher-qty">x2</span> -->
+            </div>
+          </div>
+          <!-- tickets[r*2+1] -->
+        </div>
+      </div>
+    </div>
+    <!-- <div ng-if="listings.length > 0" class="list card no-h-margin" ng-repeat="listing in listings | PinToTop">
+      <div class="item item-body" ng-click="openVouchers(listing)" style="overflow:hidden;">
+        <div class="row listing-info">
+          <div class="col col-40">
+            <img class="async-load listing-square-img" ng-src="{{listing.image_square}}" ng-click="openItem(listing.id)">
+          </div>
+          <div class="col col-60">
+            <h2 class="listing-head" ng-click="openItem(listing.id)">{{listing.heading}}</h2>
+
+            <div class="row time-loc no-padding">
+                <span ng-if="listing.spaces[0].space.heading" class="listing-locate"><i class="icon ion-ios-location"></i> {{listing.spaces[0].space.heading}}</span>
+                <span class="listing-date" get-listing-date="listing" date-format="'DD MMM YYYY'" time-format="false"></span>
+            </div>
+
+            <i class="icon ems-favs-solid-icon" ng-class="{'color-1':listing.like == 1}" ng-click="$root.likelisting(listing)"></i>
+            <p class="item-body-desc" ng-click="openItem(listing.id)" ng-bind-html="listing.desc_long">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vouchers" ng-if="selectedList == listing">
+          <div class="voucher text-center animated fadeInDown" ng-repeat="voucher in listing.member_vouchers" style="margin-top:10px;">
+            <span style="font-family: 'Helvetica', Arial, sans-serif; font-size: 20px; color: #641937;">Ticket {{$index+1}}</span><br>
+            <span>Event/Booking Date: {{getVoucherDate(voucher[0].order_detail.payload)}}</span><br>
+            <span>Start Time: {{$root.decodeJSON(voucher[0].order_detail.payload).time_start}}</span>
+            <barcode class="voucher-barcode text-center" style="display:block; margin:10px auto;" ng-if="voucher[0].barcode" type="ean" render="img" string="{{voucher[0].barcode}}" options="barcodeOptions"></barcode>
+          </div>
+      </div>
+  </div> -->
+
+  </ion-content>
+  <bottom-tabs-bar ng-if="$root.layout.tabs"></bottom-tabs-bar>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view view-title="" can-swipe-back="false">
+  <div class="bar bar-subheader">
+    <h2 class="title">FAQ</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+      <ion-refresher
+              pulling-text="Pull to refresh..."
+              on-refresh="init()">
+      </ion-refresher>
+      <div class="list signup-form cust-form-1 padding">
+
+          <label class="item item-input item-stacked-label item-icon-right">
+              <span class="input-label">Search</span>
+              <input class="search-input" pplaceholder="Search" type="text" ng-model="searchKeyword" >
+              <i class="icon ion-search" style="background-color:transparent; color: #fff; right: 4px; top: initial; bottom: 8px; height:auto;"></i>
+          </label>
+          <!-- <label class="item item-input">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="text" placeholder="Search" ng-model="searchKeyword">
+          </label> -->
+      </div>
+      <div class="list card faq" ng-repeat="faq in faqs | filter: searchKeyword">
+          <div href="#" class="item faq-q-item item-divider" style="white-space:normal;">
+              <span>Q: </span><span ng-bind-html="faq.question"></span>
+          </div>
+          <div class="item faq-a-item item-text-wrap">
+              <span style="font-weight:bold;">A: </span><span ng-bind-html="faq.answer | hrefToJS"></span>
+          </div>
+      </div>
+  </ion-content>
+</ion-view>

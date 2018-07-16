@@ -1,0 +1,54 @@
+<ion-view view-title="" can-swipe-back="false">
+    <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-back-button class="nav-button">
+      </ion-nav-back-button>
+      <!-- <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons> -->
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">email update</h2>
+    </div>
+    <ion-content class="main-content has-subheader" style="padding:15px;">
+
+        <div class="list signup-form cust-form-1" ng-form="myForm">
+          <!-- <div class="text-center">
+            <button class="button button-small button-full btn-inline btn-sm" ng-click="resendEmail()">
+                re-validate my email
+                <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+            </button>
+          </div> -->
+              <label class="item item-input">
+                  <input type="password" name="password" placeholder="password" ng-model="new.password" required>
+              </label>
+
+              <label class="item item-input">
+                  <input type="email" name="email" placeholder="new email" ng-model="new.email" ng-pattern='/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' required email-exists>
+              </label>
+              <p class="form-error-msg" style="color:#fff;" ng-if="myForm.email.$error.required && myForm.email.$dirty"><i class="icon ion-information-circled assertive"></i> please enter your email</p>
+              <p class="form-error-msg" style="color:#fff;" ng-if="myForm.email.$error.pattern && myForm.email.$dirty"><i class="icon ion-information-circled assertive"></i> please enter a valid email</p>
+              <!-- <p class="form-valid-msg" style="color:#fff;" ng-if="myForm.email.$valid"><i class="icon ion-checkmark-circled balanced"></i> email available</p> -->
+              <p class="form-error-msg" style="color:#fff;" ng-if="myForm.email.$error.emailExists"><i class="icon ion-information-circled energized"></i> Email already in use</p>
+
+              <label class="item item-input">
+                  <input type="email" placeholder="confirm email" compare-To="new.email" name="confirm_email" ng-model="new.confirm_email" required>
+              </label>
+              <p class="form-error-msg" style="color:#fff;" ng-if="myForm.confirm_email.$error.compareTo && myForm.confirm_email.$dirty"><i class="icon ion-information-circled assertive"></i> Email do not match</p>
+              <!-- <p class="form-error-msg" style="color:#fff;" ng-if="myForm.confirm_email.$valid"><i class="icon ion-checkmark-circled balanced"></i></p> -->
+
+              <div class="text-center">
+                <button class="button button-small button-full btn-inline btn-sm" ng-click="resendEmail()">
+                    re-validate my email
+                    <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+                </button>
+                <button ng-disabled="myForm.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="updateEmail(new)">
+                    update my email
+                </button>
+              </div>
+
+
+
+        </div>
+    </ion-content>
+</ion-view>

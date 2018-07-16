@@ -1,0 +1,23 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">Legals</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader padding" delegate-handle="mainScroll">
+    <ion-list class="accordion-list">
+        <div ng-repeat="legal in legals">
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(legal[0])"
+                    ng-class="{active: isGroupShown(legal[0])}">
+            &nbsp;
+            {{legal[0]}}
+            <i class="icon" ng-class="isGroupShown(legal[0]) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
+          </ion-item>
+          <ion-item class="item-accordion legal-content"
+                    ng-show="isGroupShown(legal[0])" ng-bind-html="legal[1]">
+          </ion-item>
+      </div>
+  </ion-list>
+
+  </ion-content>
+</ion-view>

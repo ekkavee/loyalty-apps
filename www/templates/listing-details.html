@@ -1,0 +1,184 @@
+<ion-view can-swipe-back="false">
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+    <ion-content class="listing-detail main-content" ng-class="{'has-footer-buttons':(isStocks(listing.products) && listing.add_booking == 1) || listing.add_enquiry == 1}">
+        <!--<img class="banner" ng-src="{{event.cover_image}}">-->
+          <!-- <div class="listing-head">
+            <h2 class="listing-title text-center">{{listing.heading}}</h2>
+            <i class="icon ems-favs-solid-icon" ng-class="{'color-1':listing.like == 1}" ng-click="$root.likelisting(listing)"></i>
+              <div class="row time-loc">
+                <p style="display: inline-flex; margin: 0 auto;">
+                  <span ng-if="listing.spaces[0].space.heading" class="listing-locate"><i class="icon ion-ios-location"></i> {{listing.spaces[0].space.heading}}</span>
+                  <span class="listing-date" get-listing-date="listing" date-format="'DD MMM YYYY'" time-format="false"></span>
+                </p>
+              </div> -->
+              <div class="list card no-h-margin" style="margin-bottom:0;">
+                <!-- <div class="item item-head">
+                  <h4 get-listing-date="listing" date-format="'DD.MM.YY'" time-format="false"></h4>
+                </div> -->
+
+
+                <div class="item item-body">
+
+                  <div class="listing-info">
+                    <div class="listing-img">
+                      <img class="async-load listing-banner-img" ng-src="{{listing.image_banner}}">
+                    </div>
+                  </div>
+                  <div class="listing-details listing-desc">
+                    <h2>{{listing.heading}}</h2>
+                    <h3>at {{listing.venue.name}}</h3>
+                    <h3 ng-if="listing.type.id == 1" class="special">{{dateParser(listing.datetime_start)}}</h3>
+                    <div class="">
+                      <p class="long-desc" style="height:auto;" ng-bind-html="listing.desc_long"></p>
+                    </div>
+                    <!-- <p class="long-desc" style="height:auto;">{{listing.desc_long}}</p> -->
+                    <div class="listing-days">
+                      <div class="listing-time">
+                        <span ng-if="listing.payload.occurrence.length > 0">STARTS: {{timeParser(listing.time_start)}}</span><span ng-if="listing.payload.occurrence.length > 0">ENDS: {{timeParser(listing.time_end)}}</span>
+                        <span ng-if="listing.type.id == 1">STARTS: {{timeParser(listing.datetime_start)}}</span><span ng-if="listing.type.id == 1">ENDS: {{timeParser(listing.datetime_end)}}</span>
+                      </div>
+                      <span class="listing-day" ng-repeat="day in listing.payload.occurrence | orderBy:'order'">{{shortDay(day)}}</span>
+                    </div>
+                  </div>
+
+                  <div class="item-action">
+                    <a class="button button-icon icon ion-ios-book" ng-disabled="listing.extra_settings.add_booking == 'false' || !($root.isStocks(listing.products))" ng-if="listing.type.name != 'Redeem'" ng-click="book(listing, 'cash')"></a>
+                    <a class="button button-icon icon ion-ios-book" ng-disabled="listing.extra_settings.add_booking == 'false' || !($root.isStocks(listing.products))" ng-if="listing.type.name === 'Redeem'" ng-click="book(listing, 'point')"></a>
+
+                    <a ng-disabled="listing.extra_settings.add_enquiry == 'false'" class="button button-icon icon ion-chatbubble" ng-click="enquiry(listing)"></a>
+
+                    <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':listing.favorite == 1}" ng-click="$root.favorlisting(listing)"></a>
+
+                    <!-- <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':listing.like == 1}" ng-click="$root.likelisting(listing)"></a> -->
+                    <a class="button button-icon icon ion-shuffle" ng-click="$root.share(listing)"></a>
+                  </div>
+
+                </div>
+            </div>
+          <div class="listing-body">
+            <!-- <div class="listing-img">
+              <img class="banner async-load" ng-src="{{listing.image_banner}}">
+
+              <div class="banner-overlayer">
+                <div ng-if="listing.type.repetitive == 1" class="row repeat-day text-center" style="padding: 0 5px;">
+                  <div ng-show="listing.occurrence.sunday" class="col col-10 calm">Sun</div>
+                  <div ng-show="listing.occurrence.monday" class="col col-10 positive">Mon</div>
+                  <div ng-show="listing.occurrence.tuesday" class="col col-10 balanced">Tue</div>
+                  <div ng-show="listing.occurrence.wednesday" class="col col-10 energized">Wed</div>
+                  <div ng-show="listing.occurrence.thursday" class="col col-10 stable">Thu</div>
+                  <div ng-show="listing.occurrence.friday" class="col col-10 royal">Fri</div>
+                  <div ng-show="listing.occurrence.saturday" class="col col-10 assertive">Sat</div>
+                </div>
+              </div>
+
+            </div> -->
+
+            <!-- <div class="row item-action no-padding">
+              <div class="col col-60 action-bar">
+                  <button ng-if="$root.isStocks(listing.products) && listing.add_booking == 1 && listing.type.name != 'Redeem'" class="button button-small button button-color-1 button-round" ng-click="book(listing, 'cash')">
+                    book now
+                  </button>
+                  <button ng-if="$root.isStocks(listing.products) && listing.add_booking == 1 && listing.type.name === 'Redeem'" class="button button-small button button-color-1 button-round" ng-click="book(listing, 'point')">
+                    redeem now
+                  </button>
+                  <button ng-if="listing.add_enquiry == 1" class="button button-small button button-outline button-color-1 button-round" ng-click="enquiry(listing)">
+                    enquiry
+                  </button>
+              </div>
+              <div class="col col-40 icon-bar text-right">
+                <button class="button button-color-1 button-round button-small button-outline icon ion-android-share-alt" ng-click="$root.share(listing)"></button>
+                <button ng-class="listing.favorite != 1?'button-outline':''" class="button button-color-1 button-round button-small icon ion-plus" ng-click="$root.favorlisting(listing)"></button>
+              </div>
+            </div> -->
+
+            <!-- <p class="text-justify listing-desc-long" ng-bind-html="listing.desc_long"></p> -->
+
+            <!-- <div class="listing-products">
+                <div ng-if="listing.type.name != 'Redeem'" ng-click="book(listing, 'cash')" class="row listing-price-list" style="margin-bottom: 15px; background-color: #333; font-size:12px; color:#eee;" ng-repeat="product in listing.products">
+                    <div class="col col-50" style="overflow: hidden; line-height: 2em;">{{product.product.name}}</div>
+                    <div class="col col-50 text-right" style="border-left: dashed 1px #eee; line-height: 2em;" product-prices="product" listing-type="listing.type.name"></div>
+                </div>
+                <div ng-if="listing.type.name == 'Redeem'" ng-click="book(listing, 'point')" class="row listing-price-list" style="margin-bottom: 15px; background-color: #333; font-size:12px; color:#eee;" ng-repeat="product in listing.products">
+                    <div class="col col-50" style="overflow: hidden; line-height: 2em;">{{product.product.name}}</div>
+                    <div class="col col-50 text-right" style="border-left: dashed 1px #eee; line-height: 2em;" product-prices="product" listing-type="listing.type.name"></div>
+                </div>
+            </div> -->
+            <div class="var-carousel-container dj-div" ng-if="listing.entertainments.length>0" style="background-color:#fff">
+              <h4 class="carousel-heading">{{extra_settings.entertainment_heading || 'DJs'}}</h4>
+              <slick settings="slickConfig" ng-if="listing.entertainments.length">
+                <div class="dj-item" ng-repeat="dj in listing.entertainments">
+                  <img ng-src="{{dj.entertainment.image_square}}" class="dj-img async-load" >
+                  <div class="dj-profile">
+                    <h3>{{dj.entertainment.heading}}</h3>
+                    <span class="dj-carousel-desc" ng-bind-html="dj.entertainment.desc_short"></span>
+                    <div class="row icon-bar" ng-if="dj.entertainment.social_links">
+                      <button ng-if="(dj.entertainment.social_links.facebook != null && dj.entertainment.social_links.facebook != 'null')" class="button button-round button-small icon icon-small ion-social-facebook" ng-click="goSocialLink(dj.entertainment.social_links.facebook)"></button>
+                      <button ng-if="(dj.entertainment.social_links.twitter != null && dj.entertainment.social_links.twitter != 'null')" class="button button-round button-small icon icon-small ion-social-twitter" ng-click="goSocialLink(dj.entertainment.social_links.twitter)"></button>
+                      <button ng-if="(dj.entertainment.social_links.instagram != null && dj.entertainment.social_links.instagram != 'null')" class="button button-round button-small icon icon-small ion-social-instagram" ng-click="goSocialLink(dj.entertainment.social_links.instagram)"></button>
+                      <button ng-if="(dj.entertainment.social_links.youtube != null && dj.entertainment.social_links.youtube != 'null')" class="button button-round button-small icon icon-small ion-social-youtube" ng-click="goSocialLink(dj.entertainment.social_links.youtube)"></button>
+                      <button ng-if="(dj.entertainment.social_links.googleplus != null && dj.entertainment.social_links.googleplus != 'null')" class="button button-round button-small icon icon-small ion-social-googleplus-outline" ng-click="goSocialLink(dj.entertainment.social_links.googleplus)"></button>
+                      <button ng-if="(dj.entertainment.social_links.github != null && dj.entertainment.social_links.github != 'null')" class="button button-round button-small icon icon-small ion-social-github" ng-click="goSocialLink(dj.entertainment.social_links.github)"></button>
+                      <button ng-if="(dj.entertainment.social_links.pinterest != null && dj.entertainment.social_links.pinterest != 'null')" class="button button-round button-small icon icon-small ion-social-pinterest" ng-click="goSocialLink(dj.entertainment.social_links.pinterest)"></button>
+                      <button ng-if="(dj.entertainment.social_links.linkedln != null && dj.entertainment.social_links.linkedln != 'null')" class="button button-round button-small icon icon-small ion-social-linkedin" ng-click="goSocialLink(dj.entertainment.social_links.linkedln)"></button>
+                      <button ng-if="(dj.entertainment.social_links.tumblr != null && dj.entertainment.social_links.tumblr != 'null')" class="button button-round button-small icon icon-small ion-social-tumblr" ng-click="goSocialLink(dj.entertainment.social_links.tumblr)"></button>
+                      <!-- <button ng-if="dj.entertainment.social_links.email != null" class="button button-color-1 button-round button-small icon icon-small ion-android-share-alt" ng-click="goSocialLink(dj.entertainment.social_links.email)"></button> -->
+                    </div>
+                  </div>
+                </div>
+              </slick>
+            </div>
+
+            <div class="var-carousel-container prmo-div dj-div" ng-if="listing.promos.length>0" style="background-color:#fff">
+              <h4 class="carousel-heading">{{extra_settings.promo_heading || 'PROMOS'}}</h4>
+              <slick settings="slickConfig" ng-if="listing.promos.length">
+                <div class="dj-item" ng-repeat="promo in listing.promos">
+                  <img ng-src="{{promo.promo.image_square}}" class="dj-img async-load" >
+                  <div class="dj-profile">
+                    <h3>{{promo.promo.heading}}</h3>
+                    <span class="dj-carousel-desc" ng-bind-html="promo.promo.desc_long" style="color:#ff0000;"></span>
+                  </div>
+                </div>
+              </slick>
+              <!-- <slick settings="slickConfig" ng-if="listing.promos.length>0">
+                <div class="promo-item" ng-repeat="promo in listing.promos">
+                  <h3>{{promo.promo.heading}}</h3>
+                  <p ng-if="promo.promo.date_start && promo.promo.date_end" get-promo-time="promo"></p>
+                  <div ng-bind-html="promo.promo.desc_long">
+                  </div>
+                </div>
+              </slick> -->
+            </div>
+
+            <div class="var-carousel-container prmo-div" ng-if="listing.sponsors.length>0" style="background-color:#fff">
+              <h4 class="carousel-heading">{{extra_settings.sponsor_heading || 'SPONSORS'}}</h4>
+              <slick settings="fullSlickConfig" ng-if="listing.sponsors.length>0">
+                <div class="sponsor-item" ng-repeat="sponsor in listing.sponsors">
+                    <img ng-src="{{sponsor.sponsor.image_banner}}" class="async-load" style="width:100%; display:block;">
+                    <span class="sponsor-stie" style="position:absolute; top:30%; right:5px; text-align:center; color:#333;" ng-click="goSocialLink(sponsor.sponsor.social_links.website)"><i class="icon ems-point-up" style="font-size:20px;"></i><br/>Visit Site</span>
+                  <!-- <img ng-src="{{sponsor.sponsor.image_banner}}" class="async-load" > -->
+                  <!-- <h3>{{promo.promo.heading}}</h3> -->
+                  <!-- <p ng-if="promo.promo.date_start && promo.promo.date_end" get-promo-time="promo"></p> -->
+                  <!-- <div ng-bind-html="promo.promo.desc_long"> -->
+                  </div>
+                </div>
+              </slick>
+            </div>
+        </div>
+
+
+    </ion-content>
+    <!-- <div ng-if="(isStocks(listing.products) && listing.add_booking == 1) || listing.add_enquiry == 1" class="bar bar-footer redeem-footer">
+      <div class="button-bar">
+        <button ng-if="listing.type.name != 'Redeem' && isStocks(listing.products) && listing.add_booking == 1" class="button button-block button-blue" ng-click="book(listing, 'cash')">BOOK NOW</button>
+        <button ng-if="listing.type.name === 'Redeem' && isStocks(listing.products) && listing.add_booking == 1" class="button button-block button-blue" ng-click="book(listing, 'point')">REDEEM NOW</button>
+        <button ng-if="listing.add_enquiry == 1" class="button button-block button-royal" ng-click="enquiry(listing)">ENQUIRY</button>
+      </div>
+    </div> -->
+</ion-view>

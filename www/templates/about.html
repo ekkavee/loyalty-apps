@@ -1,0 +1,22 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">About</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader padding">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="!about" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Items found, please check again later.</h4>
+    </div>
+
+    <div class="about-content" style="text-align:justify;" ng-bind-html="about">
+
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

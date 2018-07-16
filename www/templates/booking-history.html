@@ -1,0 +1,94 @@
+<ion-view view-title="" class="booth-page" can-swipe-back="false">
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">my bookings</h2>
+  </div>
+
+  <ion-content class="main-content has-subheader padding">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="bookings.length <= 0" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Bookings Found, please check again later.</h4>
+    </div>
+    <ion-list class="booking-accordion">
+        <div ng-repeat="booking in bookings | orderBy: '-reservation_date' | bookingFilter" >
+          <ion-item class="item-stable"
+                    ng-click="toggleGroup(booking)"
+                    ng-class="{active: isGroupShown(booking)}">
+              <i class="icon" ng-class="isGroupShown(booking) ? 'ion-arrow-down-b' : 'ion-arrow-right-b'"></i>
+              <span class="booth-name">{{booking.listing.heading}}</span>
+              <span class="booking-date">{{booking.reservation_date | date:'EEE, dd-MM-yyyy'}}</span>
+          </ion-item>
+          <ion-item class="item-accordion" ng-show="isGroupShown(booking)">
+            <div class="list">
+              <a class="item item-icon-left">
+                <i class="icon ion-android-happy"></i>
+                Name
+                <span class="item-note">
+                  {{member.member.first_name}} {{member.member.last_name}}
+                </span>
+              </a>
+              <a class="item item-icon-left">
+                <i class="icon ion-android-time"></i>
+                Time
+                <span class="item-note">
+                  {{timeParser(booking.reservation_date, booking.time_start)}} - {{timeParser(booking.reservation_date, booking.time_end)}}
+                </span>
+              </a>
+              <a class="item item-icon-left">
+                <i class="icon ion-android-pin"></i>
+                Level
+                <span class="item-note">
+                  {{booking.listing.spaces[0].space.heading}}
+                </span>
+              </a>
+              <a class="item item-icon-left">
+                <i class="icon ion-android-contacts"></i>
+                Guests
+                <span class="item-note">
+                  {{booking.number_of_people}}
+                </span>
+              </a>
+              <a class="item item-icon-left">
+                <i class="icon ion-android-search"></i>
+                Booking Number
+                <span class="item-note">
+                  {{booking.booking.id}}
+                </span>
+              </a>
+              <a class="item item-icon-left">
+                <i class="icon ion-social-usd"></i>
+                Total
+                <span class="item-note">
+                  {{booking.booking.total | currency}}
+                </span>
+              </a>
+
+              <a ng-if="booking.booking.details.length > 0" class="item item-icon-left" href="#">
+                <i class="icon ion-bag"></i>
+                Foods & Drinks
+                <!-- <i class="icon ion-ios-arrow-thin-down"></i> -->
+              </a>
+              <ul ng-if="booking.booking.details.length > 0" class="list item-list">
+                  <li ng-repeat="item in booking.booking.details" class="item">
+                    <span>{{item.product.name}}</span>
+                    <span>{{item.qty}}</span>
+                  </li>
+              </ul>
+
+          </div>
+          </ion-item>
+      </div>
+  </ion-list>
+
+
+  </ion-content>
+  <!-- <bottom-tabs-bar></bottom-tabs-bar> -->
+</ion-view>

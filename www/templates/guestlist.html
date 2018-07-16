@@ -1,0 +1,113 @@
+<ion-view view-title="">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">Guest List</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader" style="padding:15px;">
+
+    <div class="booth-search-form cust-form-1" ng-form="myForm" style="margin-top:0;">
+
+        <!-- <h3 class="text-center" style="font-weight:400;">Your Details</h3> -->
+        <h2 style="font-size:14px; color:#fff; text-transform:uppercase;" ng-if="!searchRes.data">Your Details</h2>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">First Name</span>
+            <input type="text" name="first_name" ng-model="gl.first_name" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.first_name.$error.required && myForm.first_name.$dirty">First Name is Required</span> -->
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Last Name</span>
+            <input type="text" name="last_name" ng-model="gl.last_name" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.last_name.$error.required && myForm.last_name.$dirty">Last Name is Required</span> -->
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="email" name="email" ng-model="gl.email" required="true" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,}$/">
+            <!-- <p class="form-error-msg" ng-if="myForm.email.$error.required && myForm.email.$dirty"><i class="icon ion-information-circled assertive"></i> please enter your email</p>
+            <p class="form-error-msg" ng-if="myForm.email.$error.pattern && myForm.email.$dirty"><i class="icon ion-information-circled assertive"></i> please enter a valid email</p> -->
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Mobile</span>
+            <input type="tel" name="mobile" ng-model="gl.mobile" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.mobile.$error.required && myForm.mobile.$dirty">Mobile number is Required</span> -->
+        </label>
+        <label class="item item-input item-select item-stacked-label">
+          <span class="input-label">Gender</span>
+          <select ng-model="gl.gender" required="true">
+            <option ng-value="male">Male</option>
+            <option ng-value="female">Female</option>
+          </select>
+        </label>
+
+        <!-- <label class="item">
+            <span class="input-label">Gender</span>
+            <ion-list class="radio-list">
+              <ion-radio ng-model="gl.gender" ng-value="'male'">Male</ion-radio>
+              <ion-radio ng-model="gl.gender" ng-value="'female'">Female</ion-radio>
+            </ion-list>
+        </label> -->
+        <h2 style="font-size:14px; color:#fff; text-transform:uppercase;" ng-if="!searchRes.data">Guest List Details</h2>
+        <!-- <h3 class="text-center" style="font-weight:400;">Guest List Details</h3> -->
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Guest List Name</span>
+            <input type="text" name="guestlist" ng-model="gl.guestlist" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.guestlist.$error.required && myForm.guestlist.$dirty">Guest list Name is Required</span> -->
+        </label>
+        <label class="item item-input item-icon-right item-stacked-label">
+            <span class="input-label">Date</span>
+            <input type="date" name="date" ng-model="gl.date" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.date.$error.required && myForm.date.$dirty">Date is Required</span> -->
+            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </label>
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Time</span>
+            <input style="padding-right:40px;" type="time" name="time" ng-model="gl.time" required="true">
+            <!-- <span class="form-error-msg" ng-if="myForm.time.$error.required && myForm.time.$dirty">Time is Required</span> -->
+            <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </label>
+
+        <label class="item item-input item-select item-stacked-label">
+            <span class="input-label">Type</span>
+            <select ng-model="gl.type">
+              <option>birthday</option>
+              <option>hens night</option>
+              <option>going away party</option>
+              <option>after work drinks</option>
+              <option>corporate function</option>
+              <option>other</option>
+            </select>
+        </label>
+
+        <label class="item item-stacked-label">
+          <span class="input-label">Attendees</span>
+            <textarea style="padding-left:10px;" placeholder="separated by lines" name="attendees" ng-model="gl.attendees" rows="8" cols="80"></textarea>
+        </label>
+        <label class="item item-stacked-label">
+          <span class="input-label">Comments</span>
+            <textarea style="padding-left:10px;" placeholder="comments" name="comments" ng-model="gl.comments" rows="8" cols="80"></textarea>
+        </label>
+    </div>
+
+    <div class="booth-btn">
+      <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="createGL(gl)">
+        create guest list
+      </button>
+    </div>
+
+    <!-- <div class="padding text-center">
+        <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="createGL(gl)">
+            create guest list
+        </button>
+    </div> -->
+
+
+
+  </ion-content>
+</ion-view>

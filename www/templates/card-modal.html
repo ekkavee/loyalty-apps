@@ -1,0 +1,30 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title title-center header-item"></h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="closeModal()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">my barcode</h2>
+    </div>
+
+
+    <ion-content class="main-content has-subheader">
+      <div class="home-profile-container">
+        <div class="profile-barcode text-center">
+          <barcode class="voucher-barcode" style="max-width: 100%; max-height: 135px; border-radius: 15px;" ng-if="$root.member.member.bepoz_account_number" type="code128b" render="img" string="{{'%'+$root.member.member.bepoz_account_card_number+'?'}}" options="$root.barcodeOptions"></barcode>
+          <span>{{$root.member.member.bepoz_account_card_number}}</span>
+        </div>
+        <div class="profile-img-container">
+          <img class="profile-img async-load animated fadeInLeft" ng-src="{{$root.member.member.profile_img}}">
+        </div>
+        <div class="profile-info">
+          <div class="name-bar">
+            <p class="name">{{$root.member.member.first_name}} {{$root.member.member.last_name}}</p>
+            <span>{{$root.member.member.member_tier.tier.name}} member love</span>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+</ion-modal-view>

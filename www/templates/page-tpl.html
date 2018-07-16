@@ -1,0 +1,61 @@
+<ion-view view-title="">
+  <!-- <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar> -->
+  <div class="bar bar-subheader">
+    <h2 class="title">Page {{pageNo}}</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+    <div class="button-bar" ng-if="pages.length>1">
+      <a ng-repeat="page in pages" class="button button-color-dark" ng-click="changeBtn(page)" ng-class="btnActived(page)?'button-outline':''">{{page.page_name}}</a>
+      <!-- <a class="button button-color-dark" ng-click="changeBtn(false)" ng-class="btn1Active?'':'button-outline'">redeem</a> -->
+    </div>
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="btnActive.listings.length <= 0" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Events found, please check again later.</h4>
+    </div>
+    <div ng-if="btnActive.listings.length > 0" class="list card no-h-margin" ng-repeat="l in btnActive.listings | PinToTop">
+
+      <div class="item item-body" ng-click="openItem(l.listing.id)">
+        <div class="listing-info">
+          <div class="listing-img">
+            <img class="async-load listing-banner-img" ng-src="{{l.listing.image_banner}}">
+          </div>
+          <div class="listing-desc">
+            <div class="">
+              <h2>{{l.listing.heading}}</h2>
+              <p class="short-desc" ng-bind-html="$root.highlightFirstWord(l.listing.desc_short)"></p>
+              <div class="listing-days" ng-if="l.listing.payload.occurrence.length > 0">
+                <span class="listing-day" ng-repeat="day in l.listing.payload.occurrence | orderBy:'order'">{{shortDay(day)}}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- <div class="item-action">
+
+              <a class="button button-icon icon ion-ios-book" ng-disabled="!($root.isStocks(l.listing.products) && l.listing.add_booking == 1)" ng-if="l.listing.type.name != 'Redeem'" ng-click="book(l.listing, 'cash')"></a>
+              <a class="button button-icon icon ion-ios-book" ng-disabled="!($root.isStocks(l.listing.products) && l.listing.add_booking == 1)" ng-if="l.listing.type.name === 'Redeem'" ng-click="book(l.listing, 'point')"></a>
+
+              <a ng-disabled="l.listing.add_enquiry != 1" class="button button-icon icon ion-chatbubble" ng-click="enquiry(l.listing)"></a>
+
+              <a class="button button-icon icon ion-star" ng-class="{'calm':l.listing.favorite == 1}" ng-click="$root.favorlisting(l.listing)"></a>
+
+              <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':l.listing.like == 1}" ng-click="$root.likelisting(l.listing)"></a>
+              <a class="button button-icon icon ion-shuffle" ng-click="$root.share(l.listing)"></a>
+
+        </div> -->
+
+      </div>
+  </div>
+  </ion-content>
+  <!-- <bottom-tabs-bar></bottom-tabs-bar> -->
+</ion-view>

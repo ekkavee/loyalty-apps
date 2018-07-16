@@ -1,0 +1,163 @@
+<div class="payment-secttion">
+  <div ng-if="creditCards.length > 0 && card.use_saved_card" class="cc-selection">
+
+    <!-- {{ccSelected | json}} -->
+    <div ng-if="creditCards.length > 0" class="booth-search-form cust-form-1 slider-form" style="margin-top:0;">
+      <label class="item item-input item-select item-stacked-label">
+        <select ng-model="ccSelected" ng-options="card as (card.brand + ' XXXX XXXX XXXX '+card.last4) for card in creditCards track by card.id"
+          style="height:32px; background-color: transparent; color: #fff;" ng-change="changeccSelected(ccSelected)">
+        </select>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Card Name</span>
+        <input type="text" value="{{ccSelected.name}}" readonly>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Card Number</span>
+        <input type="text" value="XXXX XXXX XXXX {{ccSelected.last4}}" readonly>
+      </label>
+
+      <div class="row" style="padding:0;">
+        <div class="col col-50" style="padding:0 5px 0 0;">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Expiry</span>
+            <input type="text" value="{{ccSelected.exp_month}}/{{ccSelected.exp_year}}" readonly>
+          </label>
+        </div>
+
+        <!-- <div class="col col-50" style="padding:0 0 0 5px;">
+          <label class="item item-input item-stacked-label">
+              <span class="input-label">CCV</span>
+              <input style="padding-right: 10;" type="text" value="{{ccSelected(ccSelectedID).last4}}" ng-disabled="true">
+          </label>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+
+  <div ng-if="!card.use_saved_card" class="booth-search-form cust-form-1 slider-form" ng-form="paymentForm" style="margin-top:0;">
+
+    <!-- <h2 style="font-size:14px; color:#fff; text-transform:uppercase; text-align:center;" ng-if="!searchRes.data">Your Credit card Details</h2> -->
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">Card Name
+        <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.cardholder_name.$invalid">
+          <i class="icon ion-information-circled assertive"></i>
+        </span>
+      </span>
+      <input type="text" name="cardholder_name" ng-model="card.cardholder_name" required="true">
+    </label>
+    <!-- <p class="form-error-msg" style="color:#fff;" ng-if="paymentForm.cardholder_name.$invalid"><i class="icon ion-information-circled assertive"></i> Card Holder Name is required</p> -->
+
+    <label class="item item-input item-stacked-label">
+      <span class="input-label">
+        Card Number
+        <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.card_number.$invalid">
+          <i class="icon ion-information-circled assertive"></i>
+        </span>
+        <!-- <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.card_number.$ccType == 'American Express'"><i class="icon ion-information-circled assertive"></i>Sorry, We do NOT Accept AMEX card at Moment.</span> -->
+      </span>
+
+      <input type="text" name="card_number" ng-model="card.card_number" ng-required="true" cc-number cc-format cc-type="cardType">
+      <span ng-if="paymentForm.card_number.$valid" class="cc-icon" ng-class="{'icon-visa':paymentForm.card_number.$ccType == 'Visa', 'icon-master':paymentForm.card_number.$ccType == 'MasterCard', 'icon-amex':paymentForm.card_number.$ccType == 'American Express'}"></span>
+    </label>
+    <!-- <p class="form-error-msg" style="color:#fff;" ng-if="paymentForm.card_number.$error.required"><i class="icon ion-information-circled assertive"></i> Card Number is required</p> -->
+
+
+    <!-- <label class="item item-input item-stacked-label">
+          <span class="input-label">CCV <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.cvn.$error.required"><i class="icon ion-information-circled assertive"></i></span></span>
+          <input style="padding-right: 10;" name="cvn" type="text" ng-model="card.cvn" ng-required="true" cc-cvc cc-type="cardNumber.$ccType">
+      </label> -->
+
+    <div class="row" style="padding:0;">
+      <div class="col col-50" style="padding:0 5px 0 0;">
+        <!-- <label class="item item-input item-stacked-label" ion-datetime-picker date only-valid="{'after': 'today', 'inclusive': true}" name="date" ng-model="card.exp">
+            <span class="input-label">Expiry <span class="form-error-msg" style="color:#fff;" ng-if="!card.exp"><i class="icon ion-information-circled assertive"></i></span></span>
+            <div class="form-date-picker" style="border-radius: 20px;">
+              <span ng-if="!card.exp" style="color:#fff">MM/YY</span>
+              <span ng-if="card.exp" style="color:#fff" >{{card.exp | date: 'MM/yy'}}</span>
+
+            </div>
+          </label> -->
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Expiry
+            <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.exp.$error.required">
+              <i class="icon ion-information-circled assertive"></i>
+            </span>
+          </span>
+          <input style="padding-right: 10;" name="exp" type="month" placeholder="YY-MM" ng-model="card.exp" ng-required="true">
+        </label>
+
+      </div>
+      <div class="col col-50" style="padding:0 0 0 5px;">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">CCV
+            <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.cvn.$error.required">
+              <i class="icon ion-information-circled assertive"></i>
+            </span>
+          </span>
+          <input style="padding-right: 10;" name="cvn" type="text" ng-model="card.cvn" ng-required="true" cc-cvc cc-type="cardNumber.$ccType">
+        </label>
+      </div>
+    </div>
+    <ul class='list'>
+      <li class="item item-toggle">
+        Save Credit Card
+        <label class="toggle">
+          <input type="checkbox" ng-model="card.save_card">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+    </ul>
+
+    <!-- <ion-list>
+        <ion-checkbox class="toggle-balanced" ng-model="card.save_card">Save My Card</ion-checkbox>
+      </ion-list> -->
+
+    <!-- <p class="form-error-msg" style="color:#fff;" ng-if="paymentForm.cvn.$error.required"><i class="icon ion-information-circled assertive"></i> CCV is required</p> -->
+
+    <!-- <label class="item item-input item-select item-stacked-label">
+        <span class="input-label">Exp Month <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.expiry_month.$error.required"><i class="icon ion-information-circled assertive"></i></span></span>
+        <select ng-model="card.expiry_month" placeholder="mm" name="expiry_month" ng-options="month for month in ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']" ng-required="true"></select>
+      </label> -->
+    <!-- <p class="form-error-msg" style="color:#fff;" ng-if="paymentForm.expiry_month.$error.required"><i class="icon ion-information-circled assertive"></i> Card Expiry Month is required</p> -->
+
+    <!-- <label class="item item-input item-select item-stacked-label">
+        <span class="input-label">Exp Year <span class="form-error-msg" style="color:#fff;" ng-if="paymentForm.expiry_year.$error.required"><i class="icon ion-information-circled assertive"></i></span></span>
+        <select ng-model="card.expiry_year" placeholder="yy" name="expiry_year" ng-options="year for year in [] | year:10" ng-required="true"></select>
+      </label> -->
+    <!-- <p class="form-error-msg" style="color:#fff;" ng-if="paymentForm.expiry_year.$error.required"><i class="icon ion-information-circled assertive"></i> Card Expiry Year is required</p> -->
+
+  </div>
+  <div class="booth-btn">
+    <button ng-if="card.use_saved_card" class="button button-small button-full btn-inline btn-sm" ng-click="useSavedCard(card)">
+      New Credit Card >
+    </button>
+    <button ng-if="!card.use_saved_card && creditCards.length >0" class="button button-small button-full btn-inline btn-sm" ng-click="useSavedCard(card)">
+      < Saved Credit Card </button>
+  </div>
+
+  <div class="row total-price" style="align-items: center;">
+    <div class="col col-50">
+      Total Amount
+    </div>
+    <div class="col col-50 text-right" style="color:#222; padding:0; font-size: 20px; font-weight: bold;">
+      {{ payment_info | currency:'$':0}}
+    </div>
+  </div>
+
+
+
+  <!-- <div class="booth-btn">
+    <button class="button button-full button-color-dark" ng-disabled="ccForm.$invalid" ng-click="submitCreditCard(card, payment_info)">
+      pay
+    </button>
+  </div> -->
+
+</div>
+
+<!-- {{card | json}} -->

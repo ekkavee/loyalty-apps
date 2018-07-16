@@ -1,0 +1,194 @@
+ion-view.home-page h1, ion-view.home-page h2, ion-view.home-page h3, ion-view.home-page h4, ion-view.home-page h5, ion-view.home-page h6, ion-view.home-page .h1, ion-view.home-page .h2, ion-view.home-page .h3, ion-view.home-page .h4, ion-view.home-page .h5, ion-view.home-page .h6{
+  color: #fff;
+}
+
+.home-top-slider{
+  /*background-color: #fff;*/
+}
+
+.home-top-slider ion-slide img{
+  width: 100%;
+  height: auto;
+}
+
+.home-profile-container{
+
+}
+.home-profile-container .profile-img{
+
+  width: 60%;
+  height: auto;
+  border: 1px solid #fff;
+  min-width: 180px;
+  min-height: 180px;
+  width: 180px;
+  height: 180px;
+  border-radius: 200px;
+  background-color: #eee;
+  display: block;
+  position: absolute;
+  top: 10px;
+  z-index: 99;
+}
+
+.home-profile-container .col{
+  position: relative;
+}
+
+.home-profile-container .col .name{
+  color: #641937;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 25px;
+  margin-bottom: 0px;
+}
+
+.home-profile-container .col .profile-desc{
+  color: #641937;
+  font-family: 'Helvetica', Arial, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.2em;
+  max-height: 2.5em;
+  /*position: absolute;*/
+  /*bottom: 45px;*/
+}
+
+.home-profile-container .col .member-points{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 40px;
+}
+
+.home-profile-container .col .member-points .col{
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.home-profile-container .col .member-points .col:nth-child(1){
+  padding-right: 0px;
+}
+.home-profile-container .col .member-points .col:nth-child(2){
+  padding-left: 0px;
+}
+
+.home-profile-container .col .member-points .col-28 button{
+  line-height: 1em;
+  min-height: 24px;
+  vertical-align: middle;
+  min-width: 43px;
+  max-width: 95px;
+  padding: 0px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.home-profile-container .col .member-points .col-72{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+@media screen and (min-width:360px){
+  .home-profile-container .col .member-points .col-72{
+    text-overflow:inherit;
+    overflow: visible;
+  }
+}
+
+.home-main-container{
+  /*background-color: #F4F7FA;
+  width: 100%;
+  margin-top: -35px;
+  padding-top: 40px;
+  -webkit-box-shadow: 0px -1px 5px 0px rgba(165,182,199,1);
+  -moz-box-shadow: 0px -1px 5px 0px rgba(165,182,199,1);
+  box-shadow: 0px -1px 5px 0px rgba(165,182,199,1);*/
+}
+
+ion-view.home-page .home-btn-div .row:not(:first-child){
+  /* border-top: 1px solid #E2E2E2; */
+}
+
+ion-view.home-page .home-btn-div .col{
+  padding: 0 5px;
+  /* border-left: 1px solid #E2E2E2; */
+  margin: 5px 0;
+}
+
+ion-view.home-page .home-btn-div .row .col:first-child{
+  padding-left: 0;
+}
+
+ion-view.home-page .home-btn-div .row .col:last-child{
+  padding-right: 0;
+}
+
+ion-view.home-page .home-btn-div .col > button{
+  width: 100%;
+  line-height: 15px;
+  border-radius: 15px;
+  padding: 10px 0;
+  border-width: 0;
+  position: relative;
+  /* border-left: 1px solid #000; */
+}
+
+ion-view.home-page .home-btn-div .col > button span{
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 3px;
+  color: #fff;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+ion-view.home-page .home-btn-div .col:first-child{
+  border-left: none;
+}
+
+ion-view.home-page .home-btn-div .col > button.activated .overlay{
+  opacity: 0.6;
+}
+
+ion-view.home-page .home-btn-div .col > button > i.fa{
+  display: block;
+  font-size: 50px;
+  margin-bottom: 10px;
+  line-height: normal;
+  /* border-left: 1px solid #000; */
+}
+
+ion-view.home-page .home-btn-div .col > button > .icon::before{
+  font-size: 64px;
+  line-height: normal;
+}
+
+@media screen and (max-width:320px) {
+  ion-view.home-page .home-btn-div .col > button{
+    padding: 10px;
+  }
+  ion-view.home-page .home-btn-div .col > button > .icon{
+
+    font-size: 64px;
+
+  }
+}
+
+ion-view.home-page .home-btn-div .col > button .overlay{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right:0;
+  opacity: 0.2;
+}

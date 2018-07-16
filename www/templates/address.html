@@ -1,0 +1,62 @@
+<ion-view view-title="" can-swipe-back="false" ng-form="form.myForm">
+    <ion-nav-bar class="bar-color-1" align-title="center">
+      <!-- <ion-nav-back-button class="nav-button">
+      </ion-nav-back-button> -->
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back(form.myForm.$dirty)">
+          </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">my details - {{addressType == 'bill'?'billing ':''}}address</h2>
+    </div>
+    <ion-content class="main-content has-subheader" style="padding:15px;">
+
+        <div class="list signup-form cust-form-1">
+            <label class="item item-input item-icon-right">
+                <input class="search-input" placeholder="search address" name="address" type="text" google-autocomplete-suggestion location="address" country-code="{{countryCode}}" on-selection="onAddressSelection(location, addressType)" ng-model="address.formatted_address" readonly>
+                <i class="icon ion-search" style="background-color:transparent; right:4px; color:#FFF;"></i>
+            </label>
+            <section ng-if="address">
+              <label class="item item-input">
+                  <input type="text" name="unit" placeholder="unit" ng-model="address.display.unit">
+              </label>
+
+
+              <label class="item item-input">
+                  <input type="text" placeholder="street number and name" name="street" ng-model="address.display.street" required>
+              </label>
+
+
+              <label class="item item-input">
+                  <input type="text" name="suburb" placeholder="suburb" ng-model="address.display.suburb" required>
+              </label>
+
+              <label class="item item-input item-icon-right">
+                  <input type="text" placeholder="state" name="state" ng-model="address.display.state" required>
+              </label>
+
+
+              <label class="item item-input">
+                  <input type="text" placeholder="postcode" name="postcode" ng-model="address.display.postcode" required>
+              </label>
+
+
+
+              <div class="text-center">
+                <!-- <button ng-if="addressType != 'bill'" class="button button-full button-color-grey" ng-click="showBillAdsress()">
+                    billing address different
+                    <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+                </button> -->
+                <button ng-disabled="form.myForm.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="saveAddress(addressType, address, form.myForm.$dirty)">
+                    Update
+                </button>
+                <!-- {{form.myForm.$dirty}} -->
+              </div>
+            </section>
+
+
+
+        </div>
+    </ion-content>
+</ion-view>

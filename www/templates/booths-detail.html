@@ -1,0 +1,182 @@
+<ion-view view-title="" class="booth-details-page" can-swipe-back="false">
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">booth booking</h2>
+  </div>
+
+  <ion-content class="main-content has-subheader">
+    <h3 class="text-center" style="color:#fff; font-size:14px; font-weight:bold; text-transform:uppercase; margin-top:10px;">{{book.location.heading}} {{dateFormat(book.date, 'DD/MM/YYYY')}} {{book.ppl}} guests</h3>
+    <h3 class="text-center" style="color:#fff; font-size:14px; font-weight:bold; text-transform:uppercase; margin-top:10px;">{{$root.timeParser(book.selected_session.time_start)}}-{{$root.timeParser(book.selected_session.time_end)}}</h3>
+    <div style="margin-left:20px; margin-right:20px; padding: 5px 3px; background-color:#fff; text-align:center; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;" class="booth-info-bar">
+      <span class="light-text">{{book.location.heading}}</span><span class="bold-text">{{listing.heading}}</span><span class="light-text"></span><span class="bold-text">{{book.min_spend | currency:'$':0}}+</span><span class="light-text">guests</span><span class="bold-text">{{book.ppl}}</span>
+    </div>
+
+    <div ng-show="currentStep == 1" class="booth-slider" style="position:relative;">
+      <ion-slide-box delegate-handle="booth-slide" show-pager="false" class="animated fadeIn">
+
+        <ion-slide>
+          <div class="item-box">
+            <div style="padding-left:20px; padding-right:20px;" class="img-box">
+              <img class="async-load responsive" ng-src="{{listing.image_square}}" alt="">
+            </div>
+          </div>
+        </ion-slide>
+
+        <!-- <ion-slide ng-if="pic.type != 'location_floorplan'" ng-repeat="pic in listing.pictures">
+          <div class="item-box">
+            <div style="padding-left:20px; padding-right:20px;" class="img-box">
+              <img class="async-load responsive" ng-src="{{pic.filename}}" alt="">
+            </div>
+          </div>
+        </ion-slide> -->
+
+        <!-- <button class="round-overlay-button bottom-right white button button-icon icon ion-images light small" style="right:25px; margin-bottom:0; bottom:5px;"></button> -->
+      </ion-slide-box>
+      <button ng-if="getFloorPlan(listing.pictures).length>0" class="round-overlay-button bottom-right white button button-icon icon ion-images light small" style="right:25px; margin-bottom:0; bottom:8px;" ng-click="openFloorPlan(getFloorPlan(listing.pictures))"></button>
+      <div ng-if="false" class="booth-btn" style="padding-left:20px; padding-right:20px;">
+        <button style="margin-bottom:10px;" class="button button-full button-color-grey" ng-click="changeStep(2)">
+          select drinks
+        </button>
+      </div>
+    </div>
+    <!-- <div class="padding text-center">
+        <button class="button button-color-1 text-button button-round button-margin-10" ng-disabled="myForm.$invalid" ng-click="searchBooth(search)">
+            next
+        </button>
+    </div> -->
+    <!-- drink package -->
+    <!-- <div ng-show="listing.packages[0] && currentStep == 2" class="item-section">
+      <h3 ng-if="!isPackage" class="text-center title">select your own drinks</h3>
+      <h3 ng-if="isPackage" class="text-center title">suggested drink package</h3>
+      <products-list products="listing.packages[0].package.products" order-type="order"></products-list>
+
+      <div class="total-section">
+        <div class="row">
+          <div class="col col-67 text-left">drink sub total</div>
+          <div class="col col-33 text-right">{{subTotal = getTotal(listing.packages[0].package.products, order.show) | currency:'$':0}}</div>
+        </div>
+        <div class="row" ng-if="subTotal < book.min_spend">
+          <div class="col col-67 text-left">minimum payable</div>
+          <div class="col col-33 text-right">{{book.min_spend | currency:'$':0}}</div>
+        </div>
+        <div class="row" ng-if="subTotal < book.min_spend">
+          <div class="col col-67 text-left">drink credit*</div>
+          <div class="col col-33 text-right">{{book.min_spend - getTotal(listing.packages[0].package.products, order.show) | currency:'$':0}}</div>
+        </div>
+        <p ng-if="subTotal < book.min_spend" style="color:#fff; font-size:10px">* your drink credit will be available to you on the night</p>
+      </div>
+      <button ng-if="isPackage && currentStep == 2" style="margin-top:0;" class="button button-full button-color-grey" ng-click="selectPack(listing.packages[0].package.products, isPackage);">
+        select your own drinks
+      </button>
+      <button ng-if="!isPackage && currentStep == 2" style="margin-top:0;" class="button button-full button-color-grey" ng-click="selectPack(listing.packages[0].package.products, isPackage);">
+        select suggested drink pack
+      </button>
+    </div>
+    <div style="padding-left:20px; padding-right:20px;">
+      <button style="margin-top:0;" class="button button-full button-color-dark" ng-click="makeReservation('buy')">
+        finalise booking
+      </button>
+    </div> -->
+    <div ng-show="currentStep == 2" class="item-section">
+      <h3 ng-if="!isPackage" class="text-center title">select your own drinks & foods</h3>
+      <h3 ng-if="isPackage" class="text-center title">suggested package<span ng-if="listing.packages.length>1">s</span></h3>
+      <element ng-if="isPackage" ng-repeat="package in listing.packages">
+        <!-- <h3 class="text-center" style="color:#000; font-size:14px; font-weight:bold; text-transform:uppercase; background-color:#fff;">{{package.package.heading}}</h3> -->
+        <products-list products="package.package.products" book="book" head="package.package.heading"></products-list>
+      </element>
+
+      <products-list ng-if="!isPackage" products="listing.products" book="book"></products-list>
+
+      <div class="total-section">
+        <div class="row">
+          <div class="col col-67 text-left">sub total</div>
+          <div ng-if="isPackage" class="col col-33 text-right">{{bookingTotal(listing.packages) | currency:'$':0}}</div>
+          <div ng-if="!isPackage" class="col col-33 text-right">{{getTotal(listing.products, order.show) | currency:'$':0}}</div>
+        </div>
+        <div class="row" ng-if="book.subtotal < book.min_spend">
+          <div class="col col-67 text-left">minimum payable</div>
+          <div class="col col-33 text-right">{{book.min_spend | currency:'$':0}}</div>
+        </div>
+        <div class="row" ng-if="book.subtotal < book.min_spend">
+          <div class="col col-67 text-left">credit*</div>
+          <div ng-if="isPackage" class="col col-33 text-right">{{book.min_spend - bookingTotal(listing.packages) | currency:'$':0}}</div>
+          <div ng-if="!isPackage" class="col col-33 text-right">{{book.min_spend - getTotal(listing.products, order.show) | currency:'$':0}}</div>
+        </div>
+        <p ng-if="book.subtotal < book.min_spend" style="color:#fff; font-size:10px">* your drink credit will be available to you on the night</p>
+      </div>
+      <button ng-if="isPackage && currentStep == 2" style="margin-top:0;" class="button button-full button-color-grey" ng-click="selectPack(listing, isPackage);">
+        select your drinks & foods
+      </button>
+      <button ng-if="!isPackage && currentStep == 2" style="margin-top:0;" class="button button-full button-color-grey" ng-click="selectPack(listing, isPackage);">
+        select suggested pack<span ng-if="listing.packages.length>1">s</span>
+      </button>
+    </div>
+    <div style="margin-top:0; padding-left:20px; padding-right:20px;" class="booth-search-form cust-form-1" ng-form="myForm">
+      <label class="item item-stacked-label">
+          <span class="input-label">COMMENTS</span>
+          <textarea style="padding-left:10px;" placeholder="write your message here" name="msg" ng-model="book.comments" rows="8" cols="80"></textarea>
+      </label>
+    </div>
+    <div style="padding-left:20px; padding-right:20px;">
+      <button style="margin-top:0;" class="button button-full button-color-dark" ng-click="makeReservation('buy')">
+        finalise booking
+      </button>
+    </div>
+    <!-- {{book.subtotal}} -->
+    <!-- {{listing.packages[0].package.products}} -->
+    <!-- <ion-list>
+          <div class="booth-item-accordion" ng-if="listing.packages[0]" ng-repeat="product in listing.packages[0].package.products">
+            <ion-item class="item-stable booth-booking item-button-right item-icon-right"
+                      ng-click="toggleGroup(product)"
+                      ng-class="{active: isGroupShown(product)}" style="color:#000;">
+                <i class="icon icon-accessory" ng-class="isGroupShown(product) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+              {{product.product.name}}
+            </ion-item>
+            <ion-item class="item-accordion"
+                      ng-show="isGroupShown(product)">
+                        <div class="ticket-container animated fadeIn" ng-repeat="stock in product.product.stocks" ng-init="stock.qty = 0">
+                              <div class="row">
+                                <div class="col col-60">
+                                  <div class="row responsive-sm">
+                                    <div class="col"><div style="" class="stock-name text-left">{{product.product.name}} {{stock.name}}<span class="out-of-stock" ng-if="stock.units_in_stock <=0">SOLD OUT</span></div></div>
+
+                                  </div>
+                                </div>
+                                <div class="col col-40">
+                                  <div class="row responsive-sm">
+                                    <div class="col">
+                                      <div class="text-right" style="white-space:nowrap;">
+                                        <button ng-disabled="stock.units_in_stock <=0" class="button button-color-1 button-round button-small icon ion-minus-round qty-minus" ng-click="stock.qty = (stock.qty -1)>=0?stock.qty -1:0; itemSelected(stock);"></button>
+                                        <input class="stock-qty-input" onPaste="return false" ng-disabled="stock.units_in_stock <=0" ng-focus="itemSelected(stock);" ng-class="{'item-focus': selectInput === stock}" type="number" pattern="[0-9]*" name="qty" id="qty" min=0 ng-model="stock.qty" style="color:#641937; max-width: 50px; max-height: 30px; display: inline-block; text-align: center!important; border-radius: 20px; border: 1px solid #641937; background-color: transparent;" ng-init="stock.qty = 0">
+                                        <button ng-disabled="stock.units_in_stock <=0" class="button button-color-1 button-round button-small icon ion-plus-round qty-plus" ng-click="stock.qty = stock.qty +1; itemSelected(stock);"></button></div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col col-60">
+                                  <div style="" class="text-left stock-price">{{product.product.unit_price | currency}}</div>
+                                  <div ng-if="order.show == 'point'" style="" class="text-left stock-price">{{product.product.point_price | number}} Pts</div>
+                                </div>
+                                <div class="col col-40">
+                                  <div style="padding-right:3px;" class="text-right stock-price">{{stock.qty*product.product.unit_price | currency}}</div>
+                                  <div ng-if="order.show == 'point'" style="padding-right:3px;" class="text-right stock-price">{{stock.qty*product.product.point_price | number}} Pts</div>
+                                </div>
+                              </div>
+                            </div>
+            </ion-item>
+        </div>
+    </ion-list> -->
+    <!-- food package -->
+
+
+
+  </ion-content>
+</ion-view>

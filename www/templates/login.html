@@ -1,0 +1,82 @@
+<ion-view view-title="" class="login-view">
+  <ion-nav-bar ng-if="false" class="bar-color-1" align-title="center">
+    <!-- <h1 class="title h1-heading">Sign in to your account</h1> -->
+    <!-- <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div> -->
+  </ion-nav-bar>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content sign-up-content" scroll="false">
+    <div style="height: 40vh; display: flex; justify-content: center; align-items: center;"class="logo animated fadeInDownBig">
+      <img ng-src="img/logo.png" alt="logo">
+    </div>
+
+    <div class="has-footer-container">
+      <div class="footer-container">
+        <div class="top-icon-btn">
+          <button class="button icon" ng-click="registerUrl()">
+            <i class="icon far fa-user-plus"></i>
+          </button>
+        </div>
+        <div class="list cust-form-1" ng-form="myForm">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="email" ng-model="loginData.email" ng-required="true">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Password</span>
+            <input type="password" ng-model="loginData.password" ng-required="true">
+          </label>
+        </div>
+        <p style="text-align:right;"><a style="color:#292329; font-size:12px; text-transform:capitalize;" href="#/reset-password">Forgot My Password</a></p>
+        <button class="button button-small button-full btn-inline btn-bg sign-in-btn" ng-disabled="myForm.$invalid" ng-click="login(loginData)">
+          sign in
+        </button>
+        <div class="social-container">
+          <h4 class="social-heading" style="color:#676666;">Login or Register with Socials</h4>
+          <div class="row">
+            <div class="col social-icon-button text-right"><button class="button icon" ng-click="socialMediaLogin('facebook')">
+              <i class="icon ion-social-facebook"></i>
+            </button></div>
+            <div class="col social-icon-button text-left"><button class="button icon" ng-click="socialMediaLogin('google')">
+              <i class="icon ion-social-googleplus"></i>
+            </button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="list cust-form-1" ng-form="myForm">
+      <label class="item item-input">
+        <input type="email" placeholder="email" ng-model="loginData.email" ng-required="true">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="password" ng-model="loginData.password" ng-required="true">
+      </label>
+    </div> -->
+    <!-- <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="login(loginData)">
+      sign in
+    </button>
+
+    <button class="button button-full button-color-grey" ng-click="registerUrl()">
+      Register
+    </button> -->
+
+    <!-- <p style="margin:17px 0; "><a style="color:#fff; font-size:16px; font-weight:100; text-transform:capitalize;" href="#/reset-password">Forgot Password?</a></p> -->
+
+    <!-- <div class="social-container">
+      <h4 class="social-heading" style="color:#676666;">-- or Login | Register with Socials --</h4>
+      <div class="row">
+        <div class="col social-icon-button text-right"><button class="button icon facebook" ng-click="socialMediaLogin('facebook')"></button></div>
+        <div class="col social-icon-button text-left"><button class="button icon twitter" ng-click="socialMediaLogin('twitter')"></button></div>
+        <div class="col social-icon-button text-left"><button class="button icon googleplus" ng-click="socialMediaLogin('google')"></button></div>
+        <div class="col social-icon-button text-left"><button class="button icon instagram"></button></div>
+      </div>
+    </div> -->
+    <!-- <span>V1.2 - build 1.0</span> -->
+  </ion-content>
+  <div class="bar bar-footer version-footer">
+    ver. {{$root.appVersion || '0.2.1'}}
+  </div>
+</ion-view>

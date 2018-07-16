@@ -1,0 +1,89 @@
+<ion-view view-title="" can-swipe-back="false">
+
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+  <div class="bar bar-subheader">
+    <h2 class="title">my account</h2>
+  </div>
+  <ion-content class="main-content has-subheader account-page">
+    <!-- <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher> -->
+    <div class="home-profile-container">
+      <div class="profile-img-container" ng-click="go('menu.crop-img')">
+        <img class="profile-img async-load animated fadeInLeft" ng-src="{{$root.member.member.profile_img}}">
+      </div>
+
+      <div class="profile-info animated fadeInRight">
+        <div class="icon-bar row">
+          <div class="col" ng-click="go('menu.favor')">
+            <i class="far fa-heart"></i>
+            <!-- <span class="label">favourites</span> -->
+          </div>
+          <div class="col" ng-click="go('menu.history')">
+            <i class="far fa-history"></i>
+            <!-- <span class="label">history</span> -->
+          </div>
+        </div>
+        <div class="name-bar">
+          <p class="name">{{member.member.first_name}} {{member.member.last_name}}</p>
+          <span>{{$root.member.member.member_tier.tier.name}}</span>
+          <span ng-if="$root.member.member.bepoz_account_status != 'OK'">({{$root.member.member.bepoz_account_status}})</span>
+        </div>
+        <div class="point-bar row">
+          <div class="col">
+            <i class="icon far fa-usd-circle"></i>
+            <span class="label">balance</span>
+            <span class="points">{{member.member.balance || 0 | currency:'$':0}}</span>
+          </div>
+          <div class="col">
+            <i class="icon far fa-database"></i>
+            <span class="label">points</span>
+            <span class="points">{{ptsToInt(member.member.points)}}</span>
+          </div>
+          <div class="col">
+            <i class="icon fa fa-ticket-alt"></i>
+            <span class="label">voucher</span>
+            <span class="points">{{tickets.length}}</span>
+          </div>
+          <div class="col">
+            <i class="icons fa fa-trophy-alt"></i>
+            <span class="label">promos</span>
+            <span class="points">{{promos.length}}</span>
+          </div>
+        </div>
+
+        <!-- <div class="icon-bar row">
+          <div class="col" ng-click="go('menu.favor')">
+            <i class="icon ion-star"></i><span class="label">favourites</span>
+          </div>
+          <div class="col" ng-click="go('menu.history')">
+            <i class="icon ion-ios-book"></i><span class="label">history</span>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="booth-btn">
+      <button class="button button-small button-full btn-inline btn-sm" ng-disabled="myForm.$invalid" ng-click="go('menu.profile')">
+        my details >
+        <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+      </button>
+    </div>
+    <div class="profile-barcode text-center">
+      <barcode class="voucher-barcode" style="max-width: 100%; max-height: 135px; border-radius: 15px;" ng-if="$root.member.member.bepoz_account_card_number" type="code128b" render="img" string="{{$root.member.member.bepoz_account_card_number}}" options="$root.barcodeOptions"></barcode>
+      <!-- <barcode class="voucher-barcode" style="max-width: 100%; max-height: 135px; border-radius: 15px;" ng-if="1290390239020" type="code128b" render="img" string="1290390239020" options="$root.barcodeOptions"></barcode> -->
+      <span style="color:#ccc; font-size:18px;">{{$root.member.member.bepoz_account_number}}</span>
+      <img ng-if="!$root.member.member.bepoz_account_number" ng-src="./img/member_barcode_pl.png" class="member-barcode-pl" style="display: block; width: 100%; max-width:254px; margin: auto;">
+      <span ng-if="!$root.member.member.bepoz_account_number" class="member-barcode-pl-msg">Your membership barcode is being generated. You will be notified when it is ready.</span>
+    </div>
+
+  </ion-content>
+</ion-view>

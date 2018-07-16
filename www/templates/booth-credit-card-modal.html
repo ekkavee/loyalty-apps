@@ -1,0 +1,76 @@
+<ion-modal-view style="background-color: #1D1D1D;" ng-controller="CcModalCtrl">
+    <ion-header-bar class="bar-color-1" align-title="center">
+        <h1 class="title title-center header-item"></h1>
+        <ion-header-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="closeCcModal()"></button>
+        </ion-header-buttons>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+      <h2 class="title">{{ccModalTitle}} <span ng-if="ccPayModel == 'tier'">{{listing.heading}} member</span></h2>
+    </div>
+
+
+    <ion-content class="main-content has-subheader">
+
+      <h3 ng-if="ccPayModel == 'booth'" class="text-center" style="color:#fff; font-size:14px; font-weight:bold; text-transform:uppercase; margin-top:10px;">{{book.location.heading}} {{dateFormat(book.date, 'DD/MM/YYYY')}} {{book.ppl}} guests</h3>
+      <div ng-if="ccPayModel == 'booth'" style="margin-left:20px; margin-right:20px; padding: 5px 3px; background-color:#fff; text-align:center;" class="booth-info-bar">
+        <span class="light-text">{{book.location.heading}}</span><span class="bold-text">{{listing.heading}}</span>
+        <span class="light-text"></span><span class="bold-text">{{payment_info.fingerprint.EPS_AMOUNT | currency:'$':0}}</span>
+        <span class="light-text"><i class="icon ion-android-people"></i></span><span class="bold-text">{{book.ppl}}</span>
+      </div>
+      <div class="payment-secttion">
+
+        <div class="booth-search-form cust-form-1 cc-form-full" ng-form="ccForm" style="margin-top:0;">
+
+            <h2 style="font-size:14px; color:#fff; text-transform:uppercase; text-align:center;" ng-if="!searchRes.data">Your Credit card Details</h2>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Card Name</span>
+                <input type="text" name="cardholder_name" ng-model="card.cardholder_name" required="true">
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Card Number</span>
+                <input type="text" name="card_number" ng-model="card.card_number" ng-required="true" cc-number cc-format cc-type="cardType">
+                <span ng-if="ccForm.card_number.$valid" class="cc-icon" ng-class="{'icon-visa':ccForm.card_number.$ccType == 'Visa', 'icon-master':ccForm.card_number.$ccType == 'MasterCard', 'icon-amex':ccForm.card_number.$ccType == 'American Express'}"></span>
+            </label>
+            <span class="assertive" ng-if="ccForm.card_number.$ccType == 'American Express'">Sorry, We do NOT Accept AMEX card at Moment.</span>
+            <label class="item item-input item-stacked-label">
+                <div class="input-label">CCV</div>
+                <input style="padding-right: 10;" name="cvn" type="text" ng-model="card.cvn" ng-required="true" cc-cvc cc-type="cardNumber.$ccType">
+            </label>
+
+            <label class="item item-input item-select item-stacked-label">
+              <span class="input-label">Exp Month</span>
+              <select ng-model="card.expiry_month" placeholder="mm" name="expiry_month" ng-options="month for month in ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']" ng-required="true"></select>
+            </label>
+            <label class="item item-input item-select item-stacked-label">
+              <span class="input-label">Exp Year</span>
+              <select ng-model="card.expiry_year" placeholder="yy" name="expiry_year" ng-options="year for year in [] | year:10" ng-required="true"></select>
+            </label>
+
+        </div>
+
+        <div class="row hours" style="align-items: center;">
+          <div class="col col-50">
+            Amount
+          </div>
+          <!-- <div ng-if="ccPayModel == 'booth'" class="col col-50 text-right" style="color:#fff; padding:0;">
+            {{ getTotal(listing.packages[0].package.products, order.show) >= book.min_spend?getTotal(listing.packages[0].package.products, order.show):book.min_spend | currency:'$':0}}
+          </div> -->
+          <div class="col col-50 text-right" style="color:#fff; padding:0;">
+            {{ payment_info.fingerprint.EPS_AMOUNT | currency:'$':0}}
+          </div>
+        </div>
+
+
+
+        <div class="booth-btn">
+          <button class="button button-full button-color-dark" ng-disabled="ccForm.$invalid || ccForm.card_number.$ccType == 'American Express'" ng-click="submitCreditCard(card, payment_info)">
+            pay
+          </button>
+        </div>
+        <!-- {{order_details}} -->
+
+      </div>
+    </ion-content>
+</ion-modal-view>

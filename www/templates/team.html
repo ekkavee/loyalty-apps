@@ -1,0 +1,50 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">Our Team</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader has-tabs">
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="listings.length <= 0" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Team member</h4>
+    </div>
+
+    <div class="ticket-grid">
+      <div class="row" ng-repeat="r in [] | range:btnRows(listings, 2)">
+        <div ng-if="listings[r*2]" class="col col-50 animated fadeInLeft">
+          <img class="item-img" ng-src="{{listings[r*2].listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/vic-fruit/icon-60%403x.png'}}" alt="">
+          <div class="ticket-desc" ng-click="showProDetials(listings[r*2])">
+            <h4>{{listings[r*2].listing.heading}}</h4>
+            <div class="ticket-status">
+              <span class="barcode-msg row-4">{{listings[r*2].listing.desc_short}}</span>
+            </div>
+            <div class="ticket-footer">
+              <span class="voucher-exp">{{listings[r*2].listing.venue.name}}</span>
+              <!-- <span class="voucher-qty">x2</span> -->
+            </div>
+          </div>
+          <!-- tickets[r*2] -->
+        </div>
+        <div ng-if="listings[r*2+1]" class="col col-50 animated fadeInRight">
+          <img class="item-img" ng-src="{{listings[r*2+1].listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/vic-fruit/icon-60%403x.png'}}" alt="">
+          <div class="ticket-desc" ng-click="showProDetials(listings[r*2+1])">
+            <h4>{{listings[r*2+1].listing.heading}}</h4>
+            <div class="ticket-status">
+              <span class="barcode-msg row-4">{{listings[r*2+1].listing.desc_short}}</span>
+            </div>
+            <div class="ticket-footer">
+              <span class="voucher-exp">{{listings[r*2+1].listing.venue.name}}</span>
+              <!-- <span class="voucher-qty">x2</span> -->
+            </div>
+          </div>
+          <!-- tickets[r*2+1] -->
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+  <bottom-tabs-bar ng-if="$root.layout.tabs"></bottom-tabs-bar>
+</ion-view>

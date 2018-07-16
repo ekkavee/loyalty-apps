@@ -1,0 +1,49 @@
+<div class="time-loaction-component">
+    <div class="async-load" style="width:100%; height:200px; z-index:999 !important; border: 4px solid #fff; background-color: #fff;"
+        id="map-canvas" data-tap-disabled="true"></div>
+
+    <div class="row">
+        <div class="col col-67 hours">
+            <div class="">
+                {{venue.address}}
+            </div>
+            <ul>
+                <li>T:
+                    <a href="tel:{{venue.telp}}">{{venue.telp}}</a>
+                </li>
+                <li>F: {{venue.fax}}</li>
+                <li style="white-space:nowrap;">E:
+                    <a style="color:#ccc; font-size:13px;" href="mailto:{{venue.email}}">{{venue.email}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col col-63 booth-btn" style="position:relative;">
+            <button style="font-size:12px !important; font-weight:bold; white-space: nowrap; position: absolute; bottom: 0;" class="button button-small button-full btn-inline btn-sm"
+                ng-click="goToMapApp()">
+                directions >
+            </button>
+        </div>
+    </div>
+
+    <div class="row hours">
+        <div ng-if="venue.open_and_close_hours.length > 0" class="col col-50">
+            <h4 class="text-center">OPEN HOURS</h4>
+            <ul class="text-center">
+                <li ng-repeat="h in venue.open_and_close_hours">{{h.day}} {{h.time}}</li>
+            </ul>
+        </div>
+        <div ng-if="venue.pickup_and_delivery_hours.length > 0" class="col col-50">
+            <h4 class="text-center">PICKUP HOURS</h4>
+            <ul class="text-center">
+                <li ng-repeat="p in venue.pickup_and_delivery_hours">{{p.day}} {{p.time}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="social-container">
+            <button ng-repeat="sl in venue.social_links" ng-if="sl.url" class="button icon " ng-click="$root.goSocialLink(sl.url)">
+                <i ng-if="sl.platform != 'website'" class="fab fa-{{sl.platform}} fa-lg"></i>
+                <i ng-if="sl.platform == 'website'" class="fal fa-globe fa-lg"></i>
+            </button>
+    </div>
+</div>

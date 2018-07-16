@@ -1,0 +1,54 @@
+<ion-view view-title="">
+    <div class="bar bar-subheader">
+        <h2 class="title">my tickets</h2>
+    </div>
+    <ion-content class="main-content has-subheader has-tabs">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="init()">
+        </ion-refresher>
+        <div ng-if="tickets.length <= 0" class="empty-msg padding">
+            <h4 class="text-center">
+                <i class="icon ion-paper-airplane"></i>
+                <br>No Tickets found, please check again later.</h4>
+        </div>
+        
+        <div class="ticket-grid">
+                <div class="row" ng-repeat="r in [] | range:btnRows(2)">
+                  <div ng-if="tickets[r*2]" class="col col-50 animated fadeInLeft">
+                    <img class="item-img" ng-src="{{tickets[r*2].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+                      alt="">
+                    <div class="ticket-desc" ng-click="showVoucher(tickets[r*2].id)">
+                      <h4>{{tickets[r*2].order_detail.voucher_setup.name}}</h4>
+                      <div class="ticket-status">
+                        <div class="">{{tickets[r*2].order_detail.status == 'successful'?'Confirmed':(tickets[r*2].order_detail.status == 'in_progress'?'In
+                          Progress':tickets[r*2].order_detail.status)}}</div>
+                        <span ng-if="!tickets[r*2].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
+                      </div>
+                      <div class="ticket-footer">
+                        <span ng-show="tickets[r*2].expire_date" class="voucher-exp">{{expTime(tickets[r*2].expire_date)}}</span>
+                        <!-- <span class="voucher-qty">x2</span> -->
+                      </div>
+                    </div>
+                    <!-- tickets[r*2] -->
+                  </div>
+                  <div ng-if="tickets[r*2+1]" class="col col-50 animated fadeInRight">
+                    <img class="item-img" ng-src="{{tickets[r*2+1].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+                      alt="">
+                    <div class="ticket-desc" ng-click="showVoucher(tickets[r*2+1].id)">
+                      <h4>{{tickets[r*2+1].order_detail.voucher_setup.name}}</h4>
+                      <div class="ticket-status">
+                        <div class="">{{tickets[r*2+1].order_detail.status == 'successful'?'Confirmed':(tickets[r*2+1].order_detail.status == 'in_progress'?'In
+                          Progress':tickets[r*2+1].order_detail.status)}}</div>
+                        <span ng-if="!tickets[r*2+1].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
+                      </div>
+                      <div class="ticket-footer">
+                        <span ng-show="tickets[r*2+1].expire_date" class="voucher-exp">{{expTime(tickets[r*2+1].expire_date)}}</span>
+                        <!-- <span class="voucher-qty">x2</span> -->
+                      </div>
+                    </div>
+                    <!-- tickets[r*2+1] -->
+                  </div>
+                </div>
+              </div>
+    </ion-content>
+    <bottom-tabs-bar></bottom-tabs-bar>
+</ion-view>

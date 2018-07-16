@@ -1,0 +1,46 @@
+<ion-view can-swipe-back="false">
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="listing-detail main-content" ng-class="{'has-footer-buttons':(isStocks(listing.products) && listing.add_booking == 1) || listing.add_enquiry == 1}">
+            <div class="member-logo text-center animated fadeInRight" style="margin:15px 0;">
+              <img style="display:block; margin:0 auto; max-width:220px;" ng-src="img/member-logo.svg" >
+            </div>
+           <div class="list card no-h-margin">
+
+              <div class="item item-head">
+                <h4 style="text-transform:uppercase;">{{listing.heading}}</h4>
+              </div>
+
+
+              <div class="item item-body">
+
+                <div class="listing-info">
+                  <div class="listing-img">
+                    <img class="async-load listing-banner-img" ng-src="{{listing.image_square}}">
+                  </div>
+                  <div class="listing-desc" style="padding-bottom:5px;">
+                    <!-- <h2>{{listing.heading}}</h2> -->
+                    <p class="long-desc" style="height:auto;" ng-bind-html="listing.desc_long"></p>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- <div class="booth-btn padding" ng-if="$root.member.member.member_tier.tier.id == 1"> -->
+            <div class="booth-btn padding">
+              <button class="button button-full button-color-dark animated fadeInRight" ng-click="submit(listing);">
+                join
+                <i class="icon ion-chevron-right icon-accessory icon-right"></i>
+              </button>
+            </div>
+
+    </ion-content>
+</ion-view>

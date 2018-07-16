@@ -1,0 +1,71 @@
+<ion-view view-title="" can-swipe-back="false" style="background-color:#F6F6F6 !important;">
+  <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+  <div class="bar bar-subheader">
+    <h2 class="title">My History</h2>
+  </div>
+    <ion-content class="main-content has-subheader">
+      <div class="list order-filter">
+
+          <label class="item item-input">
+            <span class="input-label">FROM</span>
+            <!-- <i class="icon ion-calendar placeholder-icon"></i> -->
+            <input type="date" ng-model="filter.from">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">TO</span>
+            <!-- <i class="icon ion-calendar placeholder-icon"></i> -->
+            <input type="date" ng-model="filter.to">
+          </label>
+
+      </div>
+      <!-- {{filter | json}} -->
+      <div class="card order-item order-card animated slideInUp" ng-repeat="order in orders | dateRange:filter | orderBy:'id':true" >
+      <!-- <div class="card order-item animated slideInUp" ng-repeat="order in orders | orderBy:'id':true" ng-if="order.payment_status == 'successful'"> -->
+            <div class="item item-divider">
+                <div class="row">
+                    <div class="col text-left" style="font-size: 12px; color:#A57C57; font-weight:bold;">#{{order.id}}</div>
+                    <div class="col" style="font-size: 12px;"></div>
+                    <div class="col"></div>
+                    <!-- <div class="col" style="font-size: 12px;">{{order.payment_status}}</div> -->
+                    <div class="col">
+                      <span class="order-total" style="font-size: 12px; color:#717171;" ng-if="order.type == 'point'">Total: {{order.total_point | number}} Pts.</span>
+                      <span class="order-total" style="font-size: 12px; color:#717171;" ng-if="order.type == 'mix'">Point Redeemed: {{order.total_point | number}} Pts.</span>
+                      <span class="order-total" style="font-size: 12px; color:#717171;" ng-if="order.type == 'cash' || order.type == 'mix'">Total: {{order.total_price | currency}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="item item-text-wrap" style="font-size: 11px;">
+                <!-- <div class="row order-header">
+                    <div class="col col-33"><span>Item</span></div>
+                    <div class="col text-right"><span>Price</span></div>
+                    <div class="col text-right"><span>Qty</span></div>
+                    <div class="col text-right"><span>Subtotal</span></div>
+                </div> -->
+                <div class="row item-order" ng-repeat="item in order.order_details">
+                    <div class="col col-33"><span>{{item.product_name}}</span></div>
+                    <div class="col text-right" ng-if="order.type == 'point'"><span>{{item.point_price | number}}</span></div>
+                    <div class="col text-right" ng-if="order.type == 'cash' || order.type == 'mix'"><span>{{item.unit_price | currency}}</span></div>
+                    <div class="col text-right"><span>{{item.qty}}</span></div>
+                    <div class="col text-right" ng-if="order.type == 'cash' || order.type == 'mix'"><span>{{getItemTotal(item, order.type) | currency}}</span></div>
+                    <div class="col text-right" ng-if="order.type == 'point'"><span>{{getItemTotal(item, order.type)}}</span></div>
+                </div>
+                <div class="row" style="overflow: hidden;">
+                    <!-- <button ng-if="order.order_status == 'pending'" class="button button-small button-assertive" ng-click="payOrder(order)">
+                        Pay Now
+                    </button> -->
+                    <div class="col" style="font-size: 12px; color:#717171;">{{formatDate(order.created_at)}}</div>
+                    <div class="col text-right" style="font-size: 12px; color:#717171;">Status: {{order.payment_status}}</div>
+                </div>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

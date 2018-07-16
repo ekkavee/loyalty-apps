@@ -1,0 +1,65 @@
+<ion-view view-title="">
+  <!-- <ion-nav-title></ion-nav-title>
+  <ion-nav-bar class="bar-color-1" align-title="center">
+      <ion-nav-buttons side="left">
+          <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+          </button>
+      </ion-nav-buttons>
+  </ion-nav-bar> -->
+  <div class="bar bar-subheader">
+    <h2 class="title">Gift Certificates</h2>
+  </div>
+  <ion-content class="main-content has-subheader">
+    <div class="button-bar" ng-if="pages.length>1">
+      <a ng-repeat="page in pages" class="button button-color-dark" ng-click="changeBtn(page)" ng-class="btnActived(page)?'button-outline':''">{{page.title}}</a>
+    </div>
+    <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="init()">
+    </ion-refresher>
+    <div ng-if="btnActive.listings.length <= 0" class="empty-msg padding">
+      <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Gift Certificates Found, please check again later.</h4>
+    </div>
+    <div ng-if="btnActive.listings.length > 0" class="list card no-h-margin" style="background-color:transparent;" ng-repeat="l in btnActive.listings | PinToTop">
+
+      <div class="item item-body" style="background-color:transparent;">
+        <div class="listing-info" ng-click="openItemInpage(l)">
+          <div class="listing-img">
+            <img class="async-load listing-banner-img" ng-src="{{l.listing.image_banner}}">
+          </div>
+          <div ng-if="!isOpenItemInpage(l)" class="listing-desc">
+            <div class="">
+              <h2>{{l.listing.heading}}</h2>
+              <p class="short-desc" ng-bind-html="$root.highlightFirstWord(l.listing.desc_short)"></p>
+            </div>
+          </div>
+
+        </div>
+        <div ng-if="isOpenItemInpage(l)" class="listing-accordion padding">
+          <div class="listing-desc">
+            <div class="">
+              <h2>{{l.listing.heading}}</h2>
+              <p class="short-desc" ng-bind-html="$root.highlightFirstWord(l.listing.desc_long)"></p>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="isOpenItemInpage(l)" class="item-action">
+
+              <a class="button button-icon icon ion-ios-book" ng-disabled="listing.extra_settings.add_booking == 'false' || !($root.isStocks(l.listing.products))" ng-if="l.listing.type.name != 'Redeem'" ng-click="bookGC(l.listing, 'cash')"></a>
+              <!-- <a class="button button-icon icon ion-ios-book" ng-disabled="!($root.isStocks(l.listing.products) && l.listing.add_booking == 1)" ng-if="l.listing.type.name === 'Redeem'" ng-click="book(l.listing, 'point')"></a> -->
+
+              <a class="button button-icon icon ion-chatbubble" ng-click="enquiry(l.listing)" ng-disabled="listing.extra_settings.add_enquiry == 'false'"></a>
+
+              <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':l.listing.favorite == 1}" ng-click="$root.favorlisting(l.listing)"></a>
+
+              <!-- <a class="button button-icon icon ion-ios-heart" ng-class="{'assertive':l.listing.like == 1}" ng-click="$root.likelisting(l.listing)"></a> -->
+              <a class="button button-icon icon ion-shuffle" ng-click="$root.share(l.listing)"></a>
+
+        </div>
+
+      </div>
+  </div>
+  </ion-content>
+  <!-- <bottom-tabs-bar></bottom-tabs-bar> -->
+</ion-view>

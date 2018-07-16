@@ -1,0 +1,26 @@
+<ion-view view-title="">
+  <div class="bar bar-subheader">
+    <h2 class="title">Surveys</h2>
+  </div>
+  <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
+  <ion-content class="main-content has-subheader padding">
+    <ion-refresher
+                pulling-text="Pull to refresh..."
+                on-refresh="init()">
+        </ion-refresher>
+        <div ng-if="surveys.length <=0" class="empty-msg padding">
+            <h4 class="text-center"><i class="icon ion-paper-airplane"></i><br>No Survey found, please try again later.</h4>
+        </div>
+
+        <div class="card survey-item" ng-repeat="survey in surveys | orderBy : 'survey.id' : true" ng-click="openSurvey(survey)">
+            <div ng-disabled="survey.status != 'active'" class="item item-text-wrap item-icon-left item-icon-right">
+                <i class="icon fa fa-clipboard-check"></i>
+                <h3 class="voucher-title" style="max-width: 90%; white-space: nowrap; overflow: hidden; text-transform:capitalize;">{{survey.title}}</h3>
+                <!-- <p ng-if="voucher.lookup" class="voucher-expire">Expiry: {{formatDate(voucher.expire_date) !== 'Mon, 01 Jan 0001, 00:00:00'?formatDate(voucher.expire_date):'None'}}</p> -->
+                <!-- <p ng-if="!voucher.lookup">Under Processing...</p> -->
+                <i ng-class="survey.status == 'active'? 'fa-angle-right' : 'ion-checkmark-circled balanced'" class="fa icon"></i>
+            </div>
+        </div>
+
+  </ion-content>
+</ion-view>
