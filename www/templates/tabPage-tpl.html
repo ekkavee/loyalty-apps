@@ -8,9 +8,9 @@
   </ion-nav-bar> -->
   <div class="bar bar-subheader">
     <h2 class="title">{{pageName}}</h2>
-    <button ng-if="pageName == 'What\'s On'" class="button btn-filter" ng-click="popoverFilter($event)">
+    <!-- <button ng-if="pageName == 'What\'s On'" class="button btn-filter" ng-click="popoverFilter($event)">
       <i class="far fa-filter"></i>
-    </button>
+    </button> -->
   </div>
   <ion-content class="main-content has-subheader" delegate-handle="mainScroll">
     <div class="button-bar" ng-if="pages.length>1">
@@ -34,13 +34,13 @@
             <img class="async-load listing-banner-img" ng-src="{{l.listing.image_banner}}">
           </div>
           <div class="listing-desc">
-            <div class="venue-layer">
+            <!-- <div class="venue-layer">
                 <img src="./img/350x350.png">
                 <div class="venue-info-container">
                     <img ng-src="{{l.listing.venue.image}}" class="venue-logo">
                     <span>{{l.listing.venue.name}}</span>
                 </div>
-            </div>
+            </div> -->
             
             <div class="listing-details">
               <h2>{{l.listing.heading}}</h2>

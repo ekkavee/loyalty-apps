@@ -21,7 +21,7 @@ angular.module('starter.controllers')
       $scope.btnActive = page;
       $ionicScrollDelegate.$getByHandle('mainScroll').resize();
       $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
-      resizeImgs();
+      // resizeImgs();
 
       $timeout(function () {
         $ionicLoading.hide();
@@ -36,7 +36,7 @@ angular.module('starter.controllers')
           getFilterItems(page);
           if(index == $scope.pages.length -1){
             $scope.$broadcast('scroll.refreshComplete');
-            resizeImgs();
+            // resizeImgs();
           }
           $timeout(function () {
             $ionicLoading.hide();
@@ -162,7 +162,7 @@ angular.module('starter.controllers')
       $scope.popover.remove()
       $ionicScrollDelegate.$getByHandle('mainScroll').resize();
       $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
-      resizeImgs();
+      // resizeImgs();
     }
 
     // $scope.$on('$destroy', function () {
