@@ -158,7 +158,7 @@ angular.module('starter.controllers')
       });
     }
 
-    loadVenues();
+    // loadVenues();
 
     // $scope.show = false;
 
@@ -174,7 +174,6 @@ angular.module('starter.controllers')
         last_name: form.last_name,
         mobile: form.mobile,
         dob: form.dob,
-        tier_id: form.tier_id
       }
       console.log(uri);
       // $scope.show = true;
