@@ -7,7 +7,7 @@
   </ion-nav-bar>
   <!-- <div class="top-coners-div"><div class="corner-body"></div></div> -->
   <ion-content class="main-content sign-up-content" scroll="false">
-    <div style="height: 40vh; display: flex; justify-content: center; align-items: center;"class="logo animated fadeInDownBig">
+    <div style="height: 40vh; display: flex; justify-content: center; align-items: center;" class="logo animated fadeInDownBig">
       <img ng-src="img/logo.png" alt="logo">
     </div>
 
@@ -18,32 +18,45 @@
             <i class="icon far fa-user-plus"></i>
           </button>
         </div>
-        <div class="list cust-form-1" ng-form="myForm">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Email</span>
-            <input type="email" ng-model="loginData.email" ng-required="true">
-          </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Password</span>
-            <input type="password" ng-model="loginData.password" ng-required="true">
-          </label>
-        </div>
-        <p style="text-align:right;"><a style="color:#292329; font-size:12px; text-transform:capitalize;" href="#/reset-password">Forgot My Password</a></p>
-        <button class="button button-small button-full btn-inline btn-bg sign-in-btn" ng-disabled="myForm.$invalid" ng-click="login(loginData)">
-          sign in
-        </button>
-        <div class="social-container">
-          <h4 class="social-heading" style="color:#676666;">Login or Register with Socials</h4>
-          <div class="row">
-            <div class="col social-icon-button text-right"><button class="button icon" ng-click="socialMediaLogin('facebook')">
-              <i class="icon ion-social-facebook"></i>
-            </button></div>
-            <div class="col social-icon-button text-left"><button class="button icon" ng-click="socialMediaLogin('google')">
-              <i class="icon ion-social-googleplus"></i>
-            </button></div>
+        <div class="scroll-container">
+          <div class="form-container">
+            <div class="list cust-form-1" ng-form="myForm">
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Email</span>
+                <input type="email" ng-model="loginData.email" ng-required="true">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="loginData.password" ng-required="true">
+              </label>
+            </div>
+            <p style="text-align:right;">
+              <a style="color:#292329; font-size:12px; text-transform:capitalize;" href="#/reset-password">Forgot My Password</a>
+            </p>
+            <button class="button button-small button-full btn-inline btn-bg sign-in-btn" ng-disabled="myForm.$invalid" ng-click="login(loginData)">
+              sign in
+            </button>
+            <div class="social-container">
+              <h4 class="social-heading" style="color:#676666;">Login or Register with Socials</h4>
+              <div class="row">
+                <div class="col social-icon-button text-right">
+                  <button class="button icon" ng-click="socialMediaLogin('facebook')">
+                    <i class="icon ion-social-facebook"></i>
+                  </button>
+                </div>
+                <div class="col social-icon-button text-left">
+                  <button class="button icon" ng-click="socialMediaLogin('google')">
+                    <i class="icon ion-social-googleplus"></i>
+                  </button>
+                </div>
+              </div>
+              <p class="text-center tnc" style="color: #222;">By creating an account, you agree to Fal Management Group's
+                <span ng-click="openLegaslAlert('terms_and_conditions')" class="highlight-color">Terms &amp; Conditions</span> and
+                <span ng-click="openLegaslAlert('privacy_policy')" class="highlight-color">Privacy Policy</span>.</p>
+            </div>
           </div>
-          <p class="text-center tnc" style="color: #222;">By creating an account, you agree to Fal Management Group's <span ng-click="openLegaslAlert('terms_and_conditions')" class="highlight-color">Terms &amp; Conditions</span> and <span ng-click="openLegaslAlert('privacy_policy')" class="highlight-color">Privacy Policy</span>.</p>
         </div>
+
       </div>
     </div>
 

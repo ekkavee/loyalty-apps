@@ -331,7 +331,7 @@ img.async-load {
 }
 
 .footer-container .cust-form-1{
-  margin-top: 25px;
+  margin-top: 15px;
   margin-bottom: 0;
 }
 
@@ -498,14 +498,29 @@ img.async-load {
 
 .has-footer-container .footer-container{
   background-color: #fff;
-  max-height: 90vh;
-  margin-top: 150px;
+  max-height: 60vh;
+  /* margin-top: 150px; */
   position: absolute;
   bottom: 0;
   left: 10px;
   right: 10px;
   border-radius: 10px 10px 0 0;
-  padding: 20px
+  padding: 20px 15px 0 15px;
+}
+
+.has-footer-container .footer-container .scroll-container{
+  overflow-y: scroll;
+  max-height: 60vh;
+}
+
+.has-footer-container .footer-container .scroll-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.has-footer-container .footer-container .scroll-container .form-container{
+  padding: 0 5px 15px;
+
 }
 
 /* .has-footer-container .footer-container{
@@ -532,6 +547,7 @@ img.async-load {
   height: 55px;
   border-radius: 50px;
   background-color: #eee;
+  z-index: 10;
 }
 
 .has-footer-container .footer-container .top-icon-btn button i::before{
