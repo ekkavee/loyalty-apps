@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 
 .controller('MoreCtrl', function($scope, $rootScope, $ionicHistory, $state, $timeout, $ionicLoading, $rootScope, $http, $stateParams, API_URI, APP_KEY, AuthService, Listings, PromoService){
   $scope.tickets = [];
+  $scope.vouchers = [];
   $scope.promos = [];
 
 
@@ -23,7 +24,7 @@ angular.module('starter.controllers')
   };
 
   function getTickets(){
-    var url = API_URI+'member/userVoucher?token='+AuthService.authToken();
+    var url = API_URI+'member/userTickets?token='+AuthService.authToken();
     var data = {
       app_token:APP_KEY.app_token,
       app_secret:APP_KEY.app_secret,
@@ -31,6 +32,26 @@ angular.module('starter.controllers')
     $http.get(url, {params:data}).then(function(s){
       console.log(s.data.data);
       $scope.tickets = s.data.data;
+    },function(e){
+      console.log(e);
+      // $scope.listings = [];
+    }).finally(function () {
+        // $timeout(function(){
+        //   $ionicLoading.hide();
+        // }, 1000);
+        // $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+
+  function getVouchers(){
+    var url = API_URI+'member/userVoucher?token='+AuthService.authToken();
+    var data = {
+      app_token:APP_KEY.app_token,
+      app_secret:APP_KEY.app_secret,
+    }
+    $http.get(url, {params:data}).then(function(s){
+      console.log(s.data.data);
+      $scope.vouchers = s.data.data;
     },function(e){
       console.log(e);
       // $scope.listings = [];
@@ -55,6 +76,7 @@ angular.module('starter.controllers')
   $scope.init = function(){
     $rootScope.$broadcast('UserInit', {});
     getTickets();
+    getVouchers();
     getPromos();
 
     $timeout(function(){

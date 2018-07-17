@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-  .controller('LoginCtrl', function ($scope, $rootScope, $state, $ionicLoading, $timeout, SocialMediaOauth, AuthService) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $state, $ionicLoading, $timeout, $http, $ionicPopup, SocialMediaOauth, AuthService, API_URI, APP_KEY) {
     $scope.loginData = {
       email: '',
       password: ''
@@ -61,6 +61,41 @@ angular.module('starter.controllers')
         // alert(JSON.stringify(e));
       });
     };
+
+    function loadLegals() {
+      var url = API_URI + 'legals';
+      var data = {
+        app_token: APP_KEY.app_token,
+        app_secret: APP_KEY.app_secret,
+      }
+      $http.get(url, { params: data }).then(function (s) {
+        $scope.legals = s.data.data;
+        console.log($scope.legals);
+      }, function (e) {
+
+      });
+    };
+
+    loadLegals();
+
+    $scope.openLegaslAlert = function (key) {
+      if ($scope.legalsAlert) {
+        return;
+      }
+      $scope.showLegal = $scope.legals[key]
+      if ($scope.legals) {
+        $scope.legalsAlert = $ionicPopup.alert({
+          title: $scope.showLegal[0],
+          scope:$scope,
+          templateUrl:'templates/legas-popup.html',
+          okType:'button-light'
+        });
+
+        $scope.legalsAlert.then(function(){
+          delete $scope.legalsAlert;
+        });
+      }
+    }
 
   })
 

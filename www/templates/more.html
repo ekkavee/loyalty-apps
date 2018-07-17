@@ -39,19 +39,21 @@
         </div>
         <div class="point-bar row">
           <div class="col">
-            <i class="icon far fa-usd-circle"></i>
-            <span class="label">balance</span>
-            <span class="points">{{member.member.balance || 0 | currency:'$':0}}</span>
-          </div>
+            <i class="icon far fa-ticket-alt"></i>
+            <!-- <span class="label">balance</span>
+            <span class="points">{{member.member.balance || 0 | currency:'$':0}}</span> -->
+            <span class="label">ticktes</span>
+            <span class="points">{{tickets.length}}</span>
+          </div> 
           <div class="col">
             <i class="icon far fa-database"></i>
             <span class="label">points</span>
             <span class="points">{{ptsToInt(member.member.points)}}</span>
           </div>
           <div class="col">
-            <i class="icon fa fa-ticket-alt"></i>
-            <span class="label">voucher</span>
-            <span class="points">{{tickets.length}}</span>
+            <i class="icon fa fa-barcode-scan"></i>
+            <span class="label">vouchers</span>
+            <span class="points">{{vouchers.length}}</span>
           </div>
           <div class="col">
             <i class="icons fa fa-trophy-alt"></i>

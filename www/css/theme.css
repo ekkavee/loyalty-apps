@@ -276,6 +276,10 @@ h3.special{
   color: #fff;
 }
 
+.tnc > span{
+  color: #A57C57 !important;
+}
+
 .signup-form .tnc > span{
   color: #A57C57 !important;
 }
