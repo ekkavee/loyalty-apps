@@ -25,9 +25,9 @@
           <img class="item-img" ng-src="{{vouchers[r*2].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
             alt="">
           <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2].id)">
-            <h4>{{vouchers[r*2].order_detail.voucher_setup.name}}</h4>
+            <h4>{{vouchers[r*2].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{vouchers[r*2].order_detail.status == 'successful'?'Confirmed':(vouchers[r*2].order_detail.status == 'in_progress'?'In
+              <div class="">{{vouchers[r*2].status == 'successful'?'Confirmed':(vouchers[r*2].order_detail.status == 'in_progress'?'In
                 Progress':vouchers[r*2].order_detail.status)}}</div>
               <span ng-if="!vouchers[r*2].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
             </div>
@@ -42,9 +42,9 @@
           <img class="item-img" ng-src="{{vouchers[r*2+1].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
             alt="">
           <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2+1].id)">
-            <h4>{{vouchers[r*2+1].order_detail.voucher_setup.name}}</h4>
+            <h4>{{vouchers[r*2+1].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{vouchers[r*2+1].order_detail.status == 'successful'?'Confirmed':(vouchers[r*2+1].order_detail.status == 'in_progress'?'In
+              <div class="">{{vouchers[r*2+1].status == 'successful'?'Confirmed':(vouchers[r*2+1].order_detail.status == 'in_progress'?'In
                 Progress':vouchers[r*2+1].order_detail.status)}}</div>
               <span ng-if="!vouchers[r*2+1].barcode" class="barcode-msg row-4">This ticket has been processing, please try again later.</span>
             </div>

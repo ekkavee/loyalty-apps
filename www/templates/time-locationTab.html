@@ -4,19 +4,7 @@
     </div>
 
     <ion-content class="listing-detail has-subheader main-content has-tabs" delegate-handle="mainScroll">
-        <ion-list class="accordion-list venue-info">
-            <div ng-repeat="venue in venues">
-                <ion-item class="item item-thumbnail-left item-icon-right" ng-click="toggleGroup(venue)" ng-class="{active: isGroupShown(venue)}">
-                    <img ng-src="{{venue.image}}">
-                    <h2>{{venue.name}}</h2>
-                    <p>{{venue.address}}</p>
-                    <i class="icon" ng-class="isGroupShown(venue) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'"></i>
-                </ion-item>
-                <ion-item class="item-accordion legal-content" ng-show="isGroupShown(venue)">
-                    <time-location venue="venue" ng-if="isGroupShown(venue)"></time-location>
-                </ion-item>
-            </div>
-        </ion-list>
+            <time-location ng-if="venue" venue="venue"></time-location>
     </ion-content>
     <bottom-tabs-bar></bottom-tabs-bar>
 
