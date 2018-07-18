@@ -89,10 +89,10 @@ angular.module('starter.controllers')
       // $scope.data = s.data.data;
       $scope.venues = s.data.data.map(function(venue){
         // console.log(venue);
-        if(venue.open_and_close_hours){
+        if(!venue.hide_opening_hours_info){
           venue.open_and_close_hours = JSON.parse(venue.open_and_close_hours);
         }
-        if(venue.pickup_and_delivery_hours){
+        if(!venue.hide_delivery_info){
           venue.pickup_and_delivery_hours = JSON.parse(venue.pickup_and_delivery_hours);
         }
         if(venue.social_links){
