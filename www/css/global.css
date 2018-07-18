@@ -355,12 +355,18 @@ img.async-load {
 
 .signup-form.cust-form-1 .item p.form-error-msg{
   white-space: normal;
-  
 }
 
 .signup-form.cust-form-1 .form-valid-msg{
   white-space: normal;
+  position: absolute;
+  right: 3px;
 }
+
+.item-stacked-label .form-valid-msg{
+  top: 3px !important;
+}
+
 
 .signup-form.cust-form-1 .input-label{
   /* color:#fff !important; */
