@@ -154,7 +154,9 @@ ion-view.home-page .home-btn-div .col > button span{
 
 @media screen and (max-width:360px){
   ion-view.home-page .home-btn-div .col > button span{
-    font-size: 10px !important;
+    font-size: 9px !important;
+    overflow-x: auto;
+  text-overflow: initial;
   }
 }
 
@@ -181,7 +183,7 @@ ion-view.home-page .home-btn-div .col > button > .icon::before{
 
 @media screen and (max-width:320px) {
   ion-view.home-page .home-btn-div .col > button{
-    padding: 10px;
+    padding: 10px 7px;
   }
   ion-view.home-page .home-btn-div .col > button > .icon{
 
