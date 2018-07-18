@@ -152,6 +152,12 @@ ion-view.home-page .home-btn-div .col > button span{
   display: block;
 }
 
+@media screen and (max-width:360px){
+  ion-view.home-page .home-btn-div .col > button span{
+    font-size: 10px !important;
+  }
+}
+
 ion-view.home-page .home-btn-div .col:first-child{
   border-left: none;
 }
