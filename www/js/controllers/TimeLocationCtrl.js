@@ -88,8 +88,9 @@ angular.module('starter.controllers')
     $http.get(url, {params:data}).then(function(s){
       // $scope.data = s.data.data;
       $scope.venues = s.data.data.map(function(venue){
+        console.log(venue);
         venue.open_and_close_hours = JSON.parse(venue.open_and_close_hours);
-        venue.pickup_and_delivery_hours = JSON.parse(venue.pickup_and_delivery_hours);
+        // venue.pickup_and_delivery_hours = JSON.parse(venue.pickup_and_delivery_hours);
         venue.social_links = JSON.parse(venue.social_links);
 
         return venue;

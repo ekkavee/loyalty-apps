@@ -23,9 +23,9 @@
         <div class="col col-50 animated fadeInLeft">
           <img class="item-img" ng-src="{{tickets[r*2].img}}" alt="">
           <div class="ticket-desc">
-            <h4>{{tickets[r*2].order_detail.product_name}}</h4>
+            <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{tickets[r*2].order_detail.status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
+              <div class="">{{tickets[r*2].status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
               <span ng-if="!tickets[r*2].barcode" class="barcode-msg">This ticket has been processing, please try again later.</span>
             </div>
             <div class="ticket-footer">
@@ -38,9 +38,9 @@
         <div class="col col-50 animated fadeInRight">
           <img class="item-img" ng-src="{{tickets[r*2+1].img}}" alt="">
           <div class="ticket-desc">
-            <h4>{{tickets[r*2].order_detail.product_name}}</h4>
+            <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{tickets[r*2+1].order_detail.status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
+              <div class="">{{tickets[r*2+1].status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
               <span ng-if="!tickets[r*2+1].barcode" class="barcode-msg">This ticket has been processing, please try again later.</span>
             </div>
             <div class="ticket-footer">
