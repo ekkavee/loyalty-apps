@@ -92,6 +92,7 @@ angular.module('starter.controllers')
         // $scope.venue.pickup_and_delivery_hours = JSON.parse(venue.pickup_and_delivery_hours);
         // $scope.venue.social_links = JSON.parse(venue.social_links);
 
+
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({ 'address': $scope.venue.address }, function (results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
