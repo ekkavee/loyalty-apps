@@ -21,7 +21,7 @@
     <div ng-if="btnActive.listings.length >0" class="ticket-grid">
       <div class="row" ng-repeat="r in [] | range:btnRows(2)">
         <div ng-if="btnActive.listings[r*2]" class="col col-50 animated fadeInLeft" ng-click="showProDetials(btnActive.listings[r*2])">
-          <img class="item-img" ng-src="{{btnActive.listings[r*2].listing.image_square}}" alt="">
+          <img class="item-img" ng-src="{{btnActive.listings[r*2].listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
           <div class="ticket-desc">
             <h4>{{btnActive.listings[r*2].listing.heading}}</h4>
             <div class="ticket-status">
@@ -35,7 +35,7 @@
           <!-- tickets[r*2] -->
         </div>
         <div ng-if="btnActive.listings[r*2+1]" class="col col-50 animated fadeInRight" ng-click="showProDetials(btnActive.listings[r*2+1])">
-          <img class="item-img" ng-src="{{btnActive.listings[r*2+1].listing.image_square}}" alt="">
+          <img class="item-img" ng-src="{{btnActive.listings[r*2+1].listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
           <div class="ticket-desc">
             <h4>{{btnActive.listings[r*2+1].listing.heading}}</h4>
             <div class="ticket-status">
