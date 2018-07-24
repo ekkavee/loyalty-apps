@@ -394,3 +394,12 @@ ion-side-menu ion-item.item, ion-side-menu ion-item.item-complex .item-content{
 .booth-btn button.button-small{
   color: #A57C57 !important;
 }
+
+/* history page */
+.order-filter.list label span{
+  color: #222 !important;
+}
+
+.order-header{
+  color: #222 !important;
+}
