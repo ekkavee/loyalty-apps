@@ -22,7 +22,7 @@
     <div class="ticket-grid">
       <div class="row" ng-repeat="r in [] | range:btnRows(2)">
         <div ng-if="vouchers[r*2]" class="col col-50 animated fadeInLeft">
-          <img class="item-img" ng-src="{{vouchers[r*2].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+          <img class="item-img" ng-src="{{vouchers[r*2].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}"
             alt="">
           <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2].id)">
             <h4>{{vouchers[r*2].name}}</h4>
@@ -39,7 +39,7 @@
           <!-- tickets[r*2] -->
         </div>
         <div ng-if="vouchers[r*2+1]" class="col col-50 animated fadeInRight">
-          <img class="item-img" ng-src="{{vouchers[r*2+1].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png'}}"
+          <img class="item-img" ng-src="{{vouchers[r*2+1].order_detail.listing.image_square || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}"
             alt="">
           <div class="ticket-desc" ng-click="showVoucher(vouchers[r*2+1].id)">
             <h4>{{vouchers[r*2+1].name}}</h4>

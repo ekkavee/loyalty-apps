@@ -21,7 +21,7 @@
     <div class="ticket-grid">
       <div class="row" ng-repeat="r in [] | range:btnRows(2)">
         <div class="col col-50 animated fadeInLeft">
-          <img class="item-img" ng-src="{{tickets[r*2].img}}" alt="">
+          <img class="item-img" ng-src="{{tickets[r*2].img || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
           <div class="ticket-desc">
             <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
@@ -36,7 +36,7 @@
           <!-- tickets[r*2] -->
         </div>
         <div class="col col-50 animated fadeInRight">
-          <img class="item-img" ng-src="{{tickets[r*2+1].img}}" alt="">
+          <img class="item-img" ng-src="{{tickets[r*2+1].img || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
           <div class="ticket-desc">
             <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
