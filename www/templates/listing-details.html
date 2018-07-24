@@ -33,7 +33,7 @@
                   </div>
                   <div class="listing-details listing-desc">
                     <h2>{{listing.heading}}</h2>
-                    <h3>at {{listing.venue.name}}</h3>
+                    <!-- <h3>at {{listing.venue.name}}</h3> -->
                     <h3 ng-if="listing.type.id == 1" class="special">{{dateParser(listing.datetime_start)}}</h3>
                     <div class="">
                       <p class="long-desc" style="height:auto;" ng-bind-html="listing.desc_long"></p>
