@@ -587,9 +587,9 @@ angular.module('starter.controllers')
         Members.updateMemberProfile(profile).then(function (s) {
           console.log(s);
           AuthService.storeUser({ token: s.data.token });
-          if ($scope.addFields) {
-            $scope.saveAddFields($scope.addFields);
-          }
+          // if ($scope.addFields) {
+          //   $scope.saveAddFields($scope.addFields);
+          // }
           $rootScope.$broadcast('UserInit', {});
           $timeout(function () {
             $state.go($state.current, {}, { reload: true });

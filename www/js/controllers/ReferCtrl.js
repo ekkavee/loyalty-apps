@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('ReferCtrl', function($scope, $rootScope, $http, API_URI, APP_KEY, AuthService, $timeout){
+.controller('ReferCtrl', function($scope, $rootScope, $http, $ionicLoading, API_URI, APP_KEY, AuthService, $timeout){
   $scope.refer = {};
   $scope.referMsg = '';
 
@@ -32,6 +32,7 @@ angular.module('starter.controllers')
       app_token: APP_KEY.app_token,
       app_secret: APP_KEY.app_secret,
     }
+    $ionicLoading.show();
     $http.post(url, data).then(function(s){
       console.log(s);
 
@@ -58,6 +59,8 @@ angular.module('starter.controllers')
         }
       }
       $rootScope.createAlertPopup(options);
+    }).finally(function(){
+      $ionicLoading.hide();
     });
   }
 

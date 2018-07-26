@@ -22,14 +22,14 @@
       <div class="row" ng-repeat="r in [] | range:btnRows(2)">
         <div class="col col-50 animated fadeInLeft">
           <img class="item-img" ng-src="{{tickets[r*2].img || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
-          <div class="ticket-desc">
+          <div class="ticket-desc" ng-click="showVoucher(tickets[r*2].id)">
             <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{tickets[r*2].status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
+              <div class="">{{tickets[r*2].status == 'successful'?'Confirmed':(tickets[r*2].order_detail.status == 'in_progress'?'In Progress':tickets[r*2].order_detail.status)}}</div>
               <span ng-if="!tickets[r*2].barcode" class="barcode-msg">This ticket has been processing, please try again later.</span>
             </div>
             <div class="ticket-footer">
-              <span ng-show="tickets[r*2].expire_date" class="voucher-exp">{{expTime(ticket.expire_date)}}</span>
+              <span ng-show="tickets[r*2].expire_date" class="voucher-exp">{{expTime(tickets[r*2].expire_date)}}</span>
               <!-- <span class="voucher-qty">x2</span> -->
             </div>
           </div>
@@ -37,14 +37,14 @@
         </div>
         <div class="col col-50 animated fadeInRight">
           <img class="item-img" ng-src="{{tickets[r*2+1].img || 'https://s3-ap-southeast-2.amazonaws.com/bepoz-loyalty-app/000.png'}}" alt="">
-          <div class="ticket-desc">
+          <div class="ticket-desc" ng-click="showVoucher(tickets[r*2+1].id)">
             <h4>{{tickets[r*2].name}}</h4>
             <div class="ticket-status">
-              <div class="">{{tickets[r*2+1].status == 'successful'?'Confirmed':(ticket.order_detail.status == 'in_progress'?'In Progress':ticket.order_detail.status)}}</div>
+              <div class="">{{tickets[r*2+1].status == 'successful'?'Confirmed':(tickets[r*2+1].order_detail.status == 'in_progress'?'In Progress':tickets[r*2+1].order_detail.status)}}</div>
               <span ng-if="!tickets[r*2+1].barcode" class="barcode-msg">This ticket has been processing, please try again later.</span>
             </div>
             <div class="ticket-footer">
-              <span ng-show="tickets[r*2+1].expire_date" class="voucher-exp">{{expTime(ticket.expire_date)}}</span>
+              <span ng-show="tickets[r*2+1].expire_date" class="voucher-exp">{{expTime(tickets[r*2+1].expire_date)}}</span>
               <!-- <span class="voucher-qty">x2</span> -->
             </div>
           </div>
