@@ -906,9 +906,7 @@ angular.module('app.directives', [])
                     var long = parseFloat(scope.venue.googleGeoCode.geometry.location.lng())
                     var text =  encodeURIComponent(scope.venue.googleGeoCode.formatted_address)
                     if(ionic.Platform.isIOS()){
-                      // console.log("http://maps.apple.com/?q=#"+text+"&ll=#{lat},#{long}&near=#{lat},#{long}");
-                      // window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=no');
-                      window.open("http://maps.apple.com/maps?q="+text, '_system', 'location=no');
+                        window.open("http://maps.apple.com/maps?q=" + text + "&ll=" + lat + "," + long + "&near=" + lat + "," + long, '_system', 'location=no');
                     }
                     else{
                       // console.log("geo:#{lat},#{long}?q=#{text}");
