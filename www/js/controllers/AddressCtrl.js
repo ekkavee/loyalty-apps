@@ -33,7 +33,9 @@ angular.module('starter.controllers')
     $ionicLoading.show();
     Members.createMemberAddress(address_obj, name).then(function(s){
       console.log(s);
-      $state.go($state.current, {}, {reload: true});
+      $rootScope.$on('UserReady', function(){
+        $state.go($state.current, {}, {reload: true});
+      });
     },function(e){
       console.log(e);
     }).finally(function(){
@@ -51,7 +53,9 @@ angular.module('starter.controllers')
     $ionicLoading.show();
     Members.updateMemberAddress(old_address_obj.id, address_obj).then(function(s){
       console.log(s);
-      $state.go($state.current, {}, {reload: true});
+      $rootScope.$on('UserReady', function(){
+        $state.go($state.current, {}, {reload: true});
+      });
     },function(e){
       console.log(e);
     }).finally(function(){
