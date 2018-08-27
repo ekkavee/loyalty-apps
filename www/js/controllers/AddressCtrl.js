@@ -34,7 +34,7 @@ angular.module('starter.controllers')
     Members.createMemberAddress(address_obj, name).then(function(s){
       console.log(s);
       $rootScope.$on('UserReady', function(){
-        $state.go($state.current, {}, {reload: true});
+        if($state.current.name === 'menu.address'){$state.go($state.current, {}, {reload: true});}
       });
     },function(e){
       console.log(e);
@@ -54,7 +54,7 @@ angular.module('starter.controllers')
     Members.updateMemberAddress(old_address_obj.id, address_obj).then(function(s){
       console.log(s);
       $rootScope.$on('UserReady', function(){
-        $state.go($state.current, {}, {reload: true});
+        if($state.current.name === 'menu.address'){$state.go($state.current, {}, {reload: true});}
       });
     },function(e){
       console.log(e);
