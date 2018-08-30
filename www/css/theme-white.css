@@ -89,6 +89,15 @@ h4.social-heading{
   color: #292329;
 }
 
+.highlight-color{
+  color: #000 !important;
+}
+
+/* sign up */
+.tnc{
+  color: #222 !important;
+}
+
 
 /* listing */
 .listing-details.listing-desc{
