@@ -168,13 +168,13 @@ angular.module('starter.controllers', [])
             state = { stateName: 'menu.tabs.home', url: '#/menu/tabs/home' };
             break;
           case 2:
-            state = { stateName: 'menu.tabs.whatson', url: '#/menu/tabs/whatson' };
+            state = { stateName: 'menu.tabs.vouchers', url: '#/menu/tabs/vouchers' };
             break;
           case 3:
-            state = { stateName: 'menu.tabs.tickets', url: '#/menu/tabs/tickets' };
+            state = { stateName: 'menu.tabs.promotions', url: '#/menu/tabs/promotions' };
             break;
           case 4:
-            state = { stateName: 'menu.tabs.time-location', url: '#/menu/tabs/time-location' };
+            state = { stateName: 'menu.tabs.tickets', url: '#/menu/tabs/tickets' };
             break;
           case 5:
             state = { stateName: 'website', url: $rootScope['layout']['tabs'][4].special_link };
@@ -203,6 +203,12 @@ angular.module('starter.controllers', [])
             case 'promotions':
               state = { stateName: 'menu.promotions', url: '#/menu/promotions' };
               break;
+            case 'gift_certificate':
+              state = { stateName: 'menu.gifts', url: '#/menu/gifts' };
+              break;
+            case 'refer_friend':
+              state = { stateName: 'menu.refer', url: '#/menu/refer' };
+              break;
             case 'website':
               state = { stateName: 'website', url: 'https://www.bepoz.com.au/' };
               break;
@@ -214,6 +220,9 @@ angular.module('starter.controllers', [])
           switch (view.page_name) {
             case 'Promotions':
               state = { stateName: 'menu.promotions', url: '#/menu/promotions' };
+              break;
+            case "What's On":
+              state = { stateName: 'menu.whats', url: '#/menu/whats' };
               break;
             default:
               state = {}

@@ -241,20 +241,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
       })
 
 
-      .state('menu.tabs.whatson', {
-        url: '/whatson',
+      .state('menu.tabs.vouchers', {
+        url: '/vouchers',
         params: {
           view: {
             layout: 'tabs',
             index: 1,
-            view: 'whatson'
+            view: 'vouchers'
           }
         },
         // cache: false,
         views: {
           'tab-whats@menu.tabs': {
-            templateUrl: 'templates/tabPage-tpl.html',
-            controller: 'PageCtrl'
+            templateUrl: 'templates/vouchers.html',
+            controller: 'VouchersCtrl'
           }
         }
       })
@@ -282,13 +282,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
         params: {
           view: {
             layout: 'tabs',
-            index: 2,
+            index: 3,
             view: 'tickets'
           }
         },
         // cache:false,
         views: {
-          'tab-pro@menu.tabs': {
+          'tab-gift@menu.tabs': {
             templateUrl: 'templates/ticketsTab.html',
             controller: 'TicketsCtrl'
           }
@@ -411,7 +411,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
         url: '/gifts',
         params: {
           view: {
-            layout: 'side_menus',
+            layout: 'home_menus',
             index: 2,
             view: 'gift card'
           }
@@ -525,6 +525,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
       .state('menu.refer', {
         url: '/refer',
         cache: false,
+        params: {
+          view: {
+            layout: 'home_menus',
+            index: 4,
+            view: 'gift card'
+          }
+        },
         views: {
           'menuContent': {
             templateUrl: 'templates/refer.html',
@@ -706,11 +713,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
 
       .state('menu.whats', {
         url: '/whats',
-        // cache:false,
+        params: {
+          view: {
+            layout: 'home_menus',
+            index: 0,
+            view: "what's on"
+          }
+        },
+        cache:false,
         views: {
           'menuContent': {
-            templateUrl: 'templates/whatson.html',
-            controller: 'WhatsOnCtrl'
+            templateUrl: 'templates/page-tpl.html',
+            controller: 'PageCtrl'
           }
         }
       })

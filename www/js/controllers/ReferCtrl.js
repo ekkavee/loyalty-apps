@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('ReferCtrl', function($scope, $rootScope, $http, $ionicLoading, API_URI, APP_KEY, AuthService, $timeout){
+.controller('ReferCtrl', function($scope, $rootScope, $http, $ionicLoading, $ionicHistory, API_URI, APP_KEY, AuthService, $timeout){
   $scope.refer = {};
   $scope.referMsg = '';
 
@@ -23,6 +23,14 @@ angular.module('starter.controllers')
   }
 
   $scope.init();
+
+  $scope.back = function(){
+    console.log($ionicHistory);
+      $timeout(function(){
+        $ionicHistory.goBack();
+      });
+
+  };
 
   function sendRefer (email, name){
     var url = API_URI+'member/friendreferral?token='+AuthService.authToken();

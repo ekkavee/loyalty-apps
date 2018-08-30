@@ -1,15 +1,15 @@
 <ion-view view-title="">
-  <!-- <ion-nav-title></ion-nav-title>
+  <ion-nav-title></ion-nav-title>
   <ion-nav-bar class="bar-color-1" align-title="center">
       <ion-nav-buttons side="left">
           <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
           </button>
       </ion-nav-buttons>
-  </ion-nav-bar> -->
+  </ion-nav-bar>
   <div class="bar bar-subheader">
     <h2 class="title">Gift Certificates</h2>
   </div>
-  <ion-content class="main-content has-subheader">
+  <ion-content class="main-content has-subheader has-tabs">
     <div class="button-bar" ng-if="pages.length>1">
       <a ng-repeat="page in pages" class="button button-color-dark" ng-click="changeBtn(page)" ng-class="btnActived(page)?'button-outline':''">{{page.title}}</a>
     </div>
@@ -61,5 +61,5 @@
       </div>
   </div>
   </ion-content>
-  <!-- <bottom-tabs-bar></bottom-tabs-bar> -->
+  <bottom-tabs-bar></bottom-tabs-bar>
 </ion-view>

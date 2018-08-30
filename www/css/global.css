@@ -12,7 +12,7 @@ body a, p, span, button, h1, h2, h3, h4, h5, h6 {
 }
 
 .bar.bar-header .title.title-center.header-item{
-  background: url('https://s3-ap-southeast-2.amazonaws.com/fal-group-royalty/settings/invoiceLogo/image_1530253398.png') no-repeat center bottom;
+  background: url('../img/logo.png') no-repeat center bottom;
   background-size: 40px auto;
   bottom: 0;
   top: initial;

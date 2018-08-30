@@ -1,8 +1,15 @@
 <ion-view view-title="">
+    <ion-nav-title></ion-nav-title>
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
   <div class="bar bar-subheader">
     <h2 class="title">Refer a Friend</h2>
   </div>
-  <ion-content class="main-content has-subheader" style="padding:15px;">
+  <ion-content class="main-content has-subheader has-tabs" style="padding:15px;">
     <div class="contact-info">
       <p class="text-center">{{referMsg}}</p>
     </div>
@@ -45,4 +52,5 @@
       </div>
 
   </ion-content>
+  <bottom-tabs-bar></bottom-tabs-bar>
 </ion-view>

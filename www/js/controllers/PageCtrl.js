@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-  .controller('PageCtrl', function ($scope, $rootScope, $ionicScrollDelegate, $stateParams, $timeout, $state, $ionicLoading, $ionicPopover, Listings, OrderModal, enquiryPopup) {
+  .controller('PageCtrl', function ($scope, $rootScope, $ionicScrollDelegate, $stateParams, $ionicHistory, $timeout, $state, $ionicLoading, $ionicPopover, Listings, OrderModal, enquiryPopup) {
     console.log($stateParams);
     $scope.filterItems = [];
     $scope.selectedFilter = '';
@@ -54,6 +54,14 @@ angular.module('starter.controllers')
       //   console.log($scope.pages);
       // }, 1000)
       // resizeImgs();
+    };
+
+    $scope.back = function(){
+      console.log($ionicHistory);
+        $timeout(function(){
+          $ionicHistory.goBack();
+        });
+  
     };
 
     function resizeImgs() {
