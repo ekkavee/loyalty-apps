@@ -492,7 +492,7 @@ angular.module('starter.controllers', [])
         message: listing.desc_short, // not supported on some apps (Facebook, Instagram)
         subject: listing.heading, // fi. for email
         files: ['', ''], // an array of filenames either locally or remotely
-        url: angular.isDefined(listing.social_links) && listing.social_links != null && angular.isDefined(listing.social_links.website) && listing.social_links.website != 'null' && listing.social_links.website != null ? listing.social_links.website : 'https://www.falhotels.com.au/',
+        url: angular.isDefined(listing.social_links) && listing.social_links != null && angular.isDefined(listing.social_links.website) && listing.social_links.website != 'null' && listing.social_links.website != null ? listing.social_links.website : 'http://thebendedelbow.com.au/',
         // chooserTitle: 'Pick an app' // Android only, you can override the default share sheet title
       };
 

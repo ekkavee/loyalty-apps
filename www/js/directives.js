@@ -783,10 +783,7 @@ angular.module('app.directives', [])
                                 var page;
                                 switch (JSON.parse(msg.notification.payload).page) {
                                     case 'whatson':
-                                        page = "menu.tabs.whatson";
-                                        break;
-                                    case 'event':
-                                        page = "menu.tabs.events";
+                                        page = "menu.whatson";
                                         break;
                                     case 'legals':
                                         page = "menu.legals";
@@ -795,19 +792,19 @@ angular.module('app.directives', [])
                                         page = "menu.tabs.tickets";
                                         break;
                                     case 'promotion':
-                                        page = "menu.promotions";
+                                        page = "menu.tab.promotions";
                                         break;
                                     case 'account':
-                                        page = "menu.tabs.account";
+                                        page = "menu.account";
                                         break;
                                     case 'voucher':
-                                        page = "menu.vouchers";
+                                        page = "menu.tab.vouchers";
                                         break;
                                     case 'about':
                                         page = "menu.about";
                                         break;
                                     case 'location':
-                                        page = "menu.tabs.time-location";
+                                        page = "menu.time-location";
                                         break;
                                     case 'refer':
                                         page = "menu.refer";
@@ -926,7 +923,8 @@ angular.module('app.directives', [])
                         var mapOptions = {
                           center: latLng,
                           zoom: 18,
-                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                          mapTypeId: google.maps.MapTypeId.ROADMAP,
+                          fullscreenControl: false
                         };
                         console.log(mapOptions);
                         scope.map = createMap (mapOptions);

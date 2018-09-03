@@ -7,17 +7,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
 
   .run(function ($ionicPlatform, $rootScope, AuthService, $state, $timeout, MsgService, GeofenceService, MenuBadge, $window, Layout) {
     $ionicPlatform.ready(function () {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 
-        // Don't remove this line unless you know what you are doing. It stops the viewport
-        // from snapping when text inputs are focused. Ionic handles this internally for
-        // a much nicer keyboard experience.
-        cordova.plugins.Keyboard.disableScroll(true);
+      if (device.platform == 'iOS') {
+        Keyboard.hideFormAccessoryBar(false);
+      }
 
-        window.ga.startTrackerWithId('UA-122012592-1', function () {
+      if (window.cordova) {
+
+        window.ga.startTrackerWithId('UA-125029398-1', function () {
           console.log('google analytics Enable!');
         }, function () {
           console.log('google analytics error');
@@ -30,7 +27,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
           }
           //add one for each voucher issued
           if (jsonData.notification.payload.additionalData.category === 'voucher') {
-            $state.go('menu.vouchers');
+            $state.go('menu.tabs.vouchers');
           }
         };
 
@@ -39,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
         }
 
         window.plugins.OneSignal
-          .startInit("84fc1aec-7679-49db-8530-f85cedbaa204")
+          .startInit("c005ed3d-0e42-43d5-b18c-43c989c21012")
           .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
           .handleNotificationReceived(onNotificationReceived)
           .handleNotificationOpened(notificationOpenedCallback)
