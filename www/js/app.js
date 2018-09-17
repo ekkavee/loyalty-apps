@@ -50,7 +50,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
 
       if (window.StatusBar) {
         StatusBar.styleDefault();
-        StatusBar.styleLightContent();
       }
 
       console.log('device api init!');
