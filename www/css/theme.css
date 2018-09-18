@@ -44,7 +44,7 @@ ion-view.home-page{
 }
 
 ion-view.home-page .home-btn-div .col > button > i{
-  background: -webkit-linear-gradient(#A57C57, #A57C57);
+  background: linear-gradient(#A57C57, #A57C57);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 

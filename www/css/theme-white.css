@@ -211,7 +211,9 @@ h4.social-heading{
 
 /* tabs */
 .tabs-striped.tabs-color-lightblue .tab-item.tab-item-active, .tabs-striped.tabs-color-lightblue .tab-item.active, .tabs-striped.tabs-color-lightblue .tab-item.activated{
-  background: -webkit-linear-gradient(#72C6C7, #72C6C7);
+  /* background: linear-gradient(#72C6C7, #72C6C7); */
+  color: #72C6C7;
+
 }
 
 
