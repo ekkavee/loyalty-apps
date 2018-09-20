@@ -403,3 +403,9 @@ ion-side-menu ion-item.item, ion-side-menu ion-item.item-complex .item-content{
 .order-header{
   color: #222 !important;
 }
+
+
+/* voucher modal */
+.voucher-container h2, .voucher-container h3, .voucher-info p{
+  color: #000 !important;
+}

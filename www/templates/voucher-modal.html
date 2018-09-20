@@ -11,13 +11,13 @@
 
     <ion-content class="main-content has-subheader" style="padding:15px;">
         <div class="voucher-container">
-            <h2 style="color:#fff; text-align:center;">{{currentVoucher.order_detail.product_name || currentVoucher.claim_promotion.product.name}}</h2>
-            <h3 style="color:#fff; text-align:justify;">{{currentVoucher.claim_promotion.product.desc_short}}</h3>
+            <h2 style="text-align:center;">{{currentVoucher.order_detail.product_name || currentVoucher.claim_promotion.product.name}}</h2>
+            <h3 style="text-align:justify;">{{currentVoucher.claim_promotion.product.desc_short}}</h3>
             <barcode class="voucher-barcode" ng-if="currentVoucher.barcode" type="ean" render="img" string="{{currentVoucher.barcode}}" options="barcodeOptions"></barcode>
             
             <div class="text-center voucher-info">
-              <p style="color:#fff;" ng-if="currentVoucher.issue_date">Issue Date: {{expTime(currentVoucher.issue_date)}}</p>
-              <p style="color:#fff;" ng-if="currentVoucher.expire_date">Expire Date: {{expTime(currentVoucher.expire_date)}}</p>
+              <p  ng-if="currentVoucher.issue_date">Issue Date: {{expTime(currentVoucher.issue_date)}}</p>
+              <p  ng-if="currentVoucher.expire_date">Expire Date: {{expTime(currentVoucher.expire_date)}}</p>
             </div>
         </div>
     </ion-content>
