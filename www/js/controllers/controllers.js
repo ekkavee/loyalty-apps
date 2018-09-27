@@ -1404,7 +1404,7 @@ angular.module('starter.controllers')
 
     $scope.getPicture = function (sourceType) {
       var options = {
-        quality: 10,
+        quality: device.platform== 'Android'?70:10,
         correctOrientation: true,
         sourceType: sourceType,
       };
@@ -1419,6 +1419,9 @@ angular.module('starter.controllers')
           $ionicLoading.hide();
         }, 2000);
 
+        var options = { 
+          quality: device.platform== 'Android'?60:25 
+        };
         if (device.platform == 'Android') {
           imgURL = 'file://' + imgURL;
         }
