@@ -117,8 +117,8 @@ h4.social-heading{
 }
 
 .listing-details.listing-desc .listing-days .listing-day{
-  border: 2px solid #A57C57;
-  color: #A57C57;
+  border: 2px solid #72C6C7;
+  color: #72C6C7;
 }
 
 .card.no-h-margin .item-body .item-action a.button{
@@ -204,6 +204,19 @@ h4.social-heading{
   color:#717171 !important;
 }
 
+.cust-form-1 label input {
+  text-align: left;
+  font-size: 16px;
+  padding: 0 5px 0 10px;
+  background: #72C6C7 !important;
+  border-radius: 20px;
+  border: 0;
+}
+
+.cust-form-1 .item-select.item-stacked-label{
+  background-color: #72C6C7 !important;
+ }
+
 .cc-selection > label{
   background: linear-gradient(to right, #72C6C7, #0D2956);
   border-radius: 20px;
@@ -257,3 +270,7 @@ ion-side-menu ion-item.item, ion-side-menu ion-item.item-complex .item-content{
   background: linear-gradient(to right, #72C6C7, #0D2956); 
 }
 
+/* voucher modal */
+.voucher-container h2, .voucher-container h3, .voucher-info p{
+  color: #222 !important;
+}
