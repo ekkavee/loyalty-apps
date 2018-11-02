@@ -103,6 +103,10 @@ angular.module('starter.controllers')
     });
   }
 
+  $scope.orderByQuestionOrder = function(q1){
+    return q1.pivot.question_order;
+  }
+
 
   $timeout(function(){
     console.log('Surveys');

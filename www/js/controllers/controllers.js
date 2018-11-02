@@ -39,6 +39,11 @@ angular.module('starter.controllers')
     };
 
     $scope.socialMediaLogin = function (SMName) {
+      console.log(SMName);
+      if(SMName === 'time-location-open'){
+        $state.go('time-location-open', {});
+        return;
+      }
       $ionicLoading.show();
       SocialMediaOauth.socialMediaAuth(SMName).then(function (user) {
         // alert(JSON.stringify(user));

@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
         return;
       }
       // if no user login and go view other than 'login', 'signup', 'resetpassword'
-      if (!(window.localStorage.getItem('CURRENT_USER') && AuthService.isAuthenticated()) && !['login', 'signup', 'resetpassword'].includes(toState.name)) {
+      if (!(window.localStorage.getItem('CURRENT_USER') && AuthService.isAuthenticated()) && !['login', 'signup', 'resetpassword', 'time-location-open', 'about-open'].includes(toState.name)) {
         // console.log('herein');
         event.preventDefault();// cancel request route
         $state.go('login');//return to login page

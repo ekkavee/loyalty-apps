@@ -13,7 +13,7 @@
   </div>
   <ion-content class="main-content has-subheader">
     <div class="survey-qust">
-      <div class="list list-inset" ng-repeat="q in survey.questions">
+      <div class="list list-inset" ng-repeat="q in survey.questions | orderBy:orderByQuestionOrder">
 
             <div ng-if="!q.multiple_choice">
               <div style="white-space:normal;" class="item">

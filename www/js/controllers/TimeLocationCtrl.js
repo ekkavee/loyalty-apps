@@ -66,8 +66,6 @@ angular.module('starter.controllers')
       var long = parseFloat($scope.positions.emerson.geometry.location.lng())
       var text = encodeURIComponent($scope.positions.emerson.formatted_address)
       if (ionic.Platform.isIOS()) {
-        // console.log("http://maps.apple.com/?q=#"+text+"&ll=#{lat},#{long}&near=#{lat},#{long}");
-        // window.open("http://maps.apple.com/?q=#{text}&ll=#{lat},#{long}&near=#{lat},#{long}", '_system', 'location=no');
         window.open("http://maps.apple.com/maps?q=" + text, '_system', 'location=no');
       }
       else {

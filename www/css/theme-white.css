@@ -91,6 +91,7 @@ h4.social-heading{
 
 .highlight-color{
   color: #000 !important;
+  text-decoration: underline;
 }
 
 /* sign up */

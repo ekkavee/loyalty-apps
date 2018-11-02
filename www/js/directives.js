@@ -882,6 +882,14 @@ angular.module('app.directives', [])
             link: function (scope, $element, $attr, ctrl) {
                 console.log(scope.venue);
 
+                scope.goSocialLink = function (url) {
+                    if (/www.snapchat.com/.test(url)) {
+                        window.open(url, '_system');
+                        return;
+                    }
+                    window.cordova.InAppBrowser.open(url, '_blank', 'location=no');
+                }
+
                 function createMap(mapOptions) {
                     return new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
                 };
@@ -897,41 +905,41 @@ angular.module('app.directives', [])
                     });
                 };
 
-                scope.goToMapApp = function(){
+                scope.goToMapApp = function () {
                     console.log(ionic.Platform);
                     var lat = parseFloat(scope.venue.googleGeoCode.geometry.location.lat())
                     var long = parseFloat(scope.venue.googleGeoCode.geometry.location.lng())
-                    var text =  encodeURIComponent(scope.venue.googleGeoCode.formatted_address)
-                    if(ionic.Platform.isIOS()){
+                    var text = encodeURIComponent(scope.venue.googleGeoCode.formatted_address)
+                    if (ionic.Platform.isIOS()) {
                         window.open("http://maps.apple.com/maps?q=" + text + "&ll=" + lat + "," + long + "&near=" + lat + "," + long, '_system', 'location=no');
                     }
-                    else{
-                      // console.log("geo:#{lat},#{long}?q=#{text}");
-                      window.open("geo:?q="+text, '_system', 'location=yes');
+                    else {
+                        // console.log("geo:#{lat},#{long}?q=#{text}");
+                        window.open("geo:?q=" + text, '_system', 'location=yes');
                     }
-                
-                  };
 
-                $timeout(function(){
-                    if(scope.venue.googleGeoCode){
+                };
+
+                $timeout(function () {
+                    if (scope.venue.googleGeoCode) {
                         // $scope.selectedAdd = '';
                         // $scope.inputAddType = 'from address';
                         // $scope.pick.towards_venue = false;
                         // chooseAddType();
-                  
+
                         var latLng = new google.maps.LatLng(scope.venue.googleGeoCode.geometry.location.lat(), scope.venue.googleGeoCode.geometry.location.lng());
                         var mapOptions = {
-                          center: latLng,
-                          zoom: 18,
-                          mapTypeId: google.maps.MapTypeId.ROADMAP,
-                          fullscreenControl: false
+                            center: latLng,
+                            zoom: 18,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            fullscreenControl: false
                         };
                         console.log(mapOptions);
-                        scope.map = createMap (mapOptions);
-                        google.maps.event.addListenerOnce(scope.map, 'idle', function(){
-                          scope.marker = createMarker(scope.map, latLng);
+                        scope.map = createMap(mapOptions);
+                        google.maps.event.addListenerOnce(scope.map, 'idle', function () {
+                            scope.marker = createMarker(scope.map, latLng);
                         });
-                      }
+                    }
                 }, 1000);
             }
         };

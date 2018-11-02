@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('AboutCtrl', function($scope, $rootScope, Listings, $q, Members, $state, $ionicLoading, $window, AuthService, PROFILE_DEFAULT, $ionicSlideBoxDelegate, SocialMediaReader, $timeout, $ionicModal, OrderModal, enquiryPopup, API_URI, APP_KEY, $http){
+.controller('AboutCtrl', function($scope, $rootScope, $ionicHistory, $timeout, Listings, $q, Members, $state, $ionicLoading, $window, AuthService, PROFILE_DEFAULT, $ionicSlideBoxDelegate, SocialMediaReader, $timeout, $ionicModal, OrderModal, enquiryPopup, API_URI, APP_KEY, $http){
   $scope.listings = [];
   // $scope.currentTab = 1;
 
@@ -45,6 +45,12 @@ angular.module('starter.controllers')
       //submit enquiry here
     });
   }
+
+  $scope.back = function () {
+    $timeout(function () {
+      $ionicHistory.goBack();
+    });
+  };
 
   $timeout(function(){
     console.log('About');

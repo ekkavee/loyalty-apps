@@ -99,11 +99,11 @@
                     <i class="icon ion-information-circled assertive"></i> please enter your date of birth and you must be over 18 years old.</p>
             </label>
             <label class="item item-input item-stacked-label">
-                <span class="input-label">Mobile</span>
-                <input type="tel" name="mobile"  ng-model="form.mobile" required ng-pattern="/^0?4\d{8}$/">
-                <p class="form-valid-msg" ng-if="myForm.mobile.$valid">
+                <span class="input-label">Mobile (optional)</span>
+                <input type="tel" name="mobile"  ng-model="form.mobile" ng-pattern="/^0?4\d{8}$/" ng-required="false">
+                <!-- <p class="form-valid-msg" ng-if="myForm.mobile.$valid">
                     <i class="icon ion-checkmark-circled balanced"></i>
-                </p>
+                </p> -->
                 <p class="form-error-msg" ng-if="myForm.mobile.$error.required && myForm.mobile.$dirty">
                     <i class="icon ion-information-circled assertive"></i> Please enter your mobile number</p>
                 <p class="form-error-msg" ng-if="myForm.mobile.$error.pattern">

@@ -50,6 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
 
       if (window.StatusBar) {
         StatusBar.styleDefault();
+        StatusBar.styleLightContent();
       }
 
       console.log('device api init!');
@@ -123,6 +124,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
         templateUrl: 'templates/reset-password.html',
         controller: 'PasswordCtrl'
 
+      })
+
+      .state('time-location-open', {
+        url: '/time-location-open',
+        templateUrl: 'templates/time-location-open.html',
+        controller: 'TimeLocationCtrl'
+      })
+
+      .state('about-open', {
+        url: '/about-open',
+        templateUrl: 'templates/about-open.html',
+        controller: 'AboutCtrl'
       })
 
       .state('membership', {

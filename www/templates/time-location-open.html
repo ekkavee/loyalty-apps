@@ -1,0 +1,18 @@
+<ion-view view-title="" cache-view="false">
+    <ion-nav-bar class="bar-color-1" align-title="center">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title">hours & location</h2>
+    </div>
+
+    <ion-content class="listing-detail has-subheader main-content" delegate-handle="mainScroll">
+        <time-location ng-if="venue" venue="venue"></time-location>
+    </ion-content>
+    <!-- <bottom-tabs-bar></bottom-tabs-bar> -->
+
+    </div>
+</ion-view>

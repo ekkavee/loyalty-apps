@@ -42,7 +42,7 @@
     </div>
 
     <div class="social-container">
-            <button ng-repeat="sl in venue.social_links" ng-if="sl.url" class="button icon " ng-click="$root.goSocialLink(sl.url)">
+            <button ng-repeat="sl in venue.social_links" ng-if="sl.url" class="button icon " ng-click="goSocialLink(sl.url)">
                 <i ng-if="sl.platform != 'website'" class="fab fa-{{sl.platform}} fa-lg"></i>
                 <i ng-if="sl.platform == 'website'" class="fal fa-globe fa-lg"></i>
             </button>
