@@ -12,8 +12,8 @@ body a, p, span, button, h1, h2, h3, h4, h5, h6 {
 }
 
 .bar.bar-header .title.title-center.header-item{
-  background: url('../img/logo.png') no-repeat center bottom;
-  background-size: 40px auto;
+  background: url('../img/bepoz_logo.png') no-repeat center bottom;
+  background-size: 100px auto;
   bottom: 0;
   top: initial;
 }
