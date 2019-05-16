@@ -1,0 +1,53 @@
+<ion-view view-title="">
+  <!-- <ion-nav-title></ion-nav-title>
+
+  <ion-nav-bar class="bar-color-1" align-title="center">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-white ion-ios-arrow-back" ng-click="back()">
+        </button>
+    </ion-nav-buttons>
+</ion-nav-bar> -->
+
+  
+<div class="bar bar-subheader">
+  <h2 class="title">Feedback</h2>
+</div>
+<ion-content class="main-content has-subheader has-tabs" style="padding:32px;">
+  <div class="contact-info" style="padding:15px 15px 0 15px;">
+    <p class="text-center" ng-bind-html="msg" style="padding-bottom:15px"></p>
+    <hr style="border-color: black;"/>
+</div>
+
+<div class="booth-search-form cust-form-1 padding" ng-form="myForm" style="margin-top:10px;">
+  <ionic-ratings ratingsobj='ratingsObject' index='0'></ionic-ratings>
+  <label class="item item-stacked-label" style="margin:15px 0">
+      <textarea class="comment-area" placeholder="Message Here" style="padding-left:10px; width:100%; color: #fff; border-radius: 10px;" name="messege" ng-model="messege" rows="8" ng-required="rating <=0"></textarea>
+  </label>
+  <ion-checkbox class="rating-checkbox" ng-model="contact_me" >Please contact me regarding this feedback.</ion-checkbox>
+  <div class="booth-btn">
+    <button ng-disabled="myForm.messege.$invalid" class="button button-small button-full btn-inline btn-bg" ng-click="submitFeedback(messege, contact_me)">
+      SUBMIT
+    </button>
+  </div>
+</div>
+  
+
+
+
+  <!-- <div style="margin-top: 100px">
+      <span class="input-label">comment</span>
+      <textarea class="comment-area" style="padding-left:10px; width:100%; color: #fff; border-radius: 10px;" name="comment" ng-model="feedback.comment" rows="8"></textarea>
+  </div>
+  <label class="container">Please contact me regarding this feedback.
+    <input type="checkbox" name="radio">
+    <span class="checkmark"></span>
+  </label>
+  <div class="booth-btn" style="margin-top: 30px">
+      <button class="button button-full button-color-dark" ng-disabled="myForm.$invalid" ng-click="FeedbackComment(feedback)">
+        Submit
+      </button>
+  </div> -->
+
+</ion-content>
+<bottom-tabs-bar></bottom-tabs-bar>
+</ion-view>
