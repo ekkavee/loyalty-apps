@@ -168,7 +168,8 @@ angular.module('starter.controllers', [])
             state = { stateName: 'menu.tabs.home', url: '#/menu/tabs/home' };
             break;
           case 2:
-            state = { stateName: 'menu.tabs.vouchers', url: '#/menu/tabs/vouchers' };
+            //state = { stateName: 'menu.tabs.vouchers', url: '#/menu/tabs/vouchers' };
+            state = { stateName: 'menu.tabs.whats', url: '#/menu/tabs/whats' };
             break;
           case 3:
             state = { stateName: 'menu.tabs.promotions', url: '#/menu/tabs/promotions' };

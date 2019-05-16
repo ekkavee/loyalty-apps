@@ -250,23 +250,51 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
       })
 
 
-      .state('menu.tabs.vouchers', {
-        url: '/vouchers',
+      // .state('menu.tabs.vouchers', {
+      //   url: '/vouchers',
+      //   params: {
+      //     view: {
+      //       layout: 'tabs',
+      //       index: 1,
+      //       view: 'vouchers'
+      //     }
+      //   },
+      //   // cache: false,
+      //   views: {
+      //     'tab-whats@menu.tabs': {
+      //       templateUrl: 'templates/vouchers.html',
+      //       controller: 'VouchersCtrl'
+      //     }
+      //   }
+      // })
+
+
+
+      .state('menu.tabs.whats', {
+        url: '/whats',
         params: {
           view: {
             layout: 'tabs',
             index: 1,
-            view: 'vouchers'
+            view: "What's on"
           }
         },
         // cache: false,
         views: {
           'tab-whats@menu.tabs': {
-            templateUrl: 'templates/vouchers.html',
-            controller: 'VouchersCtrl'
+            templateUrl: 'templates/tabPage-tpl.html',
+            controller: 'PageCtrl'
           }
         }
       })
+
+
+
+
+
+
+
+
 
       .state('menu.tabs.promotions', {
         url: '/promotions',
