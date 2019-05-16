@@ -1324,3 +1324,20 @@ input[type=month]::-webkit-calendar-picker-indicator {
 /* .platform-ios input[type="date"]{
   padding: 0 5px 0 10px;
 } */
+
+/* feedback star rating */
+.ionic_ratings .icon {
+  font-size: 35px;
+  letter-spacing: 5px;
+}
+
+.rating-checkbox span{
+  font-size: 14px !important;
+  color: #ccc;
+}
+
+.rating-checkbox input:checked:before, .rating-checkbox input:checked + .checkbox-icon:before{
+  background: #A57C57;
+  border-width: 2px;
+  border-color: #fff;
+}
