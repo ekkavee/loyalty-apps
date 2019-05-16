@@ -22,6 +22,7 @@
     "ion-datetime-picker": "^0.5.2",
     "angular-lazy-img": "^1.5.1",
     "ion-google-autocomplete": "^0.1.0",
-    "angular-barcode": "^0.0.4"
+    "angular-barcode": "^0.0.4",
+    "ionic-ratings": "^0.3.0"
   }
 }
