@@ -93,8 +93,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
     member: 'member_role'
   })
 
-  .constant('API_URI', 'https://api.vecport.net/bended-elbow/public/api/')
-  // .constant('API_URI','https://api.vecport.net/bepozws/public/api/')
+  //.constant('API_URI', 'https://api.vecport.net/bended-elbow/public/api/')
+  .constant('API_URI','https://api.vecport.net/bepozws/public/api/')
 
   .constant('PROFILE_DEFAULT', 'https://s3-ap-southeast-2.amazonaws.com/meadows-imgs/profile_default.png')
 
