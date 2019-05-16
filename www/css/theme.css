@@ -307,8 +307,10 @@ h3.special{
 }
 
 .tabs-striped.tabs-color-lightblue .tab-item.tab-item-active, .tabs-striped.tabs-color-lightblue .tab-item.active, .tabs-striped.tabs-color-lightblue .tab-item.activated{
-  background-color: #A57C57 !important;
-  border-top-color: #A57C57 !important;
+  /* background-color: #A57C57 !important;
+  border-top-color: #A57C57 !important; */
+  background-color: #000 !important;
+  border-top-color: #fff !important;
 }
 
 /* side menu */
