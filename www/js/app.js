@@ -549,6 +549,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
         }
       })
 
+
+      .state('menu.feedback', {
+        url: '/feedback',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/feedback.html',
+            controller: 'FeedbackCtrl'
+          }
+        }
+      })
+
       .state('menu.faq', {
         url: '/faq',
         views: {
