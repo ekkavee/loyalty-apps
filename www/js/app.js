@@ -600,6 +600,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.services', 'app.
 
       })
 
+      .state('menu.feedbacks', {
+        url: '/feedbacks',
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/feedbacks.html',
+            controller: 'FeedbacksCtrl'
+          }
+        }
+      })
+
       .state('menu.survey', {
         url: '/surveys/:id',
         cache: false,
