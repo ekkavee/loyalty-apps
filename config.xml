@@ -106,8 +106,8 @@
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
-        <variable name="APP_ID" value="2370687279825311" />
-        <variable name="APP_NAME" value="Bended Elbow" />
+        <variable name="APP_ID" value="177110659860165" />
+        <variable name="APP_NAME" value="Bepoz Myplace" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
