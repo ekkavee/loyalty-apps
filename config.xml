@@ -2,7 +2,7 @@
 <widget id="au.com.blackbepoz.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Black Bepoz</name>
     <description>Bepoz Royalty Apps</description>
-    <author email="kenneth@vectron.com.au" href="http://ionicframework.com/">Ekkavee</author>
+    <author email="ekkavee@vectron.com.au" href="http://ionicframework.com/">Ekkavee</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
