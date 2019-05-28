@@ -92,16 +92,16 @@
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>Bended Elbow would access camera to take pictures?</string>
+        <string>Black Bepoz would access camera to take pictures?</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryUsageDescription">
-        <string>Bended Elbow would access your pictures library?</string>
+        <string>Black Bepoz would access your pictures library?</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
-        <string>Bended Elbow need location access to find things nearby</string>
+        <string>Black Bepoz need location access to find things nearby</string>
     </edit-config>
     <edit-config file="*-Info.plist" mode="merge" target="NSPhotoLibraryAddUsageDescription">
-        <string>Bended Elbow need photo library access to save pictures there</string>
+        <string>Black Bepoz need photo library access to save pictures there</string>
     </edit-config>
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
