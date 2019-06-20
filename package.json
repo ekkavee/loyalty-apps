@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "cordova-android": "6.3.0",
-    "cordova-ios": "4.5.5",
+    "cordova-ios": "^4.5.5",
     "cordova-plugin-advanced-http": "^1.11.1",
     "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-camera": "^4.0.3",
@@ -20,10 +20,10 @@
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-dialogs": "^2.0.1",
-    "cordova-plugin-facebook4": "^2.3.0",
+    "cordova-plugin-facebook4": "^2.5.0",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-google-analytics": "^1.8.6",
-    "cordova-plugin-googleplus": "^5.3.0",
+    "cordova-plugin-googleplus": "^5.3.2",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
@@ -59,7 +59,8 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "2370687279825311",
         "APP_NAME": "Bended Elbow",
-        "ANDROID_SDK_VERSION": "4.+"
+        "ANDROID_SDK_VERSION": "4.+",
+        "FACEBOOK_ANDROID_SDK_VERSION": "4.+"
       },
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.996585340804-s298122ffio18439l6271qtk0vr2l67p"
