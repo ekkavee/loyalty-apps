@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "558470477946",
+    "firebase_url": "https://uow-loyalty-c484c.firebaseio.com",
+    "project_id": "uow-loyalty-c484c",
+    "storage_bucket": "uow-loyalty-c484c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558470477946:android:bb0c8691df0e28d2",
+        "android_client_info": {
+          "package_name": "net.vecport.uow.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558470477946-iq6a3snqh30h5tt2oqbqmoql2uhu6ism.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnekMA2zUSdAgznb6IssftobFcRU9A5lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558470477946-iq6a3snqh30h5tt2oqbqmoql2uhu6ism.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "558470477946-msf6j8tbdfjrj6n05662bu5son3lhlj0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.vecport.uow.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
